@@ -31,6 +31,7 @@ texture = ExtResource("1_xreyv")
 4:4/0 = 0
 
 [sub_resource type="TileSet" id="TileSet_fdeft"]
+physics_layer_0/collision_layer = 1
 sources/2 = SubResource("TileSetAtlasSource_jajvf")
 
 [node name="LevelLava" type="Node2D"]
