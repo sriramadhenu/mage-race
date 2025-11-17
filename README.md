@@ -91,13 +91,13 @@ We use **sequential level development** in this order:
 
 **Important:** Never push directly to `main` or `develop`!
 
-## Help!
+## Help
 
-**"If the game won't run"**
+**If the game won't run**
 - Pull latest: `git pull origin develop`
 - Reimport assets in Godot
 
-**"Testing someone else's work"**
+**Testing someone else's work**
 ```bash
 git fetch origin
 git checkout feature/their-name
