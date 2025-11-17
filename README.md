@@ -1,5 +1,6 @@
 # mage-race
-A 2D puzzle-platformer game combining combat and puzzle mechanics
+
+A 2D puzzle-platformer game combining combat and puzzle mechanics - ECS 179 Final Project
 
 ## Team
 - **Sri** - Game Logic & Build/Release Management
@@ -11,7 +12,7 @@ A 2D puzzle-platformer game combining combat and puzzle mechanics
 
 ## Setup
 
-1. **Accept the GitHub invite** (check your email)
+1. **Accept the GitHub invite**
 
 2. **Clone the repo:**
 ```bash
@@ -28,11 +29,16 @@ A 2D puzzle-platformer game combining combat and puzzle mechanics
 ```bash
    git checkout -b feature/your-name
 ```
+   Example: `feature/frank` or `feature/sarayu`
+
+## Daily Workflow
 
 ### Starting work:
 ```bash
-git pull origin develop    # Get latest changes
-git checkout feature/your-name
+git checkout develop
+git pull origin develop              # Get latest changes
+git checkout feature/your-name       # Switch to your branch
+git merge develop                    # Bring latest changes into your branch
 ```
 
 ### Saving your work:
@@ -42,37 +48,58 @@ git commit -m "description of what you did"
 git push origin feature/your-name
 ```
 
+### When you're done with a feature:
+
+1. Push your final changes:
+```bash
+   git push origin feature/your-name
+```
+
+2. Go to GitHub: https://github.com/sriramadhenu/mage-race
+
+3. Click the **"Compare & pull request"** button (appears after you push)
+
+4. Fill in the PR details:
+   - **Base**: `develop`
+   - **Compare**: `feature/your-name`
+   - **Title**: Clear description (e.g., "Add level 1 base layout")
+   - **Description**: Explain what you did
+
+5. Click **"Create pull request"**
+
 ## Level Development Workflow
 
-We are using **sequential level development**:
+We use **sequential level development** in this order:
 
-1. First work on the base level layout (tilemaps, platforms)
-2. Next, visual polish (lighting, particles, backgrounds)  
-3. Add puzzles (buttons, doors, moving objects)
-4. Add enemies (spawns, AI configuration)
-5. Add audio, UI, final touches (music, sound effects)
+1. **Base layout** - tilemaps, platforms, level structure
+2. **Visual polish** - lighting, particles, backgrounds  
+3. **Puzzles** - buttons, doors, moving objects
+4. **Enemies** - spawns, AI configuration
+5. **Polish** - audio, UI, final touches
 
 ### Rules:
-- Pull from `develop` before starting: `git pull origin develop`
+- Always start from the latest `develop` branch
+- Work on your own feature branch
+- Create a Pull Request when done
+- Review and merge work into develop branch
 
-### Commands for Each Step:
+## Branch Structure
 
+- **`main`** = Stable builds only
+- **`develop`** = Integration branch where all features combine
+- **`feature/your-name`** = Your personal work branch
+
+**Important:** Never push directly to `main` or `develop`!
+
+## Help!
+
+**"If the game won't run"**
+- Pull latest: `git pull origin develop`
+- Reimport assets in Godot
+
+**"Testing someone else's work"**
 ```bash
-# 1. Get the latest version:
-git checkout develop
-git pull origin develop
-
-# 2. Create/switch to your feature branch:
-git checkout -b feature/your-name
-# Or if your branch already exists:
-git checkout feature/your-name
-
-# 3. Make sure your branch has the latest develop changes:
-git merge develop
-
-# 4. Open Godot and do your work on the level
-
-# 5. Save your work:
-git add .
-git commit -m "describe what you did"
-git push origin feature/your-name
+git fetch origin
+git checkout feature/their-name
+# Open in Godot and test
+```
