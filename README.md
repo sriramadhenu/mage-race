@@ -53,7 +53,6 @@ We are using **sequential level development**:
 5. Add audio, UI, final touches (music, sound effects)
 
 ### Rules:
-- Wait for the previous person to finish before starting your work
 - Pull from `develop` before starting: `git pull origin develop`
 
 ### Commands for Each Step:
