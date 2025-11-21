@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=4 uid="uid://xm64rd5b2omd"]
+[gd_scene load_steps=6 format=4 uid="uid://xm64rd5b2omd"]
 
 [ext_resource type="Texture2D" uid="uid://lq81smlyojn8" path="res://assets/tilesets/jungle tileset/jungle tileset.png" id="1_om5tm"]
 [ext_resource type="PackedScene" uid="uid://biufvwmgorgev" path="res://scenes/characters/player.tscn" id="2_tbxb2"]
+[ext_resource type="PackedScene" uid="uid://ckc0q8k0gl23y" path="res://scenes/characters/orc_enemy.tscn" id="3_4tf07"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_tbxb2"]
 texture = ExtResource("1_om5tm")
@@ -368,3 +369,9 @@ position = Vector2(640, 360)
 
 [node name="Player" parent="." instance=ExtResource("2_tbxb2")]
 position = Vector2(121, 660)
+
+[node name="OrcEnemy" parent="." instance=ExtResource("3_4tf07")]
+position = Vector2(557, 644)
+
+[node name="OrcEnemy2" parent="." instance=ExtResource("3_4tf07")]
+position = Vector2(1009, 596)
