@@ -11,8 +11,14 @@ config_version=5
 [application]
 
 config/name="Mage Race"
+run/main_scene="uid://bul2w6lkrp7id"
 config/features=PackedStringArray("4.5", "Mobile")
 config/icon="res://icon.svg"
+
+[display]
+
+window/size/viewport_width=1280
+window/size/viewport_height=720
 
 [rendering]
 
