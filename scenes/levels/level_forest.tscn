@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://lq81smlyojn8" path="res://assets/tilesets/jungle tileset/jungle tileset.png" id="1_om5tm"]
 [ext_resource type="PackedScene" uid="uid://biufvwmgorgev" path="res://scenes/characters/player.tscn" id="2_tbxb2"]
-[ext_resource type="PackedScene" uid="uid://ckc0q8k0gl23y" path="res://scenes/characters/orc_enemy.tscn" id="3_4tf07"]
+[ext_resource type="PackedScene" uid="uid://ckc0q8k0gl23y" path="res://scenes/enemies/orc_enemy.tscn" id="3_4tf07"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_tbxb2"]
 texture = ExtResource("1_om5tm")
