@@ -1,9 +1,9 @@
 [gd_scene load_steps=27 format=3 uid="uid://biufvwmgorgev"]
 
-[ext_resource type="Texture2D" uid="uid://d2cuxek47fi5u" path="res://assets/sprites/Soldier/Soldier/Soldier-Attack01.png" id="1_76oj4"]
+[ext_resource type="Texture2D" uid="uid://d2cuxek47fi5u" path="res://assets/sprites/Soldier/Soldier-Attack01.png" id="1_76oj4"]
 [ext_resource type="Script" uid="uid://lcfrvnq01hhq" path="res://scripts/player/player.gd" id="1_dyp2m"]
-[ext_resource type="Texture2D" uid="uid://ph74n20q7acf" path="res://assets/sprites/Soldier/Soldier/Soldier-Idle.png" id="1_rp718"]
-[ext_resource type="Texture2D" uid="uid://dfq1e2r7pfuxo" path="res://assets/sprites/Soldier/Soldier/Soldier-Walk.png" id="2_yewv4"]
+[ext_resource type="Texture2D" uid="uid://ph74n20q7acf" path="res://assets/sprites/Soldier/Soldier-Idle.png" id="1_rp718"]
+[ext_resource type="Texture2D" uid="uid://dfq1e2r7pfuxo" path="res://assets/sprites/Soldier/Soldier-Walk.png" id="2_yewv4"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_g66nw"]
 atlas = ExtResource("1_76oj4")
@@ -180,3 +180,15 @@ autoplay = "idle"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-6, -8)
 shape = SubResource("RectangleShape2D_dyp2m")
+
+[node name="Audio" type="Node2D" parent="."]
+
+[node name="jump" type="AudioStreamPlayer2D" parent="Audio"]
+
+[node name="dash" type="AudioStreamPlayer2D" parent="Audio"]
+
+[node name="hurt" type="AudioStreamPlayer2D" parent="Audio"]
+
+[node name="spawn" type="AudioStreamPlayer2D" parent="Audio"]
+
+[node name="death" type="AudioStreamPlayer2D" parent="Audio"]

@@ -1,8 +1,10 @@
-[gd_scene load_steps=6 format=4 uid="uid://xm64rd5b2omd"]
+[gd_scene load_steps=8 format=4 uid="uid://xm64rd5b2omd"]
 
 [ext_resource type="Texture2D" uid="uid://lq81smlyojn8" path="res://assets/tilesets/jungle tileset/jungle tileset.png" id="1_om5tm"]
+[ext_resource type="PackedScene" uid="uid://cfd86qccjlkrv" path="res://scenes/dialogue_box.tscn" id="2_5341k"]
 [ext_resource type="PackedScene" uid="uid://biufvwmgorgev" path="res://scenes/characters/player.tscn" id="2_tbxb2"]
 [ext_resource type="PackedScene" uid="uid://ckc0q8k0gl23y" path="res://scenes/characters/orc_enemy.tscn" id="3_4tf07"]
+[ext_resource type="Script" uid="uid://cw2xgyxiqhtri" path="res://scripts/dialogue_box.gd" id="3_fck32"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_tbxb2"]
 texture = ExtResource("1_om5tm")
@@ -367,7 +369,13 @@ tile_set = SubResource("TileSet_30e0t")
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(640, 360)
 
+[node name="DialogueBox" parent="Camera2D" instance=ExtResource("2_5341k")]
+unique_name_in_owner = true
+visible = false
+script = ExtResource("3_fck32")
+
 [node name="Player" parent="." instance=ExtResource("2_tbxb2")]
+unique_name_in_owner = true
 position = Vector2(121, 660)
 
 [node name="OrcEnemy" parent="." instance=ExtResource("3_4tf07")]
