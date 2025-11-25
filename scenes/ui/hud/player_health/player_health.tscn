@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://cpqn333frkjx1"]
+
+[ext_resource type="Script" uid="uid://c0e8mrrdauuyl" path="res://scenes/ui/hud/player_health/player_health.gd" id="1_5yfec"]
+[ext_resource type="PackedScene" uid="uid://yfj82isj64uy" path="res://scenes/ui/hud/heart/heart.tscn" id="2_a6ewe"]
+
+[node name="PlayerHealth" type="CanvasLayer"]
+
+[node name="PlayerHealth" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_5yfec")
+heart_scene = ExtResource("2_a6ewe")
+
+[node name="Hearts" type="HBoxContainer" parent="PlayerHealth"]
+layout_mode = 1
+offset_right = 225.0
+offset_bottom = 40.0
+theme_override_constants/separation = 45
