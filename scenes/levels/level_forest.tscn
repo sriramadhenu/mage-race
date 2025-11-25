@@ -374,12 +374,12 @@ unique_name_in_owner = true
 visible = false
 script = ExtResource("3_fck32")
 
-[node name="Player" parent="." instance=ExtResource("2_tbxb2")]
-unique_name_in_owner = true
-position = Vector2(121, 660)
-
 [node name="OrcEnemy" parent="." instance=ExtResource("3_4tf07")]
 position = Vector2(557, 644)
 
 [node name="OrcEnemy2" parent="." instance=ExtResource("3_4tf07")]
 position = Vector2(1009, 596)
+
+[node name="Player" parent="." instance=ExtResource("2_tbxb2")]
+unique_name_in_owner = true
+position = Vector2(121, 660)

@@ -1,28 +1,64 @@
-extends CharacterBody2D
+extends Character
 
-const WALK_SPEED = 100
+const ATTACK_DAMAGE := 20
 
-@onready var sprite := $AnimatedSprite2D
-@onready var floor_ray_right := $FloorRaycastRight
-@onready var floor_ray_left := $FloorRaycastLeft
+@onready var _floor_ray := $FloorRaycast
+@onready var _attack_zone := $AttackZone
 
-var dir_x := -1
+var _anim_locked := false
+var _is_attacking := false
 
-func _process(_delta: float):
-	velocity.x = dir_x * WALK_SPEED
-	move_and_slide()
-	
-	# if colliding with wall
-	if is_on_wall():
-		dir_x = -dir_x
-	
-	# if about to fall off edge
-	var forward_ray: RayCast2D = floor_ray_left if dir_x < 0 else floor_ray_right
-	if not forward_ray.is_colliding():
-		dir_x = -dir_x
-	
-	if dir_x != 0:
-		sprite.flip_h = dir_x < 0
-		sprite.play("walk")
+func _physics_process(delta: float):
+	if dead:
+		return
+
+	# if colliding with wall or about to fall off edge
+	if is_on_wall() or not _floor_ray.is_colliding():
+		_toggle_facing()
+
+	if not _is_attacking:
+		velocity.x = movement_speed * _facing_dir()
+		if not _anim_locked:
+			sprite.play("walk")
+	super(delta)
+
+func _toggle_facing():
+	var new_facing := Facing.LEFT if facing == Facing.RIGHT else Facing.RIGHT
+	change_facing(new_facing)
+
+func _facing_dir():
+	if facing == Facing.RIGHT:
+		return 1
 	else:
-		sprite.play("idle")
+		return -1
+
+func change_facing(new_facing: Facing) -> void:
+	super(new_facing)
+	# flip important zones
+	_floor_ray.position.x = abs(_floor_ray.position.x) * _facing_dir()
+	_attack_zone.position.x = abs(_attack_zone.position.x) * _facing_dir()
+
+func command_callback(_cmd_name: String):
+	pass # TODO
+
+func _on_animation_finished() -> void:
+	_anim_locked = false
+	_is_attacking = false
+
+func _on_attack_zone_body_entered(body: Node2D) -> void:
+	if dead or not body is Player or body.dead:
+		return
+
+	_is_attacking = true
+	_anim_locked = true
+	sprite.play("attack")
+	velocity.x = 0
+	body.take_damage(ATTACK_DAMAGE)
+
+func _on_hurt() -> void:
+	_anim_locked = true
+	sprite.play("hurt")
+
+func _on_death() -> void:
+	_anim_locked = true
+	sprite.play("death")
