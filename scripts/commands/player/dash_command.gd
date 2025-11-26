@@ -8,8 +8,8 @@ var dash_timer: float = 0.0
 var cooldown_timer: float = 0.0
 var dash_direction: Vector2 = Vector2.ZERO
 
-const DASH_SPEED := 500.0
-const DASH_DURATION := 0.7
+const DASH_SPEED := 450.0
+const DASH_DURATION := 0.3
 const DASH_COOLDOWN := 1.0
 
 
@@ -28,7 +28,6 @@ func execute(character: Character) -> Status:
 	is_dashing = true
 	can_dash = false
 	dash_timer = DASH_DURATION
-	character.velocity.x = dash_direction.x * DASH_SPEED
 	character.command_callback("dash")
 
 	return Status.DONE
@@ -37,6 +36,11 @@ func execute(character: Character) -> Status:
 func update(character: Character, delta: float) -> void:
 	# if dashing, reduce timer
 	if is_dashing:
+		# apply the dash frame every frame
+		character.velocity.x = dash_direction.x * DASH_SPEED
+		# make sure it doesn't move vertically
+		character.velocity.y = 0
+		
 		dash_timer -= delta
 		if dash_timer <= 0.0:
 			is_dashing = false

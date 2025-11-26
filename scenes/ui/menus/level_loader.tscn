@@ -1,0 +1,40 @@
+[gd_scene load_steps=2 format=3 uid="uid://bul2w6lkrp7id"]
+
+[ext_resource type="Script" uid="uid://bqeskgutd82sx" path="res://scripts/ui/level_loader.gd" id="1_fndtg"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_fndtg")
+
+[node name="LoadForestLevel" type="Button" parent="."]
+layout_mode = 1
+offset_left = 490.0
+offset_top = 233.0
+offset_right = 790.0
+offset_bottom = 283.0
+text = "Load Forest Level"
+
+[node name="LoadIceLevel" type="Button" parent="."]
+layout_mode = 0
+offset_left = 490.0
+offset_top = 308.0
+offset_right = 790.0
+offset_bottom = 358.0
+text = "Load Ice Level"
+
+[node name="LoadLavaLevel" type="Button" parent="."]
+layout_mode = 0
+offset_left = 490.0
+offset_top = 383.0
+offset_right = 790.0
+offset_bottom = 433.0
+text = "Load Lava Level"
+
+[connection signal="pressed" from="LoadForestLevel" to="." method="_on_load_forest_level_pressed"]
+[connection signal="pressed" from="LoadIceLevel" to="." method="_on_load_ice_level_pressed"]
+[connection signal="pressed" from="LoadLavaLevel" to="." method="_on_load_lava_level_pressed"]
