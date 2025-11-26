@@ -36,7 +36,6 @@ func load_next_level():
 	last_played_level = current_level
 	level_changed.emit(current_level)
 	change_state(GameState.PLAYING)
-	# TODO: Actually load the level scene
 
 func load_specific_level(level_index: int):
 	current_level = level_index
@@ -44,13 +43,11 @@ func load_specific_level(level_index: int):
 	player_health = max_health
 	level_changed.emit(level_index)
 	change_state(GameState.PLAYING)
-	# TODO: Actually load the level scene
 
 func restart_current_level():
 	player_health = max_health
 	level_changed.emit(current_level)
 	change_state(GameState.PLAYING)
-	# TODO: Reload current level scene
 
 # Player Health Management
 func damage_player(amount: int):
