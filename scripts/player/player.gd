@@ -64,9 +64,9 @@ func spawn_dash_ghost():
 	ghost.modulate = Color(1.0, 1.0, 1.0, 0.7)
 	ghost.scale = $AnimatedSprite2D.scale
 
-	get_tree().current_scene.add_child(ghost)
+	get_parent().add_child(ghost)
 
-	var tween := get_tree().create_tween()
+	var tween = get_tree().create_tween()
 	tween.tween_property(ghost, "modulate:a", 0.0, 0.18)
 	tween.tween_callback(ghost.queue_free)
 	
