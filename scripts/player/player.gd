@@ -16,6 +16,11 @@ func _physics_process(delta: float) -> void:
 		return
 	# Update dash every frame (important)
 	dash_cmd.update(self, delta)
+	if dash_cmd.is_dashing:
+		if randi() % 3 == 0:
+			spawn_dash_ghost()
+		super(delta)
+		return
 
 	# If any queued commands exist, process them first
 	if len(cmd_list) > 0:
@@ -49,6 +54,22 @@ func _physics_process(delta: float) -> void:
 
 	super(delta)
 
+func spawn_dash_ghost():
+	var ghost = AnimatedSprite2D.new()
+	ghost.sprite_frames = $AnimatedSprite2D.sprite_frames
+	ghost.animation = $AnimatedSprite2D.animation
+	ghost.frame = $AnimatedSprite2D.frame
+	ghost.flip_h = $AnimatedSprite2D.flip_h
+	ghost.global_position = global_position
+	ghost.modulate = Color(1.0, 1.0, 1.0, 0.7)
+	ghost.scale = $AnimatedSprite2D.scale
+
+	get_tree().current_scene.add_child(ghost)
+
+	var tween := get_tree().create_tween()
+	tween.tween_property(ghost, "modulate:a", 0.0, 0.18)
+	tween.tween_callback(ghost.queue_free)
+	
 func _attack_ice():
 	if _anim_locked:
 		return
