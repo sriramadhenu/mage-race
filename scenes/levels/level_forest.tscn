@@ -4,10 +4,10 @@
 [ext_resource type="PackedScene" uid="uid://biufvwmgorgev" path="res://scenes/characters/player.tscn" id="2_tbxb2"]
 [ext_resource type="Script" uid="uid://ddhormsxtr24y" path="res://scenes/levels/position_lock_lerp_camera.gd" id="2_y7soc"]
 [ext_resource type="PackedScene" uid="uid://ckc0q8k0gl23y" path="res://scenes/characters/orc_enemy.tscn" id="3_4tf07"]
-[ext_resource type="Texture2D" uid="uid://bgvhak6h68f5k" path="res://scenes/levels/forest_backgrounds/furthest.png" id="4_4ehx6"]
-[ext_resource type="Texture2D" uid="uid://dec3wr5t2casv" path="res://scenes/levels/forest_backgrounds/far.png" id="5_y7soc"]
-[ext_resource type="Texture2D" uid="uid://sf3m7jtfl26q" path="res://scenes/levels/forest_backgrounds/mid.png" id="6_c3tcg"]
-[ext_resource type="Texture2D" uid="uid://dh0gmniba6nyk" path="res://scenes/levels/forest_backgrounds/nearest.png" id="7_jm40j"]
+[ext_resource type="Texture2D" uid="uid://bgvhak6h68f5k" path="res://scenes/levels/forest_backgrounds/forest_furthest.png" id="4_4ehx6"]
+[ext_resource type="Texture2D" uid="uid://dec3wr5t2casv" path="res://scenes/levels/forest_backgrounds/forest_far.png" id="5_y7soc"]
+[ext_resource type="Texture2D" uid="uid://sf3m7jtfl26q" path="res://scenes/levels/forest_backgrounds/forest_mid.png" id="6_c3tcg"]
+[ext_resource type="Texture2D" uid="uid://dh0gmniba6nyk" path="res://scenes/levels/forest_backgrounds/forest_nearest.png" id="7_jm40j"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_tbxb2"]
 texture = ExtResource("1_om5tm")
