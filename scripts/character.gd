@@ -6,7 +6,7 @@ signal hurt()
 signal death()
 signal resurrect()
 
-@export var health := 100
+@export var health := 5
 @export var max_health := health
 
 enum Facing {

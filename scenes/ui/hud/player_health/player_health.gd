@@ -55,13 +55,13 @@ func apply_low_health_effect():
 
 # testing function. delete soon.
 # Press H to delete heart. Press J to increase heart. Press R to restore to full health.
-func _input(event):
-	if event is InputEventKey and event.pressed:
-		if event.keycode == KEY_H:
-			set_health(current_hp - 1)
-
-		if event.keycode == KEY_J:
-			set_health(current_hp + 1)
-
-		if event.keycode == KEY_R:
-			set_health(max_hearts)
+#func _input(event):
+	#if event is InputEventKey and event.pressed:
+		#if event.keycode == KEY_H:
+			#set_health(current_hp - 1)
+#
+		#if event.keycode == KEY_J:
+			#set_health(current_hp + 1)
+#
+		#if event.keycode == KEY_R:
+			#set_health(max_hearts)
