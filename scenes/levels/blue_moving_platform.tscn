@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://cs4g0p1ndga1f"]
+
+[ext_resource type="TileSet" uid="uid://d2ppuaupw43oc" path="res://scenes/levels/ice_level.tres" id="1_8dip6"]
+
+[node name="BlueMovingPlatform" type="Node2D"]
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0)
+tile_set = ExtResource("1_8dip6")
