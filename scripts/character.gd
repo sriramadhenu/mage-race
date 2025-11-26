@@ -6,8 +6,9 @@ signal hurt()
 signal death()
 signal resurrect()
 
-@export var health := 100
-@export var max_health := health
+const DEFAULT_HEALTH := 100
+@export var health := DEFAULT_HEALTH
+@export var max_health := DEFAULT_HEALTH
 
 enum Facing {
 	LEFT,
@@ -37,7 +38,6 @@ var dead: bool = false
 var gravity: int = ProjectSettings.get("physics/2d/default_gravity")
 
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
-@onready var dialogue_box: DialogueBox = %DialogueBox
 
 func _ready() -> void:
 	change_facing(facing)
