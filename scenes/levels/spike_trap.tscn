@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://cp0h7vla2ta2c"]
+
+[ext_resource type="Texture2D" uid="uid://difjpldc5tcat" path="res://assets/sprites/Spike trap/16-bit-spike-Sheet.png" id="1_msdou"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_3umpp"]
+texture = ExtResource("1_msdou")
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-1.2859879, -5.14396, 0.49461365, -5.2428827, 8, 8, -8, 8)
+1:0/0 = 0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 4.5504227, -1.3849125, 4.847191, 1.187067, -8, 8)
+2:0/0 = 0
+2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 0.89029694, 5.0450363, -0.49461365, 5.242882)
+3:0/0 = 0
+3:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-4.253662, -1.582758, 8, -8, 8, 8, -4.5504303, 1.2859898)
+
+[sub_resource type="TileSet" id="TileSet_bwxxh"]
+physics_layer_0/collision_layer = 1
+sources/0 = SubResource("TileSetAtlasSource_3umpp")
+
+[node name="SpikeTrap" type="Node2D"]
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+scale = Vector2(0.5200008, 1)
+tile_map_data = PackedByteArray(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+tile_set = SubResource("TileSet_bwxxh")
