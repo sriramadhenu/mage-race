@@ -12,13 +12,13 @@ func _process(delta: float) -> void:
 	var target_pos = target.global_position
 	var camera_pos = position
 
-	var offset = Vector2(target_pos.x - camera_pos.x, 0)
+	var cam_offset = Vector2(target_pos.x - camera_pos.x, 0)
 	var distance = offset.length()
 
 	var speed = follow_speed if target.velocity.length() > 0.1 else catchup_speed
 
 	if distance > leash_distance:
-		camera_pos.x = target_pos.x - offset.normalized().x * leash_distance
+		camera_pos.x = target_pos.x - cam_offset.normalized().x * leash_distance
 	else:
 		camera_pos.x = lerp(camera_pos.x, target_pos.x, delta * speed)
 

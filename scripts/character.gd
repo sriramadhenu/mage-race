@@ -14,6 +14,9 @@ enum Facing {
 	RIGHT
 }
 
+var gravity: int = ProjectSettings.get("physics/2d/default_gravity")
+var _horizontal_input: float
+
 const TERMINAL_VELOCITY = 700
 const DEFAULT_JUMP_VELOCITY = -500
 const DEFAULT_MOVE_VELOCITY = 300
@@ -33,8 +36,6 @@ var dash_cmd: Command
 var facing: Facing = Facing.RIGHT
 var jumping: bool = false
 var dead: bool = false
-
-var gravity: int = ProjectSettings.get("physics/2d/default_gravity")
 
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var dialogue_box: DialogueBox = %DialogueBox
