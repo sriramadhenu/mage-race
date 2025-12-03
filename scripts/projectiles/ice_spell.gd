@@ -21,6 +21,7 @@ func _physics_process(delta: float):
 func _begin_projectile():
 	_state = "loop"
 	sprite.play("loop")
+	reparent(LevelManager.current_level_scene, true)
 
 func _end_projectile():
 	_state = "end"

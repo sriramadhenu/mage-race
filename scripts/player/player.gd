@@ -4,6 +4,7 @@ extends Character
 # player states
 var cmd_list: Array[Command]
 var _anim_locked := false
+var _is_casting := false
 
 var _ice_spell_scene: PackedScene = preload("res://scenes/projectiles/ice_spell.tscn")
 
@@ -14,11 +15,12 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	if dead:
 		return
+
 	# Update dash every frame (important)
 	dash_cmd.update(self, delta)
 	if dash_cmd.is_dashing:
 		if randi() % 3 == 0:
-			spawn_dash_ghost()
+			_spawn_dash_ghost()
 		super(delta)
 		return
 
@@ -53,7 +55,7 @@ func _physics_process(delta: float) -> void:
 
 	super(delta)
 
-func spawn_dash_ghost():
+func _spawn_dash_ghost():
 	var ghost = AnimatedSprite2D.new()
 	ghost.sprite_frames = $AnimatedSprite2D.sprite_frames
 	ghost.animation = $AnimatedSprite2D.animation
@@ -73,15 +75,22 @@ func _attack_ice():
 	if _anim_locked:
 		return
 	_anim_locked = true
+	_is_casting = true
 	sprite.play("cast_forward")
 
 	var facing_dir := 1 if facing == Facing.RIGHT else -1
 	var ice_spell: IceSpell = _ice_spell_scene.instantiate()
 	ice_spell.ignore = self
 	ice_spell.velocity.x *= facing_dir
-	ice_spell.global_position = global_position + Vector2(50 * facing_dir, -30)
+	ice_spell.position = Vector2(50 * facing_dir, -30)
 
-	get_parent().add_child(ice_spell)
+	# add the spell as a child of this node so it follows the player as its forming
+	# when the spell is fully formed, it will reparent
+	add_child(ice_spell)
+
+func change_facing(new_facing: Facing):
+	if not _is_casting:
+		super(new_facing)
 
 func bind_player_input_commands():
 	right_cmd = MoveRightCommand.new()
@@ -111,6 +120,7 @@ func command_callback(cmd_name: String) -> void:
 
 func _on_animation_finished() -> void:
 	_anim_locked = false
+	_is_casting = false
 
 func _on_hurt() -> void:
 	_anim_locked = true
