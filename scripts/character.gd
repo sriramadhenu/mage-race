@@ -15,7 +15,6 @@ enum Facing {
 }
 
 var gravity: int = ProjectSettings.get("physics/2d/default_gravity")
-var _horizontal_input: float
 
 const TERMINAL_VELOCITY = 700
 const DEFAULT_JUMP_VELOCITY = -500
@@ -38,7 +37,6 @@ var jumping: bool = false
 var dead: bool = false
 
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
-@onready var dialogue_box: DialogueBox = %DialogueBox
 
 func _ready() -> void:
 	change_facing(facing)
