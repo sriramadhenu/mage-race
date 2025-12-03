@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=3 uid="uid://bw80orw10set6"]
+
+[ext_resource type="Texture2D" uid="uid://otl7teyvdbnk" path="res://assets/sprites/Button/ButtonGreen-Sheet.png" id="1_ndvg0"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ri60l"]
+texture = ExtResource("1_ndvg0")
+0:0/size_in_atlas = Vector2i(2, 2)
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-10.137558, -2.564066, 10.141514, -2.465145, 9.943668, 7.427086, -10.3354, 7.6249294)
+2:0/size_in_atlas = Vector2i(2, 2)
+2:0/0 = 0
+4:0/size_in_atlas = Vector2i(2, 2)
+4:0/0 = 0
+6:0/size_in_atlas = Vector2i(2, 2)
+6:0/0 = 0
+8:0/size_in_atlas = Vector2i(2, 2)
+8:0/0 = 0
+10:0/size_in_atlas = Vector2i(2, 2)
+10:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_ei82v"]
+physics_layer_0/collision_layer = 1
+sources/3 = SubResource("TileSetAtlasSource_ri60l")
+
+[node name="GreenButton" type="Node2D"]
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray(0, 0, 1, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0)
+tile_set = SubResource("TileSet_ei82v")

@@ -1,0 +1,28 @@
+[gd_scene load_steps=2 format=3 uid="uid://dlle1xsn5613d"]
+
+[ext_resource type="Script" uid="uid://7fl8li7pa5f5" path="res://scenes/levels/main_menu.gd" id="1_fsby3"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_fsby3")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 546.0
+offset_top = 287.0
+offset_right = 783.0
+offset_bottom = 310.0
+text = "Implement Main Menu UI here"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="StartButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 562.0
+offset_top = 362.0
+offset_right = 757.0
+offset_bottom = 393.0
+text = "Start Game (Temporary)"
