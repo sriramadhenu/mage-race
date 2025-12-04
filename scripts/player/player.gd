@@ -16,13 +16,17 @@ func _physics_process(delta: float) -> void:
 		return
 	# Update dash every frame (important)
 	dash_cmd.update(self, delta)
+	if dash_cmd.is_dashing:
+		if randi() % 3 == 0:
+			spawn_dash_ghost()
+		super(delta)
+		return
 
 	# If any queued commands exist, process them first
 	if len(cmd_list) > 0:
 		var command_status: Command.Status = cmd_list.front().execute(self)
 		if Command.Status.DONE == command_status:
 			cmd_list.pop_front()
-		super(delta)
 		return
 	
 	if Input.is_action_just_pressed("jump"):
@@ -49,6 +53,22 @@ func _physics_process(delta: float) -> void:
 
 	super(delta)
 
+func spawn_dash_ghost():
+	var ghost = AnimatedSprite2D.new()
+	ghost.sprite_frames = $AnimatedSprite2D.sprite_frames
+	ghost.animation = $AnimatedSprite2D.animation
+	ghost.frame = $AnimatedSprite2D.frame
+	ghost.flip_h = $AnimatedSprite2D.flip_h
+	ghost.global_position = global_position
+	ghost.modulate = Color(1.0, 1.0, 1.0, 0.7)
+	ghost.scale = $AnimatedSprite2D.scale
+
+	get_parent().add_child(ghost)
+
+	var tween = get_tree().create_tween()
+	tween.tween_property(ghost, "modulate:a", 0.0, 0.18)
+	tween.tween_callback(ghost.queue_free)
+	
 func _attack_ice():
 	if _anim_locked:
 		return
@@ -76,6 +96,7 @@ func unbind_player_input_commands():
 	up_cmd = IdleCommand.new()
 	idle = IdleCommand.new()
 	dash_cmd = IdleCommand.new()
+
 
 func command_callback(cmd_name: String) -> void:
 	var player: AudioStreamPlayer2D = null
