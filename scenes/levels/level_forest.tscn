@@ -553,10 +553,10 @@ target = NodePath("../Player")
 position = Vector2(195, 699)
 
 [node name="OrcEnemy" parent="." instance=ExtResource("3_4tf07")]
-position = Vector2(1258, 698)
+position = Vector2(1258, 702)
 
 [node name="OrcEnemy2" parent="." instance=ExtResource("3_4tf07")]
-position = Vector2(3495, 573)
+position = Vector2(3495, 575)
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
@@ -600,7 +600,7 @@ position = Vector2(1749.0001, 672)
 scale = Vector2(2.5699997, 3.2499793)
 
 [node name="GreenMovingBlock" parent="." instance=ExtResource("11_8sm36")]
-position = Vector2(2786, 658)
+position = Vector2(2966, 660)
 scale = Vector2(2.5, 2.288)
 
 [node name="Door" parent="." instance=ExtResource("12_i2ejl")]
@@ -624,5 +624,5 @@ position = Vector2(-81, 478)
 scale = Vector2(-1.2561966, 1)
 
 [node name="DeathZone" parent="." instance=ExtResource("17_pb8g6")]
-position = Vector2(4154, 862)
+position = Vector2(4154, 864)
 scale = Vector2(1.24, 1)
