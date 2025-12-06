@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dh0gmniba6nyk"
-path="res://.godot/imported/nearest.png-dc78f77fe8696871478041c092171335.ctex"
+path="res://.godot/imported/forest_nearest.png-ee98c088508211c9f4027100c71606e9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/levels/forest_backgrounds/nearest.png"
-dest_files=["res://.godot/imported/nearest.png-dc78f77fe8696871478041c092171335.ctex"]
+source_file="res://scenes/levels/forest_backgrounds/forest_nearest.png"
+dest_files=["res://.godot/imported/forest_nearest.png-ee98c088508211c9f4027100c71606e9.ctex"]
 
 [params]
 

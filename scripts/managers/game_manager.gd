@@ -13,7 +13,7 @@ enum GameState {
 var current_state: GameState = GameState.MAIN_MENU
 var current_level: int = 0
 var player_health: int = 100
-var max_health: int = 100
+var max_health: int = 5
 var collected_relics: Array = []
 var last_played_level: int = 0
 
