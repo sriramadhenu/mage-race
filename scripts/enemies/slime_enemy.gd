@@ -1,5 +1,7 @@
 extends Character
 
+@export var damage := 50
+
 @onready var _floor_ray: RayCast2D = $FloorRay
 @onready var _wall_ray: RayCast2D = $WallRay
 
@@ -47,3 +49,18 @@ func _rotate_down_wall():
 
 func command_callback(_cmd_name: String):
 	pass # TODO
+
+
+func _on_animation_finished() -> void:
+	if not dead:
+		sprite.play("default")
+
+func _on_hurt() -> void:
+	sprite.play("hurt")
+
+func _on_death() -> void:
+	sprite.play("death")
+
+func _on_hit_box_body_entered(body: Node2D) -> void:
+	if body is Player:
+		body.take_damage(damage)

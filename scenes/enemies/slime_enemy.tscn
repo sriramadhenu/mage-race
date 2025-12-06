@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://b6erewmw701rw"]
+[gd_scene load_steps=22 format=3 uid="uid://b6erewmw701rw"]
 
 [ext_resource type="Texture2D" uid="uid://tjqxob5l8hox" path="res://assets/sprites/Characters/Slime/Slime/Slime-Walk.png" id="1_2ti24"]
 [ext_resource type="Script" uid="uid://bxy7yakammcp0" path="res://scripts/enemies/slime_enemy.gd" id="1_eto1c"]
@@ -124,6 +124,9 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2ti24"]
 size = Vector2(48, 22)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7wnfq"]
+size = Vector2(48, 22)
+
 [node name="SlimeEnemy" type="CharacterBody2D"]
 collision_layer = 2
 collision_mask = 0
@@ -147,3 +150,17 @@ target_position = Vector2(0, 6)
 [node name="WallRay" type="RayCast2D" parent="."]
 position = Vector2(15, -14)
 target_position = Vector2(6, 0)
+
+[node name="HitBox" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+visible = false
+position = Vector2(-4, -11)
+shape = SubResource("RectangleShape2D_7wnfq")
+
+[connection signal="death" from="." to="." method="_on_death"]
+[connection signal="hurt" from="." to="." method="_on_hurt"]
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animation_finished"]
+[connection signal="body_entered" from="HitBox" to="." method="_on_hit_box_body_entered"]
