@@ -132,3 +132,4 @@ func _on_death() -> void:
 func take_damage(amount: int) -> void:
 	super(amount)
 	emit_signal("health_changed", health) # health inherited from Character.gd
+	GameManager.damage_player(amount)
