@@ -25,7 +25,7 @@ func _physics_process(delta: float) -> void:
 		velocity = Vector2.ZERO
 		super(delta)
 		return
-
+	
 	# Update dash every frame (important)
 	dash_cmd.update(self, delta)
 	if dash_cmd.is_dashing:
@@ -34,7 +34,7 @@ func _physics_process(delta: float) -> void:
 		_apply_knockback(delta)
 		super(delta)
 		return
-
+	
 	# If any queued commands exist, process them first
 	if len(cmd_list) > 0:
 		var command_status: Command.Status = cmd_list.front().execute(self)
@@ -46,8 +46,10 @@ func _physics_process(delta: float) -> void:
 		up_cmd.execute(self)
 	if Input.is_action_just_pressed("dash"):
 		dash_cmd.execute(self)
-	if Input.is_action_just_pressed("attack_ice"):
-		_attack_ice()
+	if Input.is_action_just_pressed("attack_ice_left"):
+		_shoot_left()
+	if Input.is_action_just_pressed("attack_ice_right"):
+		_shoot_right()
 
 	var move_input = Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
 	if move_input > 0.1:
@@ -196,3 +198,13 @@ func _start_knockback(source: Node) -> void:
 		var dir: float = sign(global_position.x - source.global_position.x)
 		_knockback_velocity.x = dir * KNOCKBACK_SPEED
 		velocity.y = min(velocity.y, KNOCKBACK_VERTICAL)
+
+
+func _shoot_left():
+	change_facing(Facing.LEFT)
+	_attack_ice()
+
+
+func _shoot_right():
+	change_facing(Facing.RIGHT)
+	_attack_ice()
