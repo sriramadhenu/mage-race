@@ -37,7 +37,7 @@ func load_level(level_index: int):
 		
 		if level_scene:
 			current_level_scene = level_scene.instantiate()
-			get_tree().root.add_child(current_level_scene)
+			get_tree().root.add_child.call_deferred(current_level_scene)
 		else:
 			print("ERROR: Could not load level at path: ", level_path)
 	else:
