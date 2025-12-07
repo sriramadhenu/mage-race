@@ -2,11 +2,11 @@
 
 [ext_resource type="Script" uid="uid://7fl8li7pa5f5" path="res://scenes/levels/main_menu.gd" id="1_fsby3"]
 [ext_resource type="FontFile" uid="uid://dmqpm86c380kf" path="res://scenes/ui/common/fonts/PixelifySans-VariableFont_wght.ttf" id="2_geflf"]
-[ext_resource type="Shader" uid="uid://cttr8k0ekr7kt" path="res://scenes/ui/menus/shader_scrips/nebula.gdshader" id="3_crctu"]
+[ext_resource type="Shader" uid="uid://cttr8k0ekr7kt" path="res://scenes/ui/menus/shader_scripts/nebula.gdshader" id="3_crctu"]
 [ext_resource type="Theme" uid="uid://57ygx1bt32mq" path="res://scenes/ui/common/pixel_theme.tres" id="3_fkd6t"]
-[ext_resource type="Shader" uid="uid://co6oiedn86b3w" path="res://scenes/ui/menus/shader_scrips/front.gdshader" id="3_keln3"]
+[ext_resource type="Shader" uid="uid://co6oiedn86b3w" path="res://scenes/ui/menus/shader_scripts/front.gdshader" id="3_keln3"]
 [ext_resource type="Texture2D" uid="uid://bkm57v3dlup75" path="res://icon.svg" id="4_crctu"]
-[ext_resource type="Shader" uid="uid://dhr6udene0d8f" path="res://scenes/ui/menus/shader_scrips/stars.gdshader" id="5_sn5u3"]
+[ext_resource type="Shader" uid="uid://dhr6udene0d8f" path="res://scenes/ui/menus/shader_scripts/stars.gdshader" id="5_sn5u3"]
 [ext_resource type="AudioStream" uid="uid://bi4oubfnudqr3" path="res://scenes/ui/menus/MenuMusic/adventure_free .wav" id="8_sn5u3"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_cn35j"]
