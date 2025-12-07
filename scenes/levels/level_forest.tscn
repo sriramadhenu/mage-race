@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=4 uid="uid://xm64rd5b2omd"]
+[gd_scene load_steps=22 format=4 uid="uid://xm64rd5b2omd"]
 
 [ext_resource type="Script" uid="uid://sb4fxfpqh6ap" path="res://scenes/levels/level_forest.gd" id="1_auoep"]
 [ext_resource type="Texture2D" uid="uid://be4ky4bfjyunq" path="res://assets/tilesets/Water+.png" id="1_c3tcg"]
@@ -567,7 +567,8 @@ position = Vector2(138, -233)
 scale = Vector2(5.5599995, 1)
 
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer (furthest)"]
-position = Vector2(962, 538)
+position = Vector2(776.58276, 574)
+scale = Vector2(1.2355367, 1)
 texture = ExtResource("4_4ehx6")
 
 [node name="ParallaxLayer (far)" type="ParallaxLayer" parent="ParallaxBackground"]
