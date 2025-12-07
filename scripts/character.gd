@@ -50,7 +50,7 @@ func change_facing(new_facing: Facing) -> void:
 	sprite.flip_h = (facing == Facing.LEFT)
 	direction_change.emit(facing)
 
-func take_damage(damage: int):
+func take_damage(damage: int, _source: Node):
 	if dead or damage <= 0:
 		return
 
@@ -87,5 +87,4 @@ func _apply_gravity(delta : float) -> void:
 	velocity.y = minf(TERMINAL_VELOCITY, velocity.y + gravity * delta)
 
 func _apply_movement(_delta: float):
-	
 	move_and_slide()

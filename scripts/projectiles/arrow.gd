@@ -63,7 +63,7 @@ func _on_body_entered(body: Node) -> void:
 
 	# apply damage if it's a character
 	if body is Character:
-		body.take_damage(damage)
+		body.take_damage(damage, self)
 
 	# stick to the hit body (so it moves with them)
 	if body is Node2D:
