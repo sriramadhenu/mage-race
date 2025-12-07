@@ -248,7 +248,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_6d13v")
 }],
 "loop": true,
-"name": &"walk",
+"name": &"run",
 "speed": 8.0
 }]
 
@@ -260,11 +260,12 @@ collision_layer = 2
 script = ExtResource("1_ha63k")
 health = 200
 max_health = 200
+movement_speed = 200
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(4, 4)
 sprite_frames = SubResource("SpriteFrames_83ygb")
-animation = &"attack"
+animation = &"run"
 autoplay = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -274,7 +275,12 @@ shape = SubResource("RectangleShape2D_6rwa7")
 [node name="ArrowSpawn" type="Node2D" parent="."]
 position = Vector2(48, 4)
 
+[node name="RecoverTimer" type="Timer" parent="."]
+wait_time = 0.4
+one_shot = true
+
 [connection signal="death" from="." to="." method="_on_death"]
 [connection signal="hurt" from="." to="." method="_on_hurt"]
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animation_finished"]
 [connection signal="frame_changed" from="AnimatedSprite2D" to="." method="_on_animation_frame_changed"]
+[connection signal="timeout" from="RecoverTimer" to="." method="_on_recover_timer_timeout"]

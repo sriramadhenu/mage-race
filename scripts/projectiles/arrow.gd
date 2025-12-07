@@ -1,7 +1,7 @@
 class_name ArrowProjectile
 extends RigidBody2D
 
-@export var damage := 20
+@export var damage := 2
 @export var speed := 1000
 
 var stuck := false
