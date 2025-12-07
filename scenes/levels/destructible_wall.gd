@@ -1,32 +1,20 @@
 class_name DestructibleWall
 extends StaticBody2D
 
-@export var health: int = 1
+@export var health: int = 100
 
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var collision_shape: CollisionShape2D = $CollisionShape2D
 
-func _ready() -> void:
-	# Make sure we can receive body_entered signals from the IceSpell
-	# The IceSpell calls _on_body_entered() when it hits a PhysicsBody2D
-	
-	# Add a small delay to ensure everything is set up
-	await get_tree().process_frame
-	
-	# We don't need to add an Area2D - the IceSpell will detect this StaticBody2D directly
-	# because StaticBody2D is a PhysicsBody2D
-
-func _on_body_entered(_body: Node2D) -> void:
-	# This function should be called by the IceSpell when it hits this wall
-	# But we need to explicitly check for IceSpell hitting us
-	pass  # We'll handle this differently
-
-# Add this method to be called by the IceSpell
 func take_damage_from_spell(damage: int) -> void:
+	# Check if the node is still valid before proceeding
+	if not is_instance_valid(self):
+		return
+		
 	health -= damage
 	
 	# Visual feedback
-	if sprite:
+	if sprite and is_instance_valid(sprite):
 		var tween = get_tree().create_tween()
 		tween.tween_property(sprite, "modulate", Color(2.0, 0.5, 0.5), 0.05)
 		tween.tween_property(sprite, "modulate", Color.WHITE, 0.05)
@@ -35,13 +23,25 @@ func take_damage_from_spell(damage: int) -> void:
 		_destroy()
 
 func _destroy() -> void:
+	# Mark the wall as destroyed immediately
+	set_process(false)
+	set_physics_process(false)
 	
-	# Disable collision immediately
-	if collision_shape:
-		collision_shape.disabled = true
+	# Disable collision using set_deferred - this is safer than call_deferred
+	if collision_shape and is_instance_valid(collision_shape):
+		collision_shape.set_deferred("disabled", true)
+	
+	# Remove this StaticBody2D from processing
+	set_collision_layer(0)
+	set_collision_mask(0)
 	
 	# Fade out and disappear
-	if sprite:
+	if sprite and is_instance_valid(sprite):
 		var tween = get_tree().create_tween()
 		tween.tween_property(sprite, "modulate:a", 0.0, 0.5)
-		tween.tween_callback(queue_free)
+		tween.tween_callback(_queue_free_safely)
+
+func _queue_free_safely() -> void:
+	# Ensure we're still valid before queue_free
+	if is_instance_valid(self):
+		queue_free()
