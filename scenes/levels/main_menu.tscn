@@ -1,9 +1,34 @@
-[gd_scene load_steps=9 format=3 uid="uid://dlle1xsn5613d"]
+[gd_scene load_steps=15 format=3 uid="uid://dlle1xsn5613d"]
 
 [ext_resource type="Script" uid="uid://7fl8li7pa5f5" path="res://scenes/levels/main_menu.gd" id="1_fsby3"]
 [ext_resource type="FontFile" uid="uid://dmqpm86c380kf" path="res://scenes/ui/common/fonts/PixelifySans-VariableFont_wght.ttf" id="2_geflf"]
-[ext_resource type="Shader" uid="uid://cikujnx6re5xv" path="res://scenes/levels/main_menu.gdshader" id="2_leamy"]
+[ext_resource type="Shader" uid="uid://cttr8k0ekr7kt" path="res://scenes/ui/menus/shader_scripts/nebula.gdshader" id="3_crctu"]
 [ext_resource type="Theme" uid="uid://57ygx1bt32mq" path="res://scenes/ui/common/pixel_theme.tres" id="3_fkd6t"]
+[ext_resource type="Shader" uid="uid://co6oiedn86b3w" path="res://scenes/ui/menus/shader_scripts/front.gdshader" id="3_keln3"]
+[ext_resource type="Texture2D" uid="uid://bkm57v3dlup75" path="res://icon.svg" id="4_crctu"]
+[ext_resource type="Shader" uid="uid://dhr6udene0d8f" path="res://scenes/ui/menus/shader_scripts/stars.gdshader" id="5_sn5u3"]
+[ext_resource type="AudioStream" uid="uid://bi4oubfnudqr3" path="res://scenes/ui/menus/MenuMusic/adventure_free .wav" id="8_sn5u3"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cn35j"]
+shader = ExtResource("3_crctu")
+shader_parameter/speed = 0.01
+shader_parameter/strength = 0.4
+shader_parameter/fog_color = Color(0.15, 0.1, 0.2, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_sn5u3"]
+shader = ExtResource("5_sn5u3")
+shader_parameter/particle_color = Color(0.4, 0.8, 1, 1)
+shader_parameter/glow_color = Color(0.8, 0.3, 1, 1)
+shader_parameter/particle_speed = 1.0
+shader_parameter/particle_density = 8.0
+shader_parameter/sparkle_intensity = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wko7x"]
+shader = ExtResource("3_keln3")
+shader_parameter/speed = 0.02
+shader_parameter/density = 25.0
+shader_parameter/intensity = 0.6
+shader_parameter/spark_color = Color(1, 0.8, 0.4, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_geflf"]
 bg_color = Color(0.78431374, 0.5294118, 0.16470589, 1)
@@ -35,24 +60,97 @@ offset_bottom = 40.0
 theme = ExtResource("3_fkd6t")
 script = ExtResource("1_fsby3")
 
-[node name="Label" type="Label" parent="."]
+[node name="MainBackground" type="ColorRect" parent="."]
+z_index = -10
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.060409427, 0.08165094, 0.16590062, 1)
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+layer = 0
+
+[node name="ParallaxLayer (shader_background)" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.02, 1)
+
+[node name="TextureRect" type="TextureRect" parent="ParallaxBackground/ParallaxLayer (shader_background)"]
+z_index = 1
+material = SubResource("ShaderMaterial_cn35j")
+offset_right = 1281.0
+offset_bottom = 725.0
+texture = ExtResource("4_crctu")
+
+[node name="ParallaxLayer (middle)" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.1, 1)
+
+[node name="TextureRect" type="TextureRect" parent="ParallaxBackground/ParallaxLayer (middle)"]
+material = SubResource("ShaderMaterial_sn5u3")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1278.0
+offset_bottom = 724.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_crctu")
+metadata/_edit_use_anchors_ = true
+
+[node name="ParallaxLayer (front)" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.25, 1)
+
+[node name="TextureRect" type="TextureRect" parent="ParallaxBackground/ParallaxLayer (front)"]
+material = SubResource("ShaderMaterial_wko7x")
+offset_right = 1280.0
+offset_bottom = 724.0
+texture = ExtResource("4_crctu")
+
+[node name="TitleContainer" type="VBoxContainer" parent="."]
+custom_minimum_size = Vector2(0, 300)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -299.5
+offset_right = 311.5
+offset_bottom = 300.0
+grow_horizontal = 2
+
+[node name="GameTitle" type="Label" parent="TitleContainer"]
 modulate = Color(0.9607843, 0.827451, 0.54509807, 1)
 z_index = 1
-layout_mode = 0
-offset_left = 414.0
-offset_top = 144.0
-offset_right = 902.0
-offset_bottom = 260.0
+layout_mode = 2
+size_flags_vertical = 6
 theme_override_colors/font_color = Color(0.9607843, 0.827451, 0.54509807, 1)
 theme_override_colors/font_outline_color = Color(0.22745098, 0.16470589, 0.078431375, 1)
 theme_override_constants/outline_size = 20
 theme_override_fonts/font = ExtResource("2_geflf")
-theme_override_font_sizes/font_size = 96
+theme_override_font_sizes/font_size = 120
 text = "Mage Race"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="StartButton" type="Button" parent="."]
+[node name="ButtonsContainer" type="VBoxContainer" parent="."]
+modulate = Color(1.2237577, 1.2237577, 1.2237577, 1)
+top_level = true
+z_index = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -81.5
+offset_top = -76.0
+offset_right = 81.5
+offset_bottom = 76.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+
+[node name="StartButton" type="Button" parent="ButtonsContainer"]
 z_index = 1
 layout_mode = 0
 offset_left = 544.0
@@ -64,10 +162,16 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_fkd6t")
 theme_override_styles/hover = SubResource("StyleBoxFlat_keln3")
 text = "Start"
 
-[node name="ColorRect" type="ColorRect" parent="."]
-z_index = -1
-material = SubResource("ShaderMaterial_721jg")
-layout_mode = 0
-offset_right = 1283.0
-offset_bottom = 723.0
-mouse_filter = 2
+[node name="QuitButton" type="Button" parent="ButtonsContainer"]
+z_index = 1
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+theme_override_styles/normal = SubResource("StyleBoxFlat_geflf")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_fkd6t")
+theme_override_styles/hover = SubResource("StyleBoxFlat_keln3")
+text = "Quit
+"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_sn5u3")
+autoplay = true
