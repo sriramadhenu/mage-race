@@ -293,6 +293,7 @@ animation = &"hurt"
 autoplay = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2(-2, -8)
 shape = SubResource("RectangleShape2D_dyp2m")
 
