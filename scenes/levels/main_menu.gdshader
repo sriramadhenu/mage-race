@@ -35,7 +35,7 @@ void fragment() {
                 step(abs(UV.x - pos.x), dot_size) *
                 step(abs(UV.y - pos.y), dot_size);
 
-            // fade in / out at screen edges
+            // f ade in / out at screen edges
             float alpha = smoothstep(-0.1, 0.02, star_y) *
                           smoothstep(1.1, 0.95, star_y);
 
