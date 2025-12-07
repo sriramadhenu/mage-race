@@ -21,6 +21,7 @@ func _physics_process(delta: float):
 func _begin_projectile():
 	_state = "loop"
 	sprite.play("loop")
+	reparent(LevelManager.current_level_scene, true)
 
 func _end_projectile():
 	_state = "end"
@@ -40,5 +41,7 @@ func _on_body_entered(body: Node2D) -> void:
 		if body.dead:
 			return
 		body.take_damage(damage)
+	elif body.has_method("take_damage_from_spell"):
+		body.take_damage_from_spell(damage)
 
 	_end_projectile()

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c1qsnckv6r6m5"
-path="res://.godot/imported/2.png-1d3e1e01954d8edc039d773e448198cb.ctex"
+uid="uid://bmc5one5rhyp5"
+path="res://.godot/imported/swamp.png-17710b6f3c6c83b1cb36bcb721297001.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/ui/menus/menu_background/2.png"
-dest_files=["res://.godot/imported/2.png-1d3e1e01954d8edc039d773e448198cb.ctex"]
+source_file="res://assets/tilesets/swamp.png"
+dest_files=["res://.godot/imported/swamp.png-17710b6f3c6c83b1cb36bcb721297001.ctex"]
 
 [params]
 
