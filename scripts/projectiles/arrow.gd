@@ -1,8 +1,9 @@
 class_name ArrowProjectile
 extends RigidBody2D
 
-@export var damage := 20
+@export var damage := 2
 @export var speed := 1000
+@export var inaccurate := false
 
 var stuck := false
 var _last_rotation := 0.0
@@ -14,11 +15,42 @@ func _physics_process(_delta: float):
 
 func launch_at(target_pos: Vector2):
 	var to := target_pos - global_position
-	var vel := to.normalized() * speed
+	var g := float(ProjectSettings.get_setting("physics/2d/default_gravity"))
 
-	var up_boost: float = clamp(to.length() * 0.02, 0.0, speed)
-	vel.y -= up_boost
-	
+	if to.length() < 0.01:
+		return
+
+	var v := speed
+	var dx := to.x
+	var dy := to.y
+
+	# solve for time-of-flight that keeps initial speed at `speed` under gravity.
+	var a := (g * g) * 0.25
+	var b := -(dy * g + v * v)
+	var c := dx * dx + dy * dy
+	var discriminant := b * b - 4.0 * a * c
+
+	var vel := Vector2.ZERO
+	if discriminant >= 0.0 and a != 0.0:
+		var sqrt_disc := sqrt(discriminant)
+		var t_sq := (-b - sqrt_disc) / (2.0 * a)
+		if t_sq <= 0.0:
+			t_sq = (-b + sqrt_disc) / (2.0 * a)
+
+		if t_sq > 0.0:
+			var t := sqrt(t_sq)
+			vel.x = dx / t
+			vel.y = dy / t - 0.5 * g * t
+
+	# fallback to straight shot if target is unreachable
+	if vel == Vector2.ZERO:
+		vel = to.normalized() * v
+
+	if inaccurate:
+		const INACCURAGE_DEGREES := 7.5
+		var spread := deg_to_rad(INACCURAGE_DEGREES)
+		vel = vel.rotated(randf_range(-spread, spread))
+
 	linear_velocity = vel
 	rotation = vel.angle()
 

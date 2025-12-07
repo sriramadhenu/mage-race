@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://ckc0q8k0gl23y"]
+[gd_scene load_steps=46 format=3 uid="uid://ckc0q8k0gl23y"]
 
 [ext_resource type="Script" uid="uid://cnja160w4filu" path="res://scripts/enemies/orc_enemy.gd" id="1_wma73"]
 [ext_resource type="Texture2D" uid="uid://u2lxer5njr50" path="res://assets/sprites/Characters/Orc/Orc/Orc-Attack01.png" id="2_45sbe"]
@@ -86,6 +86,38 @@ region = Rect2(400, 0, 100, 100)
 [sub_resource type="AtlasTexture" id="AtlasTexture_o705r"]
 atlas = ExtResource("2_becf2")
 region = Rect2(500, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ni5qr"]
+atlas = ExtResource("3_becf2")
+region = Rect2(0, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g0o0e"]
+atlas = ExtResource("3_becf2")
+region = Rect2(100, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hir4x"]
+atlas = ExtResource("3_becf2")
+region = Rect2(200, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hygx8"]
+atlas = ExtResource("3_becf2")
+region = Rect2(300, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lk7jh"]
+atlas = ExtResource("3_becf2")
+region = Rect2(400, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t4fkj"]
+atlas = ExtResource("3_becf2")
+region = Rect2(500, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_865m7"]
+atlas = ExtResource("3_becf2")
+region = Rect2(600, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ecp0i"]
+atlas = ExtResource("3_becf2")
+region = Rect2(700, 0, 100, 100)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wma73"]
 atlas = ExtResource("3_becf2")
@@ -203,6 +235,35 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_ni5qr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g0o0e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hir4x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hygx8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lk7jh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t4fkj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_865m7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ecp0i")
+}],
+"loop": true,
+"name": &"run",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_wma73")
 }, {
 "duration": 1.0,
@@ -235,18 +296,22 @@ animations = [{
 size = Vector2(52, 72)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_becf2"]
-size = Vector2(64, 44)
+size = Vector2(58, 72)
 
 [node name="OrcEnemy" type="CharacterBody2D"]
 collision_layer = 2
 script = ExtResource("1_wma73")
+health = 110
+max_health = 110
 movement_speed = 100
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(4, 4)
 sprite_frames = SubResource("SpriteFrames_eojnx")
-animation = &"hurt"
+animation = &"attack"
 autoplay = "idle"
+frame = 5
+frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(2, -8)
@@ -256,14 +321,19 @@ shape = SubResource("RectangleShape2D_dyp2m")
 position = Vector2(24, 0)
 
 [node name="AttackZone" type="Area2D" parent="."]
-position = Vector2(32, 6)
+position = Vector2(57, -8)
 collision_layer = 0
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackZone"]
 shape = SubResource("RectangleShape2D_becf2")
 
+[node name="RecoverTimer" type="Timer" parent="."]
+wait_time = 0.4
+one_shot = true
+
 [connection signal="death" from="." to="." method="_on_death"]
 [connection signal="hurt" from="." to="." method="_on_hurt"]
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animation_finished"]
-[connection signal="body_entered" from="AttackZone" to="." method="_on_attack_zone_body_entered"]
+[connection signal="frame_changed" from="AnimatedSprite2D" to="." method="_on_animation_frame_changed"]
+[connection signal="timeout" from="RecoverTimer" to="." method="_on_recover_timer_timeout"]

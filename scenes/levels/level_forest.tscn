@@ -554,11 +554,13 @@ target = NodePath("../Player")
 [node name="Player" parent="." instance=ExtResource("2_tbxb2")]
 position = Vector2(195, 699)
 
-[node name="OrcEnemy" parent="." instance=ExtResource("3_4tf07")]
+[node name="OrcEnemy" parent="." node_paths=PackedStringArray("target") instance=ExtResource("3_4tf07")]
 position = Vector2(1258, 702)
+target = NodePath("../Player")
 
-[node name="OrcEnemy2" parent="." instance=ExtResource("3_4tf07")]
+[node name="OrcEnemy2" parent="." node_paths=PackedStringArray("target") instance=ExtResource("3_4tf07")]
 position = Vector2(3495, 575)
+target = NodePath("../Player")
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
