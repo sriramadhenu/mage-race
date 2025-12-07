@@ -76,9 +76,10 @@ func _start_attack_target():
 
 func _finish_attack_target():
 	var arrow: ArrowProjectile = _arrow_scene.instantiate()
+	arrow.inaccurate = true
 	arrow.global_position = $ArrowSpawn.global_position
 	LevelManager.current_level_scene.add_child(arrow)
-	
+
 	arrow.add_collision_exception_with(self)
 	arrow.launch_at(target.global_position)
 
