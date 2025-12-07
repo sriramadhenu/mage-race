@@ -41,5 +41,7 @@ func _on_body_entered(body: Node2D) -> void:
 		if body.dead:
 			return
 		body.take_damage(damage)
+	elif body.has_method("take_damage_from_spell"):
+		body.take_damage_from_spell(damage)
 
 	_end_projectile()

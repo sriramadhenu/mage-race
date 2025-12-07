@@ -20,6 +20,9 @@ var gravity: int = ProjectSettings.get("physics/2d/default_gravity")
 const TERMINAL_VELOCITY = 700
 const DEFAULT_JUMP_VELOCITY = -500
 const DEFAULT_MOVE_VELOCITY = 300
+const PUSH_FORCE = 20
+const MAX_PUSH_VELOCITY = 150
+
 
 # Movement variables
 @export var movement_speed = DEFAULT_MOVE_VELOCITY
@@ -56,6 +59,7 @@ func take_damage(damage: int):
 		dead = true
 		health = 0
 		death.emit()
+		
 	else:
 		hurt.emit()
 
@@ -70,10 +74,18 @@ func ressurect():
 
 func _physics_process(delta: float) -> void:
 	_apply_gravity(delta)
+	
+	for i in get_slide_collision_count():
+		var collision = get_slide_collision(i)
+		var collision_block = collision.get_collider()
+		if collision_block.is_in_group("PushableBlock") and abs(collision_block.get_linear_velocity().x) < MAX_PUSH_VELOCITY:
+			collision_block.apply_central_impulse(collision.get_normal() * -PUSH_FORCE)
+			
 	_apply_movement(delta)
 
 func _apply_gravity(delta : float) -> void:
 	velocity.y = minf(TERMINAL_VELOCITY, velocity.y + gravity * delta)
 
 func _apply_movement(_delta: float):
+	
 	move_and_slide()
