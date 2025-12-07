@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=4 uid="uid://boieimqt2dwig"]
+[gd_scene load_steps=13 format=4 uid="uid://boieimqt2dwig"]
 
 [ext_resource type="Texture2D" uid="uid://dwusu5yd87cf5" path="res://assets/tilesets/Starter Tiles Platformer/IceSet.png" id="1_f2t84"]
 [ext_resource type="PackedScene" uid="uid://cp0h7vla2ta2c" path="res://scenes/levels/spike_trap.tscn" id="2_c3cds"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://byekmabgvadv6" path="res://scenes/levels/door.tscn" id="7_piyly"]
 [ext_resource type="PackedScene" uid="uid://bdlsg2p5ldxt3" path="res://scenes/levels/ice_layer.tscn" id="8_4alhl"]
 [ext_resource type="PackedScene" uid="uid://cstig8fh3u0cn" path="res://scenes/levels/air_boundary.tscn" id="9_jrl5t"]
+[ext_resource type="PackedScene" uid="uid://4ll2nbf870dh" path="res://scenes/kill_zone.tscn" id="10_4doml"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_c3cds"]
 texture = ExtResource("1_f2t84")
@@ -101,3 +102,7 @@ scale = Vector2(2.1199927, 0.20742658)
 
 [node name="AirBoundary" parent="." instance=ExtResource("9_jrl5t")]
 position = Vector2(-135, 467)
+
+[node name="KillZone" parent="." instance=ExtResource("10_4doml")]
+position = Vector2(1058, 795)
+scale = Vector2(1000, 1)
