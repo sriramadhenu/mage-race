@@ -11,5 +11,5 @@ func _ready():
 
 
 func _on_start_pressed():
-	get_tree().change_scene_to_file("res://scenes/ui/menus/level_loader.tscn")
+	get_tree().change_scene_to_file("res://scenes/ui/level_loader.tscn")
 	queue_free()
