@@ -6,8 +6,9 @@ signal hurt()
 signal death()
 signal resurrect()
 
-@export var health := 100
-@export var max_health := health
+const DEFAULT_HEALTH := 100
+@export var health := DEFAULT_HEALTH
+@export var max_health := DEFAULT_HEALTH
 
 enum Facing {
 	LEFT,

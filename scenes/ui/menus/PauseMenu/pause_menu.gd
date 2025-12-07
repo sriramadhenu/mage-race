@@ -16,7 +16,7 @@ func resume_game() -> void:
 	get_tree().paused = false
 	visible = false
 
-
+# TODO map escape button to project input mappings
 func _input(event) -> void:
 	if event is InputEventKey and event.pressed:
 		if event.keycode == KEY_ESCAPE:
