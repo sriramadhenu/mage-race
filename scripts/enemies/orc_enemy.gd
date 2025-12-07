@@ -1,6 +1,7 @@
 extends Character
 
-const ATTACK_DAMAGE := 20
+# value was 20. changed to 1 for now.
+const ATTACK_DAMAGE := 1
 
 @onready var _floor_ray := $FloorRaycast
 @onready var _attack_zone := $AttackZone

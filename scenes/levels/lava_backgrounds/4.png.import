@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dh0gmniba6nyk"
-path="res://.godot/imported/nearest.png-dc78f77fe8696871478041c092171335.ctex"
+uid="uid://be1dhmceuklo5"
+path="res://.godot/imported/4.png-2fb00fee7610a27e1afa99c88ae493e1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/levels/forest_backgrounds/nearest.png"
-dest_files=["res://.godot/imported/nearest.png-dc78f77fe8696871478041c092171335.ctex"]
+source_file="res://scenes/levels/lava_backgrounds/4.png"
+dest_files=["res://.godot/imported/4.png-2fb00fee7610a27e1afa99c88ae493e1.ctex"]
 
 [params]
 

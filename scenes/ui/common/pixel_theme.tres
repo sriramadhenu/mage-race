@@ -1,5 +1,6 @@
-[gd_resource type="Theme" load_steps=6 format=3 uid="uid://57ygx1bt32mq"]
+[gd_resource type="Theme" load_steps=7 format=3 uid="uid://57ygx1bt32mq"]
 
+[ext_resource type="FontFile" uid="uid://dmqpm86c380kf" path="res://scenes/ui/common/fonts/PixelifySans-VariableFont_wght.ttf" id="1_b8tyy"]
 [ext_resource type="Texture2D" uid="uid://bacjavvo81qe3" path="res://scenes/ui/common/buttons/button_normal.tres" id="1_ekp4n"]
 [ext_resource type="Texture2D" uid="uid://db4n1thv6exbv" path="res://scenes/ui/common/buttons/button_pressed.tres" id="2_b8tyy"]
 
@@ -26,6 +27,8 @@ texture_margin_bottom = 6.0
 
 [resource]
 default_font_size = 18
+Button/font_sizes/font_size = 35
+Button/fonts/font = ExtResource("1_b8tyy")
 Button/styles/hover = SubResource("StyleBoxTexture_ekp4n")
 Button/styles/normal = SubResource("StyleBoxTexture_tedqm")
 Button/styles/pressed = SubResource("StyleBoxTexture_v706b")

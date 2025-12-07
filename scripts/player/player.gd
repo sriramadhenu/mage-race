@@ -7,9 +7,12 @@ var _anim_locked := false
 
 var _ice_spell_scene: PackedScene = preload("res://scenes/projectiles/ice_spell.tscn")
 
+signal health_changed(new_hp)
+
 func _ready() -> void:
 	bind_player_input_commands()
 	command_callback("spawn")
+
 
 func _physics_process(delta: float) -> void:
 	if dead:
@@ -83,12 +86,14 @@ func _attack_ice():
 
 	get_parent().add_child(ice_spell)
 
+
 func bind_player_input_commands():
 	right_cmd = MoveRightCommand.new()
 	left_cmd = MoveLeftCommand.new()
 	up_cmd = JumpCommand.new()
 	idle = IdleCommand.new()
 	dash_cmd = DashCommand.new()
+
 
 func unbind_player_input_commands():
 	right_cmd = IdleCommand.new()
@@ -109,13 +114,22 @@ func command_callback(cmd_name: String) -> void:
 	if player != null and not player.playing:
 		player.play()
 
+
 func _on_animation_finished() -> void:
 	_anim_locked = false
+
 
 func _on_hurt() -> void:
 	_anim_locked = true
 	sprite.play("hurt")
 
+
 func _on_death() -> void:
 	_anim_locked = true
 	sprite.play("death")
+
+
+func take_damage(amount: int) -> void:
+	super(amount)
+	emit_signal("health_changed", health) # health inherited from Character.gd
+	GameManager.damage_player(amount)
