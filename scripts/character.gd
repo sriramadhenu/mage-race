@@ -15,7 +15,6 @@ enum Facing {
 }
 
 var gravity: int = ProjectSettings.get("physics/2d/default_gravity")
-var _horizontal_input: float
 
 const TERMINAL_VELOCITY = 700
 const DEFAULT_JUMP_VELOCITY = -500
