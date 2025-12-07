@@ -8,18 +8,9 @@ const LEVELS = [
 ]
 
 var current_level_scene: Node = null
-var hud_scene: PackedScene = preload("res://scenes/ui/hud/player_health/player_health.tscn")
-var hud_instance: CanvasLayer = null
 
 func _ready():
 	GameManager.level_changed.connect(_on_level_changed)
-	_add_hud()
-
-func _add_hud():
-	if not hud_instance:
-		hud_instance = hud_scene.instantiate()
-		get_tree().root.add_child(hud_instance)
-
 
 func _on_level_changed(level_index: int):
 	load_level(level_index)
