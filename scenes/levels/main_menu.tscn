@@ -1,4 +1,7 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2e475f46b0aa52835a019073683d99e4c576c0cd
 [gd_scene load_steps=15 format=3 uid="uid://dlle1xsn5613d"]
 
 [ext_resource type="Script" uid="uid://7fl8li7pa5f5" path="res://scenes/levels/main_menu.gd" id="1_fsby3"]
@@ -30,6 +33,7 @@ shader_parameter/speed = 0.02
 shader_parameter/density = 25.0
 shader_parameter/intensity = 0.6
 shader_parameter/spark_color = Color(1, 0.8, 0.4, 1)
+<<<<<<< HEAD
 =======
 [gd_scene load_steps=9 format=3 uid="uid://dlle1xsn5613d"]
 
@@ -38,6 +42,8 @@ shader_parameter/spark_color = Color(1, 0.8, 0.4, 1)
 [ext_resource type="Shader" uid="uid://cikujnx6re5xv" path="res://scenes/levels/main_menu.gdshader" id="2_leamy"]
 [ext_resource type="Theme" uid="uid://57ygx1bt32mq" path="res://scenes/ui/common/pixel_theme.tres" id="3_fkd6t"]
 >>>>>>> develop
+=======
+>>>>>>> 2e475f46b0aa52835a019073683d99e4c576c0cd
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_geflf"]
 bg_color = Color(0.78431374, 0.5294118, 0.16470589, 1)
@@ -70,6 +76,9 @@ theme = ExtResource("3_fkd6t")
 script = ExtResource("1_fsby3")
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2e475f46b0aa52835a019073683d99e4c576c0cd
 [node name="MainBackground" type="ColorRect" parent="."]
 z_index = -10
 layout_mode = 1
@@ -162,6 +171,7 @@ theme_override_constants/separation = 20
 
 [node name="StartButton" type="Button" parent="ButtonsContainer"]
 z_index = 1
+<<<<<<< HEAD
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 50
@@ -185,18 +195,26 @@ vertical_alignment = 1
 
 [node name="StartButton" type="Button" parent="."]
 z_index = 1
+=======
+>>>>>>> 2e475f46b0aa52835a019073683d99e4c576c0cd
 layout_mode = 0
 offset_left = 544.0
 offset_top = 370.0
 offset_right = 739.0
 offset_bottom = 419.0
+<<<<<<< HEAD
 >>>>>>> develop
+=======
+>>>>>>> 2e475f46b0aa52835a019073683d99e4c576c0cd
 theme_override_styles/normal = SubResource("StyleBoxFlat_geflf")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_fkd6t")
 theme_override_styles/hover = SubResource("StyleBoxFlat_keln3")
 text = "Start"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2e475f46b0aa52835a019073683d99e4c576c0cd
 [node name="QuitButton" type="Button" parent="ButtonsContainer"]
 z_index = 1
 layout_mode = 2
@@ -210,6 +228,7 @@ text = "Quit
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("8_sn5u3")
 autoplay = true
+<<<<<<< HEAD
 =======
 [node name="ColorRect" type="ColorRect" parent="."]
 z_index = -1
@@ -219,3 +238,5 @@ offset_right = 1283.0
 offset_bottom = 723.0
 mouse_filter = 2
 >>>>>>> develop
+=======
+>>>>>>> 2e475f46b0aa52835a019073683d99e4c576c0cd
