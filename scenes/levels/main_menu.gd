@@ -2,14 +2,20 @@ extends Control
 
 func _ready():
 	await get_tree().process_frame
-	Hud.hide() # quick fix to hide hud in main menu for now
+
+	Hud.hide()
 	for child in Hud.get_children():
 		child.hide()
 
-	if has_node("StartButton"):
-		$StartButton.pressed.connect(_on_start_pressed)
+	var start_button = $ButtonsContainer/StartButton
+	var quit_button = $ButtonsContainer/QuitButton
 
+	start_button.pressed.connect(_on_start_pressed)
+	quit_button.pressed.connect(_on_quit_pressed)
 
 func _on_start_pressed():
-	get_tree().change_scene_to_file("res://scenes/ui/level_loader.tscn")
+	GameManager.load_specific_level(0)
 	queue_free()
+
+func _on_quit_pressed():
+	get_tree().quit()
