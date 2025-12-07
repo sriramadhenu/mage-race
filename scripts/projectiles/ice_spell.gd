@@ -40,7 +40,7 @@ func _on_body_entered(body: Node2D) -> void:
 	if body is Character:
 		if body.dead:
 			return
-		body.take_damage(damage)
+		body.take_damage(damage, self)
 	elif body.has_method("take_damage_from_spell"):
 		body.take_damage_from_spell(damage)
 

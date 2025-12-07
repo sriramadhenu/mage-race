@@ -6,6 +6,7 @@ var cmd_list: Array[Command]
 var _anim_locked := false
 var _is_casting := false
 var _is_dying := false
+var _knockback_velocity := Vector2.ZERO
 var _ice_spell_scene: PackedScene = preload("res://scenes/projectiles/ice_spell.tscn")
 
 signal health_changed(new_hp)
@@ -30,6 +31,7 @@ func _physics_process(delta: float) -> void:
 	if dash_cmd.is_dashing:
 		if randi() % 3 == 0:
 			_spawn_dash_ghost()
+		_apply_knockback(delta)
 		super(delta)
 		return
 
@@ -62,6 +64,7 @@ func _physics_process(delta: float) -> void:
 		else:
 			sprite.play("idle")
 
+	_apply_knockback(delta)
 	super(delta)
 
 
@@ -166,7 +169,30 @@ func _on_death() -> void:
 	GameManager.restart_current_level()
 
 
-func take_damage(amount: int) -> void:
-	super(amount)
+func take_damage(amount: int, source: Node) -> void:
+	super(amount, source)
 	emit_signal("health_changed", health)
 	GameManager.damage_player(amount)
+	_start_knockback(source)
+
+
+func _apply_knockback(delta: float) -> void:
+	const KNOCKBACK_DECAY := 1000.0
+	if abs(_knockback_velocity.x) < 0.01:
+		_knockback_velocity.x = 0.0
+		return
+	velocity.x += _knockback_velocity.x
+	_knockback_velocity.x = move_toward(_knockback_velocity.x, 0.0, KNOCKBACK_DECAY * delta)
+
+
+func _start_knockback(source: Node) -> void:
+	if dead:
+		_knockback_velocity = Vector2.ZERO
+		return
+
+	const KNOCKBACK_SPEED := 420.0
+	const KNOCKBACK_VERTICAL := -120.0
+	if source is Node2D:
+		var dir: float = sign(global_position.x - source.global_position.x)
+		_knockback_velocity.x = dir * KNOCKBACK_SPEED
+		velocity.y = min(velocity.y, KNOCKBACK_VERTICAL)

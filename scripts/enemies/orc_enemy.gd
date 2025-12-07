@@ -103,7 +103,7 @@ func _on_animation_frame_changed() -> void:
 	const ATTACK_DAMAGE_FRAME := 3
 	if _state == AIState.ATTACKING and sprite.frame == ATTACK_DAMAGE_FRAME:
 		if target in _attack_zone.get_overlapping_bodies():
-			target.take_damage(ATTACK_DAMAGE)
+			target.take_damage(ATTACK_DAMAGE, self)
 
 func _on_hurt() -> void:
 	_state = AIState.HURT

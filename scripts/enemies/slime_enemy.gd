@@ -63,4 +63,4 @@ func _on_death() -> void:
 
 func _on_hit_box_body_entered(body: Node2D) -> void:
 	if body is Player:
-		body.take_damage(damage)
+		body.take_damage(damage, self)
