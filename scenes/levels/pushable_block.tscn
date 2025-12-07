@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://ccp033qayaqqw"]
+
+[ext_resource type="Texture2D" uid="uid://drcm4kjkfo4fd" path="res://assets/tilesets/GreenBlock.png" id="1_2letd"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6nloi"]
+size = Vector2(67.59259, 62.037033)
+
+[node name="PushableBlock" type="RigidBody2D" groups=["PushableBlock"]]
+lock_rotation = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.4367085, 0.41400608)
+texture = ExtResource("1_2letd")
+region_enabled = true
+region_rect = Rect2(7, 6, 168, 159)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1.5, -0.5000012)
+scale = Vector2(1.08, 1.08)
+shape = SubResource("RectangleShape2D_6nloi")
