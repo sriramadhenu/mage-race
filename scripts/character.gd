@@ -41,7 +41,6 @@ var jumping: bool = false
 var dead: bool = false
 
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
-@onready var dialogue_box: DialogueBox = %DialogueBox
 
 func _ready() -> void:
 	change_facing(facing)
