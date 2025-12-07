@@ -17,7 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://7trmn48obvb6" path="res://scenes/levels/remove_platform.tscn" id="15_03wss"]
 [ext_resource type="PackedScene" uid="uid://cstig8fh3u0cn" path="res://scenes/levels/air_boundary.tscn" id="16_auoep"]
 [ext_resource type="PackedScene" uid="uid://ccp033qayaqqw" path="res://scenes/levels/pushable_block.tscn" id="17_5gqej"]
-[ext_resource type="PackedScene" uid="uid://c4agc00fc8yp4" path="res://scenes/levels/killing_zone.tscn" id="17_pb8g6"]
+[ext_resource type="PackedScene" uid="uid://4ll2nbf870dh" path="res://scenes/kill_zone.tscn" id="18_6nloi"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jm40j"]
 texture = ExtResource("1_c3tcg")
@@ -627,8 +627,9 @@ scale = Vector2(-1.2561966, 1)
 [node name="PushableBlock" parent="." instance=ExtResource("17_5gqej")]
 position = Vector2(2908, 697)
 
-[node name="KillingZone" parent="." instance=ExtResource("17_pb8g6")]
-position = Vector2(4306, 959)
-
 [node name="RespawnPoint" type="Marker2D" parent="."]
 position = Vector2(195, 699)
+
+[node name="KillZone" parent="." instance=ExtResource("18_6nloi")]
+position = Vector2(2677, 2891.9998)
+scale = Vector2(1000, 200)

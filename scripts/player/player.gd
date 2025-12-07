@@ -5,18 +5,24 @@ extends Character
 var cmd_list: Array[Command]
 var _anim_locked := false
 var _is_casting := false
-
+var _is_dying := false
 var _ice_spell_scene: PackedScene = preload("res://scenes/projectiles/ice_spell.tscn")
 
 signal health_changed(new_hp)
 
 func _ready() -> void:
+	health = 5
+	max_health = 5
 	bind_player_input_commands()
 	command_callback("spawn")
+	if not death.is_connected(_on_death):
+		death.connect(_on_death)
 
 
 func _physics_process(delta: float) -> void:
-	if dead:
+	if dead or _is_dying:
+		velocity = Vector2.ZERO
+		super(delta)
 		return
 
 	# Update dash every frame (important)
@@ -58,6 +64,7 @@ func _physics_process(delta: float) -> void:
 
 	super(delta)
 
+
 func _spawn_dash_ghost():
 	var ghost = AnimatedSprite2D.new()
 	ghost.sprite_frames = $AnimatedSprite2D.sprite_frames
@@ -73,6 +80,7 @@ func _spawn_dash_ghost():
 	var tween = get_tree().create_tween()
 	tween.tween_property(ghost, "modulate:a", 0.0, 0.18)
 	tween.tween_callback(ghost.queue_free)
+	
 	
 func _attack_ice():
 	if _anim_locked:
@@ -90,6 +98,7 @@ func _attack_ice():
 	# add the spell as a child of this node so it follows the player as its forming
 	# when the spell is fully formed, it will reparent
 	add_child(ice_spell)
+
 
 func change_facing(new_facing: Facing):
 	if not _is_casting:
@@ -136,10 +145,28 @@ func _on_hurt() -> void:
 
 func _on_death() -> void:
 	_anim_locked = true
+	_is_dying = true
 	sprite.play("death")
+	velocity = Vector2.ZERO
+	cmd_list.clear()
+	
+	if dash_cmd and dash_cmd.is_dashing:
+		dash_cmd.is_dashing = false
+	
+	var death_timer := Timer.new()
+	death_timer.wait_time = 2.5
+	death_timer.one_shot = true
+	death_timer.process_mode = Node.PROCESS_MODE_PAUSABLE
+	add_child(death_timer)
+	death_timer.start()
+	
+	await death_timer.timeout
+	death_timer.queue_free()
+	
+	GameManager.restart_current_level()
 
 
 func take_damage(amount: int) -> void:
 	super(amount)
-	emit_signal("health_changed", health) # health inherited from Character.gd
+	emit_signal("health_changed", health)
 	GameManager.damage_player(amount)

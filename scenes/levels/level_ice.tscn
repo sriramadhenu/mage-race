@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=4 uid="uid://boieimqt2dwig"]
+[gd_scene load_steps=10 format=4 uid="uid://boieimqt2dwig"]
 
 [ext_resource type="Texture2D" uid="uid://dwusu5yd87cf5" path="res://assets/tilesets/Starter Tiles Platformer/IceSet.png" id="1_f2t84"]
 [ext_resource type="PackedScene" uid="uid://cp0h7vla2ta2c" path="res://scenes/levels/spike_trap.tscn" id="2_c3cds"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://caymohjf243fs" path="res://scenes/levels/blue_break_block.tscn" id="4_g5mcf"]
 [ext_resource type="PackedScene" uid="uid://biufvwmgorgev" path="res://scenes/characters/player.tscn" id="5_ea0h5"]
 [ext_resource type="PackedScene" uid="uid://qc7tn0c3xw2j" path="res://scenes/enemies/skeleton_enemy.tscn" id="6_clnav"]
+[ext_resource type="PackedScene" uid="uid://4ll2nbf870dh" path="res://scenes/kill_zone.tscn" id="7_piyly"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_c3cds"]
 texture = ExtResource("1_f2t84")
@@ -75,3 +76,7 @@ position = Vector2(185, 670)
 
 [node name="SkeletonEnemy" parent="." instance=ExtResource("6_clnav")]
 position = Vector2(1064, 633)
+
+[node name="KillZone" parent="." instance=ExtResource("7_piyly")]
+position = Vector2(1543.0001, 801)
+scale = Vector2(1000, 1)

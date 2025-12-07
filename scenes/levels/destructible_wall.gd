@@ -16,7 +16,7 @@ func _ready() -> void:
 	# We don't need to add an Area2D - the IceSpell will detect this StaticBody2D directly
 	# because StaticBody2D is a PhysicsBody2D
 
-func _on_body_entered(body: Node2D) -> void:
+func _on_body_entered(_body: Node2D) -> void:
 	# This function should be called by the IceSpell when it hits this wall
 	# But we need to explicitly check for IceSpell hitting us
 	pass  # We'll handle this differently
