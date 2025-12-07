@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=4 uid="uid://xm64rd5b2omd"]
+[gd_scene load_steps=22 format=4 uid="uid://xm64rd5b2omd"]
 
 [ext_resource type="Script" uid="uid://sb4fxfpqh6ap" path="res://scenes/levels/level_forest.gd" id="1_auoep"]
 [ext_resource type="Texture2D" uid="uid://be4ky4bfjyunq" path="res://assets/tilesets/Water+.png" id="1_c3tcg"]
@@ -554,11 +554,13 @@ target = NodePath("../Player")
 [node name="Player" parent="." instance=ExtResource("2_tbxb2")]
 position = Vector2(195, 699)
 
-[node name="OrcEnemy" parent="." instance=ExtResource("3_4tf07")]
+[node name="OrcEnemy" parent="." node_paths=PackedStringArray("target") instance=ExtResource("3_4tf07")]
 position = Vector2(1258, 702)
+target = NodePath("../Player")
 
-[node name="OrcEnemy2" parent="." instance=ExtResource("3_4tf07")]
+[node name="OrcEnemy2" parent="." node_paths=PackedStringArray("target") instance=ExtResource("3_4tf07")]
 position = Vector2(3495, 575)
+target = NodePath("../Player")
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
