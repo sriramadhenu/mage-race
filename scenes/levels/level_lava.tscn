@@ -91,10 +91,9 @@ target = NodePath("../Player")
 position = Vector2(642, 756)
 scale = Vector2(2.8, 3.1599975)
 
-[node name="Lava2" parent="." instance=ExtResource("9_2dov1")]
-visible = false
-position = Vector2(925, 782.00006)
-scale = Vector2(35, 2.5)
+[node name="LavaKillZone" parent="Lava" instance=ExtResource("9_2dov1")]
+position = Vector2(101.07143, 8.227875)
+scale = Vector2(12.5, 0.79113984)
 
 [node name="ParallaxBackground (Near To Far)" type="ParallaxBackground" parent="."]
 
