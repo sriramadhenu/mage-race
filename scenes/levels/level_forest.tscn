@@ -855,8 +855,8 @@ process_material = SubResource("ParticleProcessMaterial_jkumo")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 z_index = -1
-position = Vector2(3300, 550)
-scale = Vector2(0.08, 0.08)
+position = Vector2(3300, 568)
+scale = Vector2(0.06, 0.06)
 texture = ExtResource("23_iv7j6")
 
 [node name="PointLight2D" type="PointLight2D" parent="Sprite2D"]
@@ -866,8 +866,8 @@ texture = SubResource("GradientTexture2D_asm4k")
 
 [node name="Sprite2D2" type="Sprite2D" parent="."]
 z_index = -1
-position = Vector2(4075, 550)
-scale = Vector2(0.08, 0.08)
+position = Vector2(4075, 568)
+scale = Vector2(0.06, 0.06)
 texture = ExtResource("23_iv7j6")
 
 [node name="PointLight2D" type="PointLight2D" parent="Sprite2D2"]

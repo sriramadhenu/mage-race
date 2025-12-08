@@ -8,4 +8,4 @@ func _ready() -> void:
 func _on_body_entered(body: Node) -> void:
 	if body is Player:
 		GameManager.change_state(GameManager.GameState.LEVEL_SELECT)
-		get_tree().change_scene_to_file("res://scenes/ui/level_loader.tscn")
+		get_tree().call_deferred("change_scene_to_file", "res://scenes/ui/level_loader.tscn")
