@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://dyeu2b0xvb5y4"]
+
+[ext_resource type="Script" uid="uid://hw263jgqsp6t" path="res://scenes/levels/destructible_wall.gd" id="1_5ui67"]
+[ext_resource type="Texture2D" uid="uid://8g40jr30ll1x" path="res://assets/tilesets/Ice.png" id="2_5ui67"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5oqqs"]
+radius = 9.087318
+height = 127.50387
+
+[node name="GreenBreakableBlock" type="StaticBody2D"]
+scale = Vector2(1.5403914, 2.6517706)
+script = ExtResource("1_5ui67")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.124885984, 0.10498603)
+texture = ExtResource("2_5ui67")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(3.2459278, 1.1313198)
+scale = Vector2(2.5003524, 0.5399735)
+shape = SubResource("CapsuleShape2D_5oqqs")
