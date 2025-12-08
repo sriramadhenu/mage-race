@@ -1,6 +1,7 @@
-[gd_scene load_steps=14 format=4 uid="uid://boieimqt2dwig"]
+[gd_scene load_steps=15 format=4 uid="uid://boieimqt2dwig"]
 
 [ext_resource type="Texture2D" uid="uid://dwusu5yd87cf5" path="res://assets/tilesets/Starter Tiles Platformer/IceSet.png" id="1_f2t84"]
+[ext_resource type="Script" uid="uid://tsfnld2h8v1g" path="res://scenes/levels/level_ice.gd" id="1_me68h"]
 [ext_resource type="PackedScene" uid="uid://cp0h7vla2ta2c" path="res://scenes/levels/spike_trap.tscn" id="2_c3cds"]
 [ext_resource type="Script" uid="uid://ddhormsxtr24y" path="res://scenes/levels/position_lock_lerp_camera.gd" id="2_mp668"]
 [ext_resource type="PackedScene" uid="uid://cs4g0p1ndga1f" path="res://scenes/levels/blue_moving_platform.tscn" id="3_cvh0y"]
@@ -49,6 +50,7 @@ physics_layer_0/collision_layer = 1
 sources/1 = SubResource("TileSetAtlasSource_c3cds")
 
 [node name="LevelIce" type="Node2D"]
+script = ExtResource("1_me68h")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 position = Vector2(1, -469.00006)

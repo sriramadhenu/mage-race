@@ -7,26 +7,35 @@ class_name HUDController
 func _ready():
 	_update_visibility()
 	get_tree().scene_changed.connect(_update_visibility)
+	GameManager.state_changed.connect(_on_state_changed)
 
+func _on_state_changed(new_state: GameManager.GameState):
+	_update_visibility()
 
 func _update_visibility():
 	var scene := get_tree().current_scene
 	if scene == null:
 		root_ui.visible = false
 		return
-
+	
 	var path := scene.scene_file_path
 	var show := path.begins_with("res://scenes/levels/")
 	root_ui.visible = show
-
-	print("HUD (root) visible:", show, " Scene:", path)
-
+	
+	# hide ONLY PlayerHealth during level select, not root_ui
+	if GameManager.current_state == GameManager.GameState.LEVEL_SELECT:
+		var player_health = root_ui.get_node_or_null("PlayerHealth")
+		if player_health:
+			player_health.visible = false
+		print("PlayerHealth hidden - LEVEL_SELECT state")
+		return
+	
+	print("HUD (root) visible:", show, " Scene:", path, " State:", GameManager.current_state)
 
 func _get_player_health():
-	if root_ui.has_node("PlayerHealth/PlayerHealth"):
-		return root_ui.get_node("PlayerHealth/PlayerHealth")
+	if root_ui.has_node("PlayerHealth"):
+		return root_ui.get_node("PlayerHealth")
 	return null
-
 
 func set_health(value: int):
 	var ph = _get_player_health()
@@ -35,19 +44,17 @@ func set_health(value: int):
 	else:
 		print("HUD tried to update health before UI was ready")
 
-
 func connect_player(player):
+	if player.health_changed.is_connected(Callable(self, "set_health")):
+		return
 	player.connect("health_changed", Callable(self, "set_health"))
 
-
-# Pause menu
+# pause menu utilitiesi
 func pause_game():
 	pause_menu.pause_game()
 
-
 func resume_game():
 	pause_menu.resume_game()
-
 
 func toggle_pause():
 	if pause_menu.visible:

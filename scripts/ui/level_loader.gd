@@ -6,6 +6,14 @@ extends Control
 
 
 func _ready():
+	# hide PlayerHealth when level loader opens
+	if Hud:
+		Hud.hide()
+		var player_health = Hud.get_node_or_null("PlayerHealth")
+		if player_health:
+			player_health.hide()
+		print("Level loader hiding HUD and PlayerHealth")
+	
 	_safe_connect(forest_button, _on_load_forest_level_pressed)
 	_safe_connect(ice_button, _on_load_ice_level_pressed)
 	_safe_connect(lava_button, _on_load_lava_level_pressed)
