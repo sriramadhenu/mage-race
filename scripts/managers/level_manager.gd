@@ -22,12 +22,7 @@ func load_level(level_index: int):
 	
 	# load new level
 	if level_index >= 0 and level_index < LEVELS.size():
-		var level_res = load(LEVELS[level_index])
-		if level_res:
-			current_level_scene = level_res.instantiate()
-			get_tree().root.add_child.call_deferred(current_level_scene)
-		else:
-			print("Could not load level at: ", LEVELS[level_index])
+		get_tree().change_scene_to_file(LEVELS[level_index])
 	else:
 		GameManager.change_state(GameManager.GameState.GAME_OVER)
 
