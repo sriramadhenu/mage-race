@@ -33,7 +33,7 @@ func set_health(value: int):
 	if ph:
 		ph.set_health(value)
 	else:
-		print("⚠ HUD tried to update health before UI was ready")
+		print("HUD tried to update health before UI was ready")
 
 
 func connect_player(player):

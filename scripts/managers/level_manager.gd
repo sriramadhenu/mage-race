@@ -21,8 +21,14 @@ func _add_hud():
 		get_tree().root.add_child(hud_instance)
 
 
+func _on_level_button_pressed(level_index):
+	GameManager.load_specific_level(level_index)
+	queue_free()  
+
+
 func _on_level_changed(level_index: int):
 	load_level(level_index)
+
 
 func load_level(level_index: int):
 	# Remove current level if it exists
@@ -43,6 +49,12 @@ func load_level(level_index: int):
 	else:
 		# no more levels = Game Over
 		GameManager.change_state(GameManager.GameState.GAME_OVER)
+
+
+func unload_level():
+	if current_level_scene:
+		current_level_scene.queue_free()
+		current_level_scene = null
 
 func restart_current_level():
 	load_level(GameManager.current_level)
