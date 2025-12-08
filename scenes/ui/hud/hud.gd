@@ -2,14 +2,14 @@ extends CanvasLayer
 class_name HUDController
 
 @onready var root_ui := get_child(0)
-@onready var pause_menu: Control = $Root/PauseMenu
+@onready var pause_menu: Control = $PauseMenu
 
 func _ready():
 	_update_visibility()
 	get_tree().scene_changed.connect(_update_visibility)
 	GameManager.state_changed.connect(_on_state_changed)
 
-func _on_state_changed(new_state: GameManager.GameState):
+func _on_state_changed():
 	_update_visibility()
 
 func _update_visibility():
@@ -19,8 +19,8 @@ func _update_visibility():
 		return
 	
 	var path := scene.scene_file_path
-	var show := path.begins_with("res://scenes/levels/")
-	root_ui.visible = show
+	var hud_visible := path.begins_with("res://scenes/levels/")
+	root_ui.visible = hud_visible
 	
 	# hide ONLY PlayerHealth during level select, not root_ui
 	if GameManager.current_state == GameManager.GameState.LEVEL_SELECT:

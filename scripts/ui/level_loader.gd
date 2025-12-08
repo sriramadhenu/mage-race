@@ -14,20 +14,30 @@ func _ready():
 			player_health.hide()
 		print("Level loader hiding HUD and PlayerHealth")
 	
+	$Audio/menu_music.play()
 	_safe_connect(forest_button, _on_load_forest_level_pressed)
 	_safe_connect(ice_button, _on_load_ice_level_pressed)
 	_safe_connect(lava_button, _on_load_lava_level_pressed)
 	
 	
 func _on_load_forest_level_pressed() -> void:
+	$Audio/start_button.play()
+	$Audio/menu_music.stop()
+	await get_tree().create_timer(0.4).timeout
 	_start_level(0)
 
 
 func _on_load_ice_level_pressed() -> void:
+	$Audio/start_button.play()
+	$Audio/menu_music.stop()
+	await get_tree().create_timer(0.4).timeout
 	_start_level(1)
 
 
 func _on_load_lava_level_pressed() -> void:
+	$Audio/start_button.play()
+	$Audio/menu_music.stop()
+	await get_tree().create_timer(0.4).timeout
 	_start_level(2)
 
 

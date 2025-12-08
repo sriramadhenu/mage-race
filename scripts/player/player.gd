@@ -17,7 +17,7 @@ func _ready() -> void:
 	health = 5
 	max_health = 5
 	bind_player_input_commands()
-	command_callback("spawn")
+	command_callback("respawn")
 	if not death.is_connected(_on_death):
 		death.connect(_on_death)
 
@@ -149,9 +149,9 @@ func command_callback(cmd_name: String) -> void:
 	match cmd_name:
 		"jump": player = $Audio/jump
 		"dash": player = $Audio/dash
-		"hurt": player = $Audio/hurt
-		"death": player = $Audio/defeat
-		"spawn": player = $Audio/spawn
+		"walk": player = $Audio/walk
+		"respawn": player = $Audio/respawn
+		"death": player = $Audio/death
 	if player != null and not player.playing:
 		player.play()
 
@@ -170,6 +170,7 @@ func _on_death() -> void:
 	_anim_locked = true
 	_is_dying = true
 	sprite.play("death")
+	command_callback("death")
 	velocity = Vector2.ZERO
 	cmd_list.clear()
 	
@@ -185,7 +186,6 @@ func _on_death() -> void:
 	
 	await death_timer.timeout
 	death_timer.queue_free()
-	
 	GameManager.restart_current_level()
 
 

@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://mtp2xs4dduqi"]
+
+[ext_resource type="AudioStream" uid="uid://dm11hjkdp4bq5" path="res://assets/audio/music/bg_music2.mp3" id="1_tosbp"]
+
+[node name="level_music" type="AudioStreamPlayer2D"]
+stream = ExtResource("1_tosbp")
+volume_db = -20.989
