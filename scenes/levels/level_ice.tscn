@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=4 uid="uid://boieimqt2dwig"]
+[gd_scene load_steps=26 format=4 uid="uid://boieimqt2dwig"]
 
 [ext_resource type="Texture2D" uid="uid://dwusu5yd87cf5" path="res://assets/tilesets/Starter Tiles Platformer/IceSet.png" id="1_f2t84"]
 [ext_resource type="Script" uid="uid://tsfnld2h8v1g" path="res://scenes/levels/level_ice.gd" id="1_me68h"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://biufvwmgorgev" path="res://scenes/characters/player.tscn" id="5_ea0h5"]
 [ext_resource type="PackedScene" uid="uid://qc7tn0c3xw2j" path="res://scenes/enemies/skeleton_enemy.tscn" id="6_clnav"]
 [ext_resource type="PackedScene" uid="uid://dyeu2b0xvb5y4" path="res://scenes/levels/blue_breakable_block.tscn" id="6_piyly"]
+[ext_resource type="Script" uid="uid://whs2aiu36a01" path="res://scenes/levels/ice_spikes.gd" id="7_7rsn4"]
 [ext_resource type="PackedScene" uid="uid://byekmabgvadv6" path="res://scenes/levels/door.tscn" id="7_piyly"]
 [ext_resource type="PackedScene" uid="uid://bdlsg2p5ldxt3" path="res://scenes/levels/ice_layer.tscn" id="8_4alhl"]
 [ext_resource type="PackedScene" uid="uid://cstig8fh3u0cn" path="res://scenes/levels/air_boundary.tscn" id="9_jrl5t"]
@@ -52,6 +53,12 @@ texture = ExtResource("1_f2t84")
 [sub_resource type="TileSet" id="TileSet_cvh0y"]
 physics_layer_0/collision_layer = 1
 sources/1 = SubResource("TileSetAtlasSource_c3cds")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_337yr"]
+size = Vector2(25.962524, 8.313072)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y0b8w"]
+size = Vector2(20, 13.101166)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_otp6c"]
 size = Vector2(37.977783, 106.94379)
@@ -115,10 +122,33 @@ position = Vector2(1332, 736)
 rotation = 1.5802149
 scale = Vector2(2.0046065, 5.166667)
 
+[node name="Area2D" type="Area2D" parent="SpikeTrap"]
+collision_layer = 3
+collision_mask = 3
+script = ExtResource("7_7rsn4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SpikeTrap/Area2D"]
+light_mask = 3
+visibility_layer = 3
+position = Vector2(15.621063, 6.4207)
+shape = SubResource("RectangleShape2D_337yr")
+
 [node name="SpikeTrap2" parent="." instance=ExtResource("2_c3cds")]
 position = Vector2(1933, 799)
 rotation = 4.7201586
 scale = Vector2(2.0046065, 5.166667)
+
+[node name="Area2D" type="Area2D" parent="SpikeTrap2"]
+collision_layer = 3
+collision_mask = 3
+script = ExtResource("7_7rsn4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SpikeTrap2/Area2D"]
+light_mask = 3
+visibility_layer = 3
+position = Vector2(16.612736, 7.4985385)
+scale = Vector2(1.5, 1)
+shape = SubResource("RectangleShape2D_y0b8w")
 
 [node name="BlueMovingPlatform" parent="." instance=ExtResource("3_cvh0y")]
 position = Vector2(2670, 807)
@@ -152,7 +182,7 @@ scale = Vector2(2.1199927, 0.20742658)
 position = Vector2(-135, 552)
 
 [node name="KillZone" parent="." instance=ExtResource("10_4doml")]
-position = Vector2(1054.0001, 911)
+position = Vector2(1051, 956)
 scale = Vector2(1000, 1)
 
 [node name="Door" parent="." instance=ExtResource("7_piyly")]
