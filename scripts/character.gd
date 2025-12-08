@@ -6,9 +6,8 @@ signal hurt()
 signal death()
 signal resurrect()
 
-const DEFAULT_HEALTH := 100
-@export var health := DEFAULT_HEALTH
-@export var max_health := DEFAULT_HEALTH
+@export var health := 100
+@export var max_health := health
 
 enum Facing {
 	LEFT,
@@ -50,7 +49,7 @@ func change_facing(new_facing: Facing) -> void:
 	sprite.flip_h = (facing == Facing.LEFT)
 	direction_change.emit(facing)
 
-func take_damage(damage: int):
+func take_damage(damage: int, _source: Node):
 	if dead or damage <= 0:
 		return
 
@@ -75,11 +74,30 @@ func ressurect():
 func _physics_process(delta: float) -> void:
 	_apply_gravity(delta)
 	
+	# Handle pushable objects
 	for i in get_slide_collision_count():
 		var collision = get_slide_collision(i)
 		var collision_block = collision.get_collider()
-		if collision_block.is_in_group("PushableBlock") and abs(collision_block.get_linear_velocity().x) < MAX_PUSH_VELOCITY:
-			collision_block.apply_central_impulse(collision.get_normal() * -PUSH_FORCE)
+		
+		# Check if collision_block is still valid
+		if not is_instance_valid(collision_block):
+			continue
+		
+		# Also check if it's safe to call methods on it
+		if not collision_block.is_inside_tree():
+			continue
+		
+		# Check if we can safely call is_in_group
+		var is_pushable = false
+		if collision_block.has_method("is_in_group"):
+			is_pushable = collision_block.is_in_group("PushableBlock")
+		
+		if is_pushable:
+			# Check if it has physics methods
+			if collision_block.has_method("get_linear_velocity") and collision_block.has_method("apply_central_impulse"):
+				var block_velocity = collision_block.get_linear_velocity()
+				if abs(block_velocity.x) < MAX_PUSH_VELOCITY:
+					collision_block.apply_central_impulse(collision.get_normal() * -PUSH_FORCE)
 			
 	_apply_movement(delta)
 
@@ -87,5 +105,4 @@ func _apply_gravity(delta : float) -> void:
 	velocity.y = minf(TERMINAL_VELOCITY, velocity.y + gravity * delta)
 
 func _apply_movement(_delta: float):
-	
 	move_and_slide()

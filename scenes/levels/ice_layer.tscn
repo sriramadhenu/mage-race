@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://bdlsg2p5ldxt3"]
+
+[ext_resource type="Texture2D" uid="uid://c6x81c28atx2g" path="res://assets/tilesets/IceLayer.png" id="1_cycny"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_rg7ex"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3weh7"]
+size = Vector2(369, 27)
+
+[node name="IceLayer" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-1, -5)
+scale = Vector2(0.9199996, 0.33503744)
+texture = ExtResource("1_cycny")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+physics_material_override = SubResource("PhysicsMaterial_rg7ex")
+constant_linear_velocity = Vector2(30, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-0.5, -4.5)
+shape = SubResource("RectangleShape2D_3weh7")

@@ -1,9 +1,0 @@
-[gd_scene load_steps=2 format=4 uid="uid://caymohjf243fs"]
-
-[ext_resource type="TileSet" uid="uid://d2ppuaupw43oc" path="res://scenes/levels/ice_level.tres" id="1_ds60r"]
-
-[node name="BlueBreakBlock" type="Node2D"]
-
-[node name="TileMapLayer" type="TileMapLayer" parent="."]
-tile_map_data = PackedByteArray("AAAAAAAAAAABAAAAAAAAAAEAAAABAAAAAAAAAAIAAAABAAAAAAAAAAMAAAABAAAAAAABAAMAAAABAAAAAAABAAIAAAABAAAAAAABAAEAAAABAAAAAAABAAAAAAABAAAAAAA=")
-tile_set = ExtResource("1_ds60r")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=4 uid="uid://6u147o3ca1f"]
+[gd_scene load_steps=13 format=4 uid="uid://6u147o3ca1f"]
 
 [ext_resource type="Texture2D" uid="uid://7vnqltmllub" path="res://assets/tilesets/Starter Tiles Platformer/FireSet.png" id="1_xreyv"]
 [ext_resource type="PackedScene" uid="uid://cs8v7gtgsqesh" path="res://scenes/levels/lava.tscn" id="2_jajvf"]
@@ -8,6 +8,8 @@
 [ext_resource type="Texture2D" uid="uid://cjgok4i0lvq88" path="res://scenes/levels/lava_backgrounds/2.png" id="6_adirl"]
 [ext_resource type="Texture2D" uid="uid://cqi5t76r2j55x" path="res://scenes/levels/lava_backgrounds/3.png" id="7_ysieg"]
 [ext_resource type="Texture2D" uid="uid://be1dhmceuklo5" path="res://scenes/levels/lava_backgrounds/4.png" id="8_y7b0h"]
+[ext_resource type="PackedScene" uid="uid://4ll2nbf870dh" path="res://scenes/kill_zone.tscn" id="9_2dov1"]
+[ext_resource type="PackedScene" uid="uid://biufvwmgorgev" path="res://scenes/characters/player.tscn" id="10_m5dp1"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jajvf"]
 texture = ExtResource("1_xreyv")
@@ -116,3 +118,10 @@ offset_right = 6390.0
 offset_bottom = 1024.0
 texture = ExtResource("8_y7b0h")
 stretch_mode = 1
+
+[node name="KillZone" parent="." instance=ExtResource("9_2dov1")]
+position = Vector2(1960, 1999)
+scale = Vector2(800, 100)
+
+[node name="Player" parent="." instance=ExtResource("10_m5dp1")]
+position = Vector2(251, 658)

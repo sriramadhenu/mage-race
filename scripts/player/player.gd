@@ -5,18 +5,25 @@ extends Character
 var cmd_list: Array[Command]
 var _anim_locked := false
 var _is_casting := false
-
+var _is_dying := false
+var _knockback_velocity := Vector2.ZERO
 var _ice_spell_scene: PackedScene = preload("res://scenes/projectiles/ice_spell.tscn")
 
 signal health_changed(new_hp)
 
 func _ready() -> void:
+	health = 5
+	max_health = 5
 	bind_player_input_commands()
 	command_callback("spawn")
+	if not death.is_connected(_on_death):
+		death.connect(_on_death)
 
 
 func _physics_process(delta: float) -> void:
-	if dead:
+	if dead or _is_dying:
+		velocity = Vector2.ZERO
+		super(delta)
 		return
 
 	# Update dash every frame (important)
@@ -24,9 +31,10 @@ func _physics_process(delta: float) -> void:
 	if dash_cmd.is_dashing:
 		if randi() % 3 == 0:
 			_spawn_dash_ghost()
+		_apply_knockback(delta)
 		super(delta)
 		return
-
+		
 	# If any queued commands exist, process them first
 	if len(cmd_list) > 0:
 		var command_status: Command.Status = cmd_list.front().execute(self)
@@ -36,12 +44,17 @@ func _physics_process(delta: float) -> void:
 	
 	if Input.is_action_just_pressed("jump"):
 		up_cmd.execute(self)
-	if Input.is_action_just_pressed("dash"):
+	if not _is_casting and Input.is_action_just_pressed("dash"):
 		dash_cmd.execute(self)
-	if Input.is_action_just_pressed("attack_ice"):
-		_attack_ice()
+	if Input.is_action_just_pressed("attack_ice_left"):
+		_shoot_left()
+	if Input.is_action_just_pressed("attack_ice_right"):
+		_shoot_right()
 
-	var move_input = Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
+	var move_input := Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
+	if _is_casting and is_on_floor():
+		move_input = 0.0
+
 	if move_input > 0.1:
 		right_cmd.execute(self)
 	elif move_input < -0.1:
@@ -56,7 +69,10 @@ func _physics_process(delta: float) -> void:
 		else:
 			sprite.play("idle")
 
+	_apply_knockback(delta)
 	super(delta)
+
+
 
 func _spawn_dash_ghost():
 	var ghost = AnimatedSprite2D.new()
@@ -74,6 +90,7 @@ func _spawn_dash_ghost():
 	tween.tween_property(ghost, "modulate:a", 0.0, 0.18)
 	tween.tween_callback(ghost.queue_free)
 	
+	
 func _attack_ice():
 	if _anim_locked:
 		return
@@ -90,6 +107,7 @@ func _attack_ice():
 	# add the spell as a child of this node so it follows the player as its forming
 	# when the spell is fully formed, it will reparent
 	add_child(ice_spell)
+
 
 func change_facing(new_facing: Facing):
 	if not _is_casting:
@@ -136,10 +154,61 @@ func _on_hurt() -> void:
 
 func _on_death() -> void:
 	_anim_locked = true
+	_is_dying = true
 	sprite.play("death")
+	velocity = Vector2.ZERO
+	cmd_list.clear()
+	
+	if dash_cmd and dash_cmd.is_dashing:
+		dash_cmd.is_dashing = false
+	
+	var death_timer := Timer.new()
+	death_timer.wait_time = 2.5
+	death_timer.one_shot = true
+	death_timer.process_mode = Node.PROCESS_MODE_PAUSABLE
+	add_child(death_timer)
+	death_timer.start()
+	
+	await death_timer.timeout
+	death_timer.queue_free()
+	
+	GameManager.restart_current_level()
 
 
-func take_damage(amount: int) -> void:
-	super(amount)
-	emit_signal("health_changed", health) # health inherited from Character.gd
+func take_damage(amount: int, source: Node) -> void:
+	super(amount, source)
+	emit_signal("health_changed", health)
 	GameManager.damage_player(amount)
+	_start_knockback(source)
+
+
+func _apply_knockback(delta: float) -> void:
+	const KNOCKBACK_DECAY := 1000.0
+	if abs(_knockback_velocity.x) < 0.01:
+		_knockback_velocity.x = 0.0
+		return
+	velocity.x += _knockback_velocity.x
+	_knockback_velocity.x = move_toward(_knockback_velocity.x, 0.0, KNOCKBACK_DECAY * delta)
+
+
+func _start_knockback(source: Node) -> void:
+	if dead:
+		_knockback_velocity = Vector2.ZERO
+		return
+
+	const KNOCKBACK_SPEED := 420.0
+	const KNOCKBACK_VERTICAL := -120.0
+	if source is Node2D:
+		var dir: float = sign(global_position.x - source.global_position.x)
+		_knockback_velocity.x = dir * KNOCKBACK_SPEED
+		velocity.y = min(velocity.y, KNOCKBACK_VERTICAL)
+
+
+func _shoot_left():
+	change_facing(Facing.LEFT)
+	_attack_ice()
+
+
+func _shoot_right():
+	change_facing(Facing.RIGHT)
+	_attack_ice()

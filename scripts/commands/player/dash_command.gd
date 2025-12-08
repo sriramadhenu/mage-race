@@ -10,7 +10,7 @@ var dash_direction: Vector2 = Vector2.ZERO
 
 const DASH_SPEED := 450.0
 const DASH_DURATION := 0.3
-const DASH_COOLDOWN := 1.0
+const DASH_COOLDOWN := 1.5
 
 
 func execute(character: Character) -> Status:
@@ -18,6 +18,9 @@ func execute(character: Character) -> Status:
 	if not can_dash or is_dashing:
 		return Status.ERROR
 	
+	if character._is_casting:
+		return Status.ERROR
+		
 	# determine dash direction based on character facing
 	if character.facing == Character.Facing.RIGHT:
 		dash_direction = Vector2.RIGHT
