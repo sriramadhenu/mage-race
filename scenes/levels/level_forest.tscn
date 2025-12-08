@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=4 uid="uid://xm64rd5b2omd"]
+[gd_scene load_steps=46 format=4 uid="uid://xm64rd5b2omd"]
 
 [ext_resource type="Script" uid="uid://sb4fxfpqh6ap" path="res://scenes/levels/level_forest.gd" id="1_auoep"]
 [ext_resource type="Texture2D" uid="uid://be4ky4bfjyunq" path="res://assets/tilesets/Water+.png" id="1_c3tcg"]
@@ -21,6 +21,10 @@
 [ext_resource type="PackedScene" uid="uid://ccp033qayaqqw" path="res://scenes/levels/pushable_block.tscn" id="17_5gqej"]
 [ext_resource type="Script" uid="uid://da1qk27uegwau" path="res://scenes/levels/purple_wall.gd" id="17_wx6cm"]
 [ext_resource type="PackedScene" uid="uid://4ll2nbf870dh" path="res://scenes/kill_zone.tscn" id="18_6nloi"]
+[ext_resource type="Shader" uid="uid://cf1egq517lvg3" path="res://scenes/levels/sunbeam.gdshader" id="22_asm4k"]
+[ext_resource type="Texture2D" uid="uid://bkm57v3dlup75" path="res://icon.svg" id="23_hammv"]
+[ext_resource type="Texture2D" uid="uid://cbkq2pmroww2j" path="res://assets/sprites/Magic/lantern.png" id="23_iv7j6"]
+[ext_resource type="Texture2D" uid="uid://gvwi1lks6ypd" path="res://assets/sprites/Magic/dust.png" id="24_asm4k"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jm40j"]
 texture = ExtResource("1_c3tcg")
@@ -546,6 +550,21 @@ size = Vector2(37.977783, 106.94379)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wx6cm"]
 size = Vector2(15.317383, 9.583414)
 
+[sub_resource type="Animation" id="Animation_5ls40"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
 [sub_resource type="Animation" id="Animation_f8l0e"]
 resource_name = "destroy"
 step = 0.5
@@ -562,26 +581,101 @@ tracks/0/keys = {
 "values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
 
-[sub_resource type="Animation" id="Animation_5ls40"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_iv7j6"]
 _data = {
 &"RESET": SubResource("Animation_5ls40"),
 &"destroy": SubResource("Animation_f8l0e")
 }
+
+[sub_resource type="Gradient" id="Gradient_f8l0e"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_5ls40"]
+gradient = SubResource("Gradient_f8l0e")
+fill_to = Vector2(0.90000004, 0.7)
+metadata/_snap_enabled = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jkumo"]
+shader = ExtResource("22_asm4k")
+shader_parameter/blend_mode = 1
+shader_parameter/angle = 159.58800758043
+shader_parameter/position = 1.0
+shader_parameter/spread = 0.878000041705
+shader_parameter/cutoff = 0.2030000571424999
+shader_parameter/falloff = 0.1790000085025
+shader_parameter/edge_fade = 0.1600000076
+shader_parameter/speed = 3.474000165015
+shader_parameter/ray1_density = 8.206000389785
+shader_parameter/ray2_density = 40.39200191862
+shader_parameter/ray2_intensity = 0.2590000123025
+shader_parameter/color = Color(0.8509804, 0.70980394, 0.9529412, 0.8)
+shader_parameter/hdr = false
+shader_parameter/seed = 5.0
+
+[sub_resource type="Gradient" id="Gradient_asm4k"]
+offsets = PackedFloat32Array(0, 0.5, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0)
+metadata/_snap_enabled = true
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_hammv"]
+gradient = SubResource("Gradient_asm4k")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_5vyyo"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 128.0
+initial_velocity_min = -5.0
+initial_velocity_max = 10.0
+gravity = Vector3(0, 55, 0)
+scale_min = 0.01
+scale_max = 0.02
+color_ramp = SubResource("GradientTexture1D_hammv")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_asm4k"]
+shader = ExtResource("22_asm4k")
+shader_parameter/blend_mode = 1
+shader_parameter/angle = 180.00000855
+shader_parameter/position = 1.0
+shader_parameter/spread = 1.0
+shader_parameter/cutoff = 0.200000057
+shader_parameter/falloff = 0.1790000085025
+shader_parameter/edge_fade = 0.15
+shader_parameter/speed = 3.0000001425
+shader_parameter/ray1_density = 11.7930005601675
+shader_parameter/ray2_density = 20.80400098819
+shader_parameter/ray2_intensity = 0.3
+shader_parameter/color = Color(1, 0, 0.40392157, 0.8)
+shader_parameter/hdr = false
+shader_parameter/seed = 5.0
+
+[sub_resource type="Gradient" id="Gradient_hammv"]
+offsets = PackedFloat32Array(0, 0.5, 1)
+colors = PackedColorArray(0, 0, 0, 0, 0.2627451, 0, 0, 1, 0, 0, 0, 0)
+metadata/_snap_enabled = true
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_exu7g"]
+gradient = SubResource("Gradient_hammv")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_jkumo"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(30, 90, 1)
+initial_velocity_min = -5.0
+initial_velocity_max = 5.0
+gravity = Vector3(0, 55, 0)
+scale_min = 0.01
+scale_max = 0.02
+color_ramp = SubResource("GradientTexture1D_exu7g")
+
+[sub_resource type="Gradient" id="Gradient_5vyyo"]
+offsets = PackedFloat32Array(0, 0.76666665)
+colors = PackedColorArray(1, 1, 1, 1, 0.05882353, 0.05882353, 0.05882353, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_asm4k"]
+gradient = SubResource("Gradient_5vyyo")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.1, 0.1)
+metadata/_snap_enabled = true
 
 [node name="LevelForest" type="Node2D"]
 script = ExtResource("1_auoep")
@@ -712,3 +806,71 @@ position = Vector2(195, 699)
 [node name="KillZone" parent="." instance=ExtResource("18_6nloi")]
 position = Vector2(2677, 2891.9998)
 scale = Vector2(1000, 200)
+
+[node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
+color = Color(0.77083945, 0.7708395, 0.7708392, 1)
+blend_mode = 2
+range_layer_min = -101
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(3201.5002, 356)
+scale = Vector2(128.67189, 18.53125)
+color = Color(0.5449745, 0.5449742, 0.54497427, 1)
+energy = 0.47
+blend_mode = 1
+range_layer_min = -101
+texture = SubResource("GradientTexture2D_5ls40")
+
+[node name="Sunbeam" type="TextureRect" parent="."]
+material = SubResource("ShaderMaterial_jkumo")
+offset_left = -618.0
+offset_top = -254.0
+offset_right = 604.0
+offset_bottom = 753.0
+texture = ExtResource("23_hammv")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="Sunbeam"]
+position = Vector2(425, 625)
+scale = Vector2(2.5, 2.5)
+amount = 15
+amount_ratio = 0.8
+texture = ExtResource("24_asm4k")
+process_material = SubResource("ParticleProcessMaterial_5vyyo")
+
+[node name="Sunbeam2" type="TextureRect" parent="."]
+material = SubResource("ShaderMaterial_asm4k")
+offset_left = 5784.0
+offset_top = -247.0
+offset_right = 6138.0
+offset_bottom = 611.0
+texture = ExtResource("23_hammv")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="Sunbeam2"]
+position = Vector2(180, 525)
+scale = Vector2(2.5, 2.5)
+amount = 15
+amount_ratio = 0.8
+texture = ExtResource("24_asm4k")
+process_material = SubResource("ParticleProcessMaterial_jkumo")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(3300, 568)
+scale = Vector2(0.06, 0.06)
+texture = ExtResource("23_iv7j6")
+
+[node name="PointLight2D" type="PointLight2D" parent="Sprite2D"]
+position = Vector2(0, 175)
+scale = Vector2(83.918, 75)
+texture = SubResource("GradientTexture2D_asm4k")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(4075, 568)
+scale = Vector2(0.06, 0.06)
+texture = ExtResource("23_iv7j6")
+
+[node name="PointLight2D" type="PointLight2D" parent="Sprite2D2"]
+position = Vector2(0, 175)
+scale = Vector2(83.918, 75)
+texture = SubResource("GradientTexture2D_asm4k")

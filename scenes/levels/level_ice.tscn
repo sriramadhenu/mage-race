@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=4 uid="uid://boieimqt2dwig"]
+[gd_scene load_steps=19 format=4 uid="uid://boieimqt2dwig"]
 
 [ext_resource type="Texture2D" uid="uid://dwusu5yd87cf5" path="res://assets/tilesets/Starter Tiles Platformer/IceSet.png" id="1_f2t84"]
 [ext_resource type="Script" uid="uid://tsfnld2h8v1g" path="res://scenes/levels/level_ice.gd" id="1_me68h"]
@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://bdlsg2p5ldxt3" path="res://scenes/levels/ice_layer.tscn" id="8_4alhl"]
 [ext_resource type="PackedScene" uid="uid://cstig8fh3u0cn" path="res://scenes/levels/air_boundary.tscn" id="9_jrl5t"]
 [ext_resource type="PackedScene" uid="uid://4ll2nbf870dh" path="res://scenes/kill_zone.tscn" id="10_4doml"]
+[ext_resource type="Script" uid="uid://ka0ll3u6pcgd" path="res://scenes/levels/door_area.gd" id="15_12t3x"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_c3cds"]
 texture = ExtResource("1_f2t84")
@@ -51,6 +52,9 @@ texture = ExtResource("1_f2t84")
 physics_layer_0/collision_layer = 1
 sources/1 = SubResource("TileSetAtlasSource_c3cds")
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_otp6c"]
+size = Vector2(37.977783, 106.94379)
+
 [node name="LevelIce" type="Node2D"]
 script = ExtResource("1_me68h")
 
@@ -59,7 +63,7 @@ script = ExtResource("1_me68h")
 [node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
 
 [node name="TextureRect" type="TextureRect" parent="ParallaxBackground/ParallaxLayer"]
-offset_left = -376.0
+offset_left = -1319.0
 offset_right = 5877.0
 offset_bottom = 841.0
 texture = ExtResource("2_hden6")
@@ -116,10 +120,6 @@ scale = Vector2(2.5003524, 2.6517706)
 position = Vector2(4475.0005, 753)
 scale = Vector2(1.4405546, 1.4426705)
 
-[node name="Door" parent="." instance=ExtResource("7_piyly")]
-position = Vector2(5086, 672)
-scale = Vector2(0.61305857, 0.45000243)
-
 [node name="IceLayer" parent="." instance=ExtResource("8_4alhl")]
 position = Vector2(368, 775)
 scale = Vector2(0.27999747, 0.3755238)
@@ -138,3 +138,21 @@ position = Vector2(-135, 552)
 [node name="KillZone" parent="." instance=ExtResource("10_4doml")]
 position = Vector2(1058, 880)
 scale = Vector2(1000, 1)
+
+[node name="Door" parent="." instance=ExtResource("7_piyly")]
+visibility_layer = 4
+z_index = -1
+position = Vector2(5000, 674)
+scale = Vector2(0.613, 0.45)
+
+[node name="Area2D2" type="Area2D" parent="Door"]
+collision_layer = 3
+collision_mask = 3
+script = ExtResource("15_12t3x")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Door/Area2D2"]
+light_mask = 3
+visibility_layer = 3
+position = Vector2(97.869644, -86.66615)
+scale = Vector2(1.0000001, 1.0000005)
+shape = SubResource("RectangleShape2D_otp6c")

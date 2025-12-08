@@ -24,7 +24,7 @@ func _on_start_pressed():
 	$Audio/menu_music.stop()
 	await get_tree().create_timer(0.4).timeout
 	get_tree().change_scene_to_file("res://scenes/ui/level_loader.tscn")
-	queue_free()
+	#queue_free()
 
 
 func _on_quit_pressed():
