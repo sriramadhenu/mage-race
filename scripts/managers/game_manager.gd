@@ -21,7 +21,6 @@ signal state_changed(new_state: GameState)
 signal level_changed(level_number: int)
 signal player_health_changed(new_health: int)
 signal player_died
-signal relic_collected(relic_name: String)
 
 
 func _ready():
@@ -42,7 +41,6 @@ func load_next_level():
 	level_changed.emit(current_level)
 
 
-
 func load_specific_level(level_index: int):
 	current_level = level_index
 	last_played_level = level_index
@@ -52,13 +50,11 @@ func load_specific_level(level_index: int):
 	level_changed.emit(level_index)
 
 
-
 func restart_current_level():
 	player_health = max_health
 
 	change_state(GameState.PLAYING)  # Set state first
 	level_changed.emit(current_level)
-
 
 
 # Player Health Management
@@ -70,25 +66,9 @@ func damage_player(amount: int):
 		player_died.emit()
 
 
-func heal_player(amount: int):
-	player_health = min(max_health, player_health + amount)
-	player_health_changed.emit(player_health)
-
-
-# Puzzle Collection
-func collect_relic(relic_name: String):
-	if not collected_relics.has(relic_name):
-		collected_relics.append(relic_name)
-		relic_collected.emit(relic_name)
-
-
 # Utility Functions
 func reset_game():
 	current_level = 0
 	player_health = max_health
 	collected_relics.clear()
 	change_state(GameState.MAIN_MENU)
-
-
-func get_last_played_level() -> int:
-	return last_played_level
