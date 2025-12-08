@@ -46,12 +46,17 @@ func update(character: Character, delta: float) -> void:
 		
 		dash_timer -= delta
 		if dash_timer <= 0.0:
-			is_dashing = false
-			character.velocity.x = 0
-			cooldown_timer = DASH_COOLDOWN
+			stop(character)
 
 	# Cooldown handling
 	if not can_dash:
 		cooldown_timer -= delta
 		if cooldown_timer <= 0.0:
 			can_dash = true
+
+
+func stop(character: Character) -> void:
+	if is_dashing:
+		is_dashing = false
+		character.velocity.x = 0
+		cooldown_timer = DASH_COOLDOWN

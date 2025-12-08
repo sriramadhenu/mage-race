@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=3 uid="uid://biufvwmgorgev"]
+[gd_scene load_steps=45 format=3 uid="uid://biufvwmgorgev"]
 
 [ext_resource type="Script" uid="uid://lcfrvnq01hhq" path="res://scripts/player/player.gd" id="1_dyp2m"]
 [ext_resource type="Texture2D" uid="uid://dsspbnb7dtk4b" path="res://assets/sprites/Characters/Wizard/Wizard/Wizard-DEATH.png" id="2_atpat"]
@@ -282,6 +282,9 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dyp2m"]
 size = Vector2(52, 72)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6eyoc"]
+size = Vector2(32, 72)
+
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 2
 script = ExtResource("1_dyp2m")
@@ -308,6 +311,15 @@ shape = SubResource("RectangleShape2D_dyp2m")
 
 [node name="death" type="AudioStreamPlayer2D" parent="Audio"]
 
+[node name="PreventDashZone" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PreventDashZone"]
+position = Vector2(32, -8)
+shape = SubResource("RectangleShape2D_6eyoc")
+
 [connection signal="death" from="." to="." method="_on_death"]
 [connection signal="hurt" from="." to="." method="_on_hurt"]
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animation_finished"]
+[connection signal="body_entered" from="PreventDashZone" to="." method="_on_prevent_dash_zone_body_entered"]

@@ -14,18 +14,21 @@ enum Facing {
 	RIGHT
 }
 
-var gravity: int = ProjectSettings.get("physics/2d/default_gravity")
+var gravity: float = ProjectSettings.get("physics/2d/default_gravity")
 
-const TERMINAL_VELOCITY = 700
-const DEFAULT_JUMP_VELOCITY = -500
-const DEFAULT_MOVE_VELOCITY = 300
-const PUSH_FORCE = 20
-const MAX_PUSH_VELOCITY = 150
+const DEFAULT_MOVE_VELOCITY := 300
+const DEFAULT_TERMINAL_VELOCITY := 700
+const DEFAULT_JUMP_VELOCITY := -500
+const DEFAULT_FALL_GRAVITY_SCALE := 1.25
+const PUSH_FORCE := 20
+const MAX_PUSH_VELOCITY := 150
 
 
 # Movement variables
-@export var movement_speed = DEFAULT_MOVE_VELOCITY
-@export var jump_velocity = DEFAULT_JUMP_VELOCITY
+@export var movement_speed := DEFAULT_MOVE_VELOCITY
+@export var terminal_velocity := DEFAULT_TERMINAL_VELOCITY
+@export var jump_velocity := DEFAULT_JUMP_VELOCITY
+@export var fall_gravity_scale := DEFAULT_FALL_GRAVITY_SCALE
 
 # Command references
 var right_cmd: Command
@@ -102,7 +105,10 @@ func _physics_process(delta: float) -> void:
 	_apply_movement(delta)
 
 func _apply_gravity(delta : float) -> void:
-	velocity.y = minf(TERMINAL_VELOCITY, velocity.y + gravity * delta)
+	var instant_gravity := self.gravity
+	if velocity.y > 0: # falling
+		instant_gravity *= fall_gravity_scale
+	velocity.y = minf(terminal_velocity, velocity.y + instant_gravity * delta)
 
 func _apply_movement(_delta: float):
 	move_and_slide()
