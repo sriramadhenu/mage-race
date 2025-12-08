@@ -1,6 +1,8 @@
 class_name Player
 extends Character 
 
+@onready var _prevent_dash_zone: Area2D = $PreventDashZone
+
 # player states
 var cmd_list: Array[Command]
 var _anim_locked := false
@@ -23,8 +25,7 @@ func _physics_process(delta: float) -> void:
 	# Update dash every frame (important)
 	dash_cmd.update(self, delta)
 	if dash_cmd.is_dashing:
-		if randi() % 3 == 0:
-			_spawn_dash_ghost()
+		_spawn_dash_ghost()
 		_apply_knockback(delta)
 		super(delta)
 		return
@@ -38,7 +39,10 @@ func _physics_process(delta: float) -> void:
 	
 	if Input.is_action_just_pressed("jump"):
 		up_cmd.execute(self)
-	if Input.is_action_just_pressed("dash"):
+	elif Input.is_action_just_released("jump"):
+		velocity.y = maxf(velocity.y, 0) # cancel jump if released early
+
+	if Input.is_action_just_pressed("dash") and not _prevent_dash_zone.has_overlapping_bodies():
 		dash_cmd.execute(self)
 	if Input.is_action_just_pressed("attack_ice"):
 		_attack_ice()
@@ -95,8 +99,12 @@ func _attack_ice():
 	add_child(ice_spell)
 
 func change_facing(new_facing: Facing):
-	if not _is_casting:
-		super(new_facing)
+	if _is_casting:
+		return
+	super(new_facing)
+	var facing_dir := 1 if facing == Facing.RIGHT else -1
+	$CollisionShape2D.position.x = abs($CollisionShape2D.position.x) * facing_dir
+	$PreventDashZone/CollisionShape2D.position.x = abs($PreventDashZone/CollisionShape2D.position.x) * facing_dir
 
 
 func bind_player_input_commands():
@@ -140,6 +148,14 @@ func _on_hurt() -> void:
 func _on_death() -> void:
 	_anim_locked = true
 	sprite.play("death")
+
+
+func _on_prevent_dash_zone_body_entered(body: Node2D) -> void:
+	# prevent dashing through characters
+	if body is Character and dash_cmd is DashCommand and dash_cmd.is_dashing:
+		dash_cmd.stop(self)
+		_start_knockback(body)
+
 
 func take_damage(amount: int, source: Node) -> void:
 	super(amount, source)

@@ -299,7 +299,7 @@ size = Vector2(52, 72)
 size = Vector2(58, 72)
 
 [node name="OrcEnemy" type="CharacterBody2D"]
-collision_layer = 2
+collision_layer = 4
 script = ExtResource("1_wma73")
 health = 110
 max_health = 110
@@ -323,7 +323,7 @@ position = Vector2(24, 0)
 [node name="AttackZone" type="Area2D" parent="."]
 position = Vector2(57, -8)
 collision_layer = 0
-collision_mask = 2
+collision_mask = 6
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackZone"]
 shape = SubResource("RectangleShape2D_becf2")
