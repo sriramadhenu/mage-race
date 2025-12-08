@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=3 uid="uid://biufvwmgorgev"]
+[gd_scene load_steps=50 format=3 uid="uid://biufvwmgorgev"]
 
 [ext_resource type="Script" uid="uid://lcfrvnq01hhq" path="res://scripts/player/player.gd" id="1_dyp2m"]
 [ext_resource type="Texture2D" uid="uid://dsspbnb7dtk4b" path="res://assets/sprites/Characters/Wizard/Wizard/Wizard-DEATH.png" id="2_atpat"]
@@ -7,6 +7,11 @@
 [ext_resource type="Texture2D" uid="uid://d4ed68csy07og" path="res://assets/sprites/Characters/Wizard/Wizard/Wizard-Hurt.png" id="3_kqtwu"]
 [ext_resource type="Texture2D" uid="uid://cjuncmb173rl6" path="res://assets/sprites/Characters/Wizard/Wizard/Wizard-Idle.png" id="4_6eyoc"]
 [ext_resource type="Texture2D" uid="uid://boe0wo847ubj6" path="res://assets/sprites/Characters/Wizard/Wizard/Wizard-Walk.png" id="5_eojnx"]
+[ext_resource type="AudioStream" uid="uid://dnq58hujqqc3b" path="res://assets/audio/Player/footstep.wav" id="8_eojnx"]
+[ext_resource type="AudioStream" uid="uid://c6h1xrwnqkcuu" path="res://assets/audio/Player/hero_jump.wav" id="8_qgnko"]
+[ext_resource type="AudioStream" uid="uid://dqs18okw17q7u" path="res://assets/audio/Player/short_dash.wav" id="9_7vyk4"]
+[ext_resource type="AudioStream" uid="uid://b4vogtas1tnqj" path="res://assets/audio/Player/spawn.wav" id="10_jk2m4"]
+[ext_resource type="AudioStream" uid="uid://dgjb6elpf8lr3" path="res://assets/audio/Player/death.mp3" id="11_2l4js"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6eyoc"]
 atlas = ExtResource("2_kqtwu")
@@ -302,14 +307,20 @@ shape = SubResource("RectangleShape2D_dyp2m")
 [node name="Audio" type="Node2D" parent="."]
 
 [node name="jump" type="AudioStreamPlayer2D" parent="Audio"]
+stream = ExtResource("8_qgnko")
 
 [node name="dash" type="AudioStreamPlayer2D" parent="Audio"]
+stream = ExtResource("9_7vyk4")
 
-[node name="hurt" type="AudioStreamPlayer2D" parent="Audio"]
+[node name="respawn" type="AudioStreamPlayer2D" parent="Audio"]
+stream = ExtResource("10_jk2m4")
+volume_db = -8.582
 
-[node name="spawn" type="AudioStreamPlayer2D" parent="Audio"]
+[node name="walk" type="AudioStreamPlayer2D" parent="Audio"]
+stream = ExtResource("8_eojnx")
 
 [node name="death" type="AudioStreamPlayer2D" parent="Audio"]
+stream = ExtResource("11_2l4js")
 
 [node name="PreventDashZone" type="Area2D" parent="."]
 collision_layer = 0

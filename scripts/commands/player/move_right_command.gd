@@ -7,4 +7,5 @@ func execute(character: Character) -> Status:
 	var input = character.movement_speed
 	character.velocity.x = input
 	character.change_facing(Character.Facing.RIGHT)
+	character.command_callback("walk")
 	return Status.DONE

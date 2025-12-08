@@ -47,9 +47,12 @@ func _rotate_down_wall():
 	var global_right := Vector2.RIGHT.rotated(rotation)
 	global_position += global_right
 
-func command_callback(_cmd_name: String):
-	pass # TODO
-
+func command_callback(cmd_name: String) -> void:
+	var enemy: AudioStreamPlayer2D = null
+	match cmd_name:
+		"attack": enemy = $Audio/attack
+	if enemy != null and not enemy.playing:
+		enemy.play()	
 
 func _on_animation_finished() -> void:
 	if not dead:

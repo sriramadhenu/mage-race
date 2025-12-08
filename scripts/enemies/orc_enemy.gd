@@ -67,9 +67,10 @@ func _tick_charging():
 
 func _in_range_of_target():
 	return target and not target.dead and global_position.distance_to(target.global_position) < attack_range
-
+		
 func _attack_target():
 	_state = AIState.ATTACKING
+	command_callback("attack")
 	sprite.play("attack")
 	velocity.x = 0
 
@@ -83,14 +84,18 @@ func _facing_dir():
 	else:
 		return -1
 
+func command_callback(cmd_name: String) -> void:
+	var enemy: AudioStreamPlayer2D = null
+	match cmd_name:
+		"attack": enemy = $Audio/attack
+	if enemy != null and not enemy.playing:
+		enemy.play()	
+
 func change_facing(new_facing: Facing) -> void:
 	super(new_facing)
 	# flip important zones
 	_floor_ray.position.x = abs(_floor_ray.position.x) * _facing_dir()
 	_attack_zone.position.x = abs(_attack_zone.position.x) * _facing_dir()
-
-func command_callback(_cmd_name: String):
-	pass # TODO
 
 func _on_animation_finished() -> void:
 	# after attacking or being hurt, recover for a little bit

@@ -72,7 +72,8 @@ func _start_attack_target():
 
 	# start attack anim, arrow will be created near end of anim
 	_state = AIState.ATTACKING
-	sprite.play("attack")
+	command_callback("shoot")
+	sprite.play("shoot")
 
 func _finish_attack_target():
 	var arrow: ArrowProjectile = _arrow_scene.instantiate()
@@ -83,8 +84,12 @@ func _finish_attack_target():
 	arrow.add_collision_exception_with(self)
 	arrow.launch_at(target.global_position)
 
-func command_callback(_cmd_name: String):
-	pass # TODO
+func command_callback(cmd_name: String) -> void:
+	var enemy: AudioStreamPlayer2D = null
+	match cmd_name:
+		"shoot": enemy = $Audio/shoot
+	if enemy != null and not enemy.playing:
+		enemy.play()	
 
 func _face_target():
 	# face target

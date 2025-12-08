@@ -281,6 +281,10 @@ position = Vector2(48, 4)
 wait_time = 0.4
 one_shot = true
 
+[node name="Audio" type="Node2D" parent="."]
+
+[node name="shoot" type="AudioStreamPlayer2D" parent="Audio"]
+
 [connection signal="death" from="." to="." method="_on_death"]
 [connection signal="hurt" from="." to="." method="_on_hurt"]
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animation_finished"]
