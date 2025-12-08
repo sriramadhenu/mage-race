@@ -17,6 +17,11 @@ func _ready():
 	GameManager.level_changed.connect(_on_level_changed)
 
 
+func _on_level_button_pressed(level_index):
+	GameManager.load_specific_level(level_index)
+	queue_free()  
+
+
 func _on_level_changed(level_index: int):
 	load_level(level_index)
 
@@ -47,6 +52,12 @@ func load_level(level_index: int):
 		if hud_instance:
 			hud_instance.visible = false
 		GameManager.change_state(GameManager.GameState.GAME_OVER)
+
+
+func unload_level():
+	if current_level_scene:
+		current_level_scene.queue_free()
+		current_level_scene = null
 
 
 func restart_current_level():

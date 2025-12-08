@@ -39,5 +39,20 @@ func _on_resume_button_pressed() -> void:
 	resume_game()
 
 
+func _on_levels_button_pressed() -> void:
+	get_tree().paused = false
+	visible = false   # <-- this ensures it disappears
+
+	if LevelManager.current_level_scene:
+		LevelManager.current_level_scene.queue_free()
+		LevelManager.current_level_scene = null
+
+	get_tree().change_scene_to_file("res://scenes/ui/level_loader.tscn")
+
+
+func _go_to_loader():
+	get_tree().change_scene_to_file("res://scenes/ui/level_loader.tscn")
+
+
 func _on_quit_button_pressed() -> void:
 	get_tree().quit()

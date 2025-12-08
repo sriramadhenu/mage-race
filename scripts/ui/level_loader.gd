@@ -24,4 +24,4 @@ func _safe_connect(button: Button, callback: Callable):
 		
 func _start_level(index: int) -> void:
 	GameManager.load_specific_level(index)
-	queue_free()
+	call_deferred("queue_free")

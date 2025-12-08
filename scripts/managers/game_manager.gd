@@ -37,22 +37,28 @@ func change_state(new_state: GameState):
 func load_next_level():
 	current_level += 1
 	last_played_level = current_level
+
+	change_state(GameState.PLAYING)  # Set state first
 	level_changed.emit(current_level)
-	change_state(GameState.PLAYING)
+
 
 
 func load_specific_level(level_index: int):
 	current_level = level_index
 	last_played_level = level_index
 	player_health = max_health
+
+	change_state(GameState.PLAYING) 
 	level_changed.emit(level_index)
-	change_state(GameState.PLAYING)
+
 
 
 func restart_current_level():
 	player_health = max_health
+
+	change_state(GameState.PLAYING)  # Set state first
 	level_changed.emit(current_level)
-	change_state(GameState.PLAYING)
+
 
 
 # Player Health Management

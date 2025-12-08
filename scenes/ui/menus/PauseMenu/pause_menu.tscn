@@ -41,10 +41,10 @@ layout_mode = 2
 size_flags_vertical = 10
 text = "Resume"
 
-[node name="OptionsButton" type="Button" parent="Panel/VBoxContainer"]
+[node name="LevelsButton" type="Button" parent="Panel/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 6
-text = "Options"
+text = "Levels"
 
 [node name="QuitButton" type="Button" parent="Panel/VBoxContainer"]
 layout_mode = 2
@@ -52,4 +52,5 @@ size_flags_vertical = 2
 text = "Quit"
 
 [connection signal="pressed" from="Panel/VBoxContainer/ResumeButton" to="." method="_on_resume_button_pressed"]
+[connection signal="pressed" from="Panel/VBoxContainer/LevelsButton" to="." method="_on_levels_button_pressed"]
 [connection signal="pressed" from="Panel/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
