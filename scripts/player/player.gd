@@ -48,12 +48,12 @@ func _physics_process(delta: float) -> void:
 	elif Input.is_action_just_released("jump"):
 		velocity.y = maxf(velocity.y, 0) # cancel jump if released early
 
-	if (
-		Input.is_action_just_pressed("dash") and
-		not _is_casting and
-		not _prevent_dash_zone.has_overlapping_bodies()
-	):
-		dash_cmd.execute(self)
+	if not _is_casting and Input.is_action_just_pressed("dash"):
+		var dash_obstructed := _prevent_dash_zone.get_overlapping_bodies().any(
+			func(body: Node2D): return body is Character and not body.dead
+		)
+		if not dash_obstructed:
+			dash_cmd.execute(self)
 	if Input.is_action_just_pressed("attack_ice_left"):
 		_shoot_left()
 	if Input.is_action_just_pressed("attack_ice_right"):
@@ -190,7 +190,12 @@ func _on_death() -> void:
 
 func _on_prevent_dash_zone_body_entered(body: Node2D) -> void:
 	# prevent dashing through characters
-	if body is Character and dash_cmd is DashCommand and dash_cmd.is_dashing:
+	if (
+		body is Character and
+		not body.dead and
+		dash_cmd is DashCommand and
+		dash_cmd.is_dashing
+	):
 		dash_cmd.stop(self)
 		_start_knockback(body)
 
