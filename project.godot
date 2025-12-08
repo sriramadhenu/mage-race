@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Mage Race"
-run/main_scene="uid://dlle1xsn5613d"
+run/main_scene="uid://v3la144kw4ja"
 config/features=PackedStringArray("4.5", "Mobile")
 config/icon="res://icon.svg"
 
