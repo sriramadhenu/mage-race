@@ -12,8 +12,7 @@ func _ready():
 		var player_health = Hud.get_node_or_null("PlayerHealth")
 		if player_health:
 			player_health.hide()
-		print("Level loader hiding HUD and PlayerHealth")
-	
+		
 	$Audio/menu_music.play()
 	_safe_connect(forest_button, _on_load_forest_level_pressed)
 	_safe_connect(ice_button, _on_load_ice_level_pressed)

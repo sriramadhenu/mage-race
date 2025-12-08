@@ -17,4 +17,3 @@ func _ready():
 	# connect and set health
 	Hud.connect_player(player)
 	Hud.set_health(player.health)	
-	print("Level ready - Player health: ", player.health, " GameManager health: ", GameManager.player_health)
