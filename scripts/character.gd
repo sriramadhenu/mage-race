@@ -19,7 +19,7 @@ var gravity: float = ProjectSettings.get("physics/2d/default_gravity")
 const DEFAULT_MOVE_VELOCITY := 300
 const DEFAULT_TERMINAL_VELOCITY := 700
 const DEFAULT_JUMP_VELOCITY := -500
-const DEFAULT_FALL_GRAVITY_SCALE := 1.5
+const DEFAULT_FALL_GRAVITY_SCALE := 1.25
 const PUSH_FORCE := 20
 const MAX_PUSH_VELOCITY := 150
 
