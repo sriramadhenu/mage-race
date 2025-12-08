@@ -68,9 +68,9 @@ func _on_body_entered(body: Node) -> void:
 	# stick to the hit body (so it moves with them)
 	if body is Node2D:
 		var t := global_transform
-		get_parent().remove_child(self)
-		body.add_child(self)
-		body.move_child(self, 0)
+		get_parent().call_deferred("remove_child", self)
+		body.call_deferred("add_child", self)
+		body.call_deferred("move_child", self, 0)
 		global_transform = t
 
 	_start_fade_out()
