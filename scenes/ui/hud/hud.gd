@@ -27,10 +27,7 @@ func _update_visibility():
 		var player_health = root_ui.get_node_or_null("PlayerHealth")
 		if player_health:
 			player_health.visible = false
-		print("PlayerHealth hidden - LEVEL_SELECT state")
 		return
-	
-	print("HUD (root) visible:", show, " Scene:", path, " State:", GameManager.current_state)
 
 func _get_player_health():
 	if root_ui.has_node("PlayerHealth"):
@@ -41,8 +38,6 @@ func set_health(value: int):
 	var ph = _get_player_health()
 	if ph:
 		ph.set_health(value)
-	else:
-		print("HUD tried to update health before UI was ready")
 
 func connect_player(player):
 	if player.health_changed.is_connected(Callable(self, "set_health")):
