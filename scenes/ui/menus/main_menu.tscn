@@ -164,7 +164,7 @@ text = "Quit"
 
 [node name="menu_music" type="AudioStreamPlayer2D" parent="Audio"]
 stream = ExtResource("8_e7y46")
-volume_db = -20.0
+volume_db = -8.0
 autoplay = true
 
 [node name="start_button" type="AudioStreamPlayer2D" parent="Audio"]
