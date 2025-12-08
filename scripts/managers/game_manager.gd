@@ -30,6 +30,7 @@ func _ready():
 
 # State Management
 func change_state(new_state: GameState):
+	current_state = new_state
 	state_changed.emit(new_state)
 
 
@@ -38,9 +39,8 @@ func load_next_level():
 	current_level += 1
 	last_played_level = current_level
 
-	change_state(GameState.PLAYING)  # Set state first
+	change_state(GameState.PLAYING)  
 	level_changed.emit(current_level)
-
 
 
 func load_specific_level(level_index: int):
@@ -60,8 +60,6 @@ func restart_current_level():
 	level_changed.emit(current_level)
 
 
-
-# Player Health Management
 func damage_player(amount: int):
 	player_health = max(0, player_health - amount)
 	player_health_changed.emit(player_health)
@@ -75,7 +73,7 @@ func heal_player(amount: int):
 	player_health_changed.emit(player_health)
 
 
-# Puzzle Collection
+# puzzle Collection
 func collect_relic(relic_name: String):
 	if not collected_relics.has(relic_name):
 		collected_relics.append(relic_name)
