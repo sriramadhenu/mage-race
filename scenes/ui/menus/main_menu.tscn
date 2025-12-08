@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://v3la144kw4ja"]
+[gd_scene load_steps=16 format=3 uid="uid://v3la144kw4ja"]
 
 [ext_resource type="Theme" uid="uid://57ygx1bt32mq" path="res://scenes/ui/common/pixel_theme.tres" id="1_jk7nv"]
 [ext_resource type="Script" uid="uid://7fl8li7pa5f5" path="res://scenes/levels/main_menu.gd" id="2_dhmlp"]
@@ -8,6 +8,7 @@
 [ext_resource type="Shader" uid="uid://co6oiedn86b3w" path="res://scenes/ui/menus/shader_scripts/front.gdshader" id="6_bl8wb"]
 [ext_resource type="FontFile" uid="uid://dmqpm86c380kf" path="res://scenes/ui/common/fonts/PixelifySans-VariableFont_wght.ttf" id="7_c8e1o"]
 [ext_resource type="AudioStream" uid="uid://bi4oubfnudqr3" path="res://scenes/ui/menus/MenuMusic/adventure_free .wav" id="8_e7y46"]
+[ext_resource type="Script" uid="uid://ctygbvfq7v72b" path="res://scenes/ui/menus/audio_stream_player.gd" id="9_dhmlp"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_cn35j"]
 shader = ExtResource("3_ykpw6")
@@ -161,3 +162,4 @@ text = "Quit"
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("8_e7y46")
 autoplay = true
+script = ExtResource("9_dhmlp")
