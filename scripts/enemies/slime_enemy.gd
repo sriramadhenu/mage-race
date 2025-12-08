@@ -1,6 +1,6 @@
 extends Character
 
-@export var damage := 50
+@export var damage := 3
 
 @onready var _floor_ray: RayCast2D = $FloorRay
 @onready var _wall_ray: RayCast2D = $WallRay
@@ -62,5 +62,5 @@ func _on_death() -> void:
 	sprite.play("death")
 
 func _on_hit_box_body_entered(body: Node2D) -> void:
-	if body is Player:
+	if not dead and body is Player:
 		body.take_damage(damage, self)
