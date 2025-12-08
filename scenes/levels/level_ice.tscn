@@ -1,9 +1,11 @@
-[gd_scene load_steps=15 format=4 uid="uid://boieimqt2dwig"]
+[gd_scene load_steps=17 format=4 uid="uid://boieimqt2dwig"]
 
 [ext_resource type="Texture2D" uid="uid://dwusu5yd87cf5" path="res://assets/tilesets/Starter Tiles Platformer/IceSet.png" id="1_f2t84"]
 [ext_resource type="Script" uid="uid://tsfnld2h8v1g" path="res://scenes/levels/level_ice.gd" id="1_me68h"]
 [ext_resource type="PackedScene" uid="uid://cp0h7vla2ta2c" path="res://scenes/levels/spike_trap.tscn" id="2_c3cds"]
+[ext_resource type="Texture2D" uid="uid://b82unj4kdiuhd" path="res://scenes/levels/ice_backgrounds/Sky.png" id="2_hden6"]
 [ext_resource type="Script" uid="uid://ddhormsxtr24y" path="res://scenes/levels/position_lock_lerp_camera.gd" id="2_mp668"]
+[ext_resource type="Texture2D" uid="uid://bfq6wkw7acb8l" path="res://scenes/levels/ice_backgrounds/Stars.png" id="3_12t3x"]
 [ext_resource type="PackedScene" uid="uid://cs4g0p1ndga1f" path="res://scenes/levels/blue_moving_platform.tscn" id="3_cvh0y"]
 [ext_resource type="PackedScene" uid="uid://biufvwmgorgev" path="res://scenes/characters/player.tscn" id="5_ea0h5"]
 [ext_resource type="PackedScene" uid="uid://qc7tn0c3xw2j" path="res://scenes/enemies/skeleton_enemy.tscn" id="6_clnav"]
@@ -51,6 +53,27 @@ sources/1 = SubResource("TileSetAtlasSource_c3cds")
 
 [node name="LevelIce" type="Node2D"]
 script = ExtResource("1_me68h")
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+
+[node name="TextureRect" type="TextureRect" parent="ParallaxBackground/ParallaxLayer"]
+offset_left = -376.0
+offset_right = 5877.0
+offset_bottom = 841.0
+texture = ExtResource("2_hden6")
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.5, 1)
+
+[node name="TextureRect" type="TextureRect" parent="ParallaxBackground/ParallaxLayer2"]
+offset_left = -371.0
+offset_top = 220.0
+offset_right = 5882.0
+offset_bottom = 400.0
+texture = ExtResource("3_12t3x")
+stretch_mode = 1
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 position = Vector2(1, -469.00006)
