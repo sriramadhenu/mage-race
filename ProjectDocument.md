@@ -2,12 +2,12 @@
 
 ## Summary ##
 
-**Mage Race is a 2d puzzle-platformer where players embark on a quest as a wizard to restore balance to the magical realm of Valenor. After dark mages stole relics and created evil spells, your role is to battle through treacherous levels spanning forests, ice caverns, and volcanic landscapes to defeat enemies and reclaim artifacts. Master your attacks while navigating through this challenging terrain to become the mage that saves Valenor!**
+**Mage Race is a 2D puzzle-platformer where players embark on a quest as a wizard to restore balance to the magical realm of Valenor. After dark mages stole relics and created evil spells, your role is to battle through treacherous levels spanning forests, ice caverns, and volcanic landscapes to defeat enemies and reclaim artifacts. Master your attacks while navigating through this challenging terrain to become the mage that saves Valenor!**
 
 ## Project Resources
 
-[Web-playable version of your game.](https://sriramadhenu.itch.io/mage-race)  
-[Proposal: make your own copy of the linked doc.](https://docs.google.com/document/d/1TKdwR71jKnw42CS0OGpTujwn_lJmPJQjXw_Rr52OSoA/edit?usp=sharing)  
+[Try our Game!](https://sriramadhenu.itch.io/mage-race)  
+[Proposal Document](https://docs.google.com/document/d/1TKdwR71jKnw42CS0OGpTujwn_lJmPJQjXw_Rr52OSoA/edit?usp=sharing)  
 
 ## Gameplay Explanation ##
 
@@ -52,10 +52,10 @@ This section be repeated once for each team member. Each team member should prov
 
 The general structures is 
 ```
-Sri Krishanu Ramadhenu (sriramadhenu)
-  Main Role - Game Logic
+Team Member 1
+  Main Role
     Documentation for main role.
-  Sub-Role - Build and Release Management
+  Sub-Role
     Documentation for Sub-Role
   Other contribtions
     Documentation for contributions to the project outside of the main and sub roles.
@@ -83,7 +83,7 @@ You should replay any **bold text** with your relevant information. Liberally us
 
 Add addition contributions int he Other Contributions section.
 
-## Jacob Parker
+## Jacob Parker (DevBlocky)
 
 **Main Role: AI/Behavior**
 
@@ -96,3 +96,21 @@ After feedback from the playtest, looking at the game feel slides, and consultin
 **Other Contributions**
 
 Since I was already working on projectiles, I implemented the [ice spell](https://github.com/sriramadhenu/mage-race/blob/main/scripts/projectiles/ice_spell.gd) that the player uses in the game. I also imported and setup the animation sprites for each of the characters (player and enemies).
+
+
+## Sri Krishanu Ramadhenu (sriramadhenu)
+
+**Main Role: Game Logic**
+
+My main work was on the player, health, and level/respawn systems. I wired the player’s damage and knockback into a shared character health system so that taking damage reduces hearts, emits a health-changed signal, and can trigger death and respawn [link to work (minus the _on_prevent_dash_zone_body_entered function)](https://github.com/sriramadhenu/mage-race/blob/116efa511dc15851b5f8b1537c40f7056614a5ad/scripts/player/player.gd#L164-L209). The [game manager](https://github.com/sriramadhenu/mage-race/blob/58be39db4ee792ece815b2e8c7f2b71eb4bd0a59/scripts/managers/game_manager.gd#L1-L74) keeps track of what level the player is currently on (or the pause/main menu), and makes changes to the entire system accordingly. The [level manager](https://github.com/sriramadhenu/mage-race/blob/58be39db4ee792ece815b2e8c7f2b71eb4bd0a59/scripts/managers/level_manager.gd#L1-L34) keeps track of the level that is being displayed and changes the scene accordingly.
+
+**Sub Role: Build and Release Management**
+
+**Other Contributions**
+I created the final obstacle in the forest level, adding a collision shape to a button that removed a purple barrier with a fading animation when the player contacted the button (the animation took me too long to figure out, I'm not a visuals person). [button file](https://github.com/sriramadhenu/mage-race/blob/116efa511dc15851b5f8b1537c40f7056614a5ad/scenes/levels/green_button.gd#L1-L17). [wall file](https://github.com/sriramadhenu/mage-race/blob/116efa511dc15851b5f8b1537c40f7056614a5ad/scenes/levels/purple_wall.gd#L1-L10).
+
+I also modified the player controls to implement [directional shooting](https://github.com/sriramadhenu/mage-race/blob/116efa511dc15851b5f8b1537c40f7056614a5ad/project.godot#L61-L76), [paused movement while attacking (grounded)](https://github.com/sriramadhenu/mage-race/blob/116efa511dc15851b5f8b1537c40f7056614a5ad/scripts/player/player.gd#L50-L63), [and mechanics that didn't allow dashing and shooting simultaneously].
+
+I added [killzones](https://github.com/sriramadhenu/mage-race/blob/116efa511dc15851b5f8b1537c40f7056614a5ad/scripts/killzone.gd#L1-L16) to each level, so if the player jumped off the map and came in contact with this zone below the map, they would lose all their health.
+
+Similarly, I added [spikes](https://github.com/sriramadhenu/mage-race/blob/58be39db4ee792ece815b2e8c7f2b71eb4bd0a59/scenes/levels/ice_spikes.gd#L1-L16) that hurt the player and caused knockback in the ice level.
