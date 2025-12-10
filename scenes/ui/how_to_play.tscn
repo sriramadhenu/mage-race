@@ -1,0 +1,73 @@
+[gd_scene load_steps=5 format=3 uid="uid://crnws7kiggap7"]
+
+[ext_resource type="Script" uid="uid://bq6g62sbcemnr" path="res://scenes/ui/how_to_play.gd" id="1_svix1"]
+[ext_resource type="FontFile" uid="uid://dmqpm86c380kf" path="res://scenes/ui/common/fonts/PixelifySans-VariableFont_wght.ttf" id="2_jrmmo"]
+[ext_resource type="Texture2D" uid="uid://dn53rw20flmbk" path="res://scenes/levels/level_loader.png" id="3_hnuh7"]
+[ext_resource type="FontFile" uid="uid://dnf8bslxi3dv7" path="res://scenes/ui/common/fonts/queensides-font/Queensides-3z7Ey.ttf" id="3_mfe6v"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(5, 1)
+script = ExtResource("1_svix1")
+
+[node name="Title" type="Label" parent="."]
+z_index = 1
+layout_mode = 0
+offset_left = 226.0
+offset_top = 46.0
+offset_right = 1061.0
+offset_bottom = 162.0
+pivot_offset = Vector2(3, -4)
+theme_override_colors/font_color = Color(0.5529412, 0.5529412, 0.5529412, 1)
+theme_override_colors/font_shadow_color = Color(0.14684433, 0.026880242, 0, 0.52156866)
+theme_override_fonts/font = ExtResource("2_jrmmo")
+theme_override_font_sizes/font_size = 96
+text = "How to PLay "
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label" type="Label" parent="."]
+z_index = 1
+layout_mode = 0
+offset_left = 170.0
+offset_top = 167.0
+offset_right = 1005.0
+offset_bottom = 434.0
+pivot_offset = Vector2(3, -4)
+theme_override_fonts/font = ExtResource("3_mfe6v")
+theme_override_font_sizes/font_size = 40
+text = "Controls: 
+- Basic Movement (WASD)
+- Hold Space/W to jump higher
+- J/L and RMB/LMB to fire spell
+- Dash (Shift)"
+
+[node name="BackButton" type="Button" parent="."]
+z_index = 1
+layout_mode = 1
+offset_left = 8.0
+offset_top = 5.0000305
+offset_right = 109.80188
+offset_bottom = 44.260834
+scale = Vector2(0.94300854, 1.0697691)
+theme_override_colors/font_color = Color(0.9275334, 0.92753345, 0.9275333, 1)
+theme_override_fonts/font = ExtResource("2_jrmmo")
+theme_override_font_sizes/font_size = 26
+text = "Back
+"
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 1.0
+offset_right = 1281.0
+offset_bottom = 720.0
+mouse_filter = 2
+texture = ExtResource("3_hnuh7")
+stretch_mode = 2
+
+[connection signal="pressed" from="BackButton" to="." method="_on_load_forest_level_pressed"]

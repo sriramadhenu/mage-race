@@ -10,6 +10,10 @@ func _ready():
 	# Connect Quit button
 	if has_node("ButtonsContainer/QuitButton"):
 		$ButtonsContainer/QuitButton.pressed.connect(_on_quit_pressed)
+		
+		# Connect How to play button
+	if has_node("ButtonsContainer/HowToPlayButton"):
+		$ButtonsContainer/HowToPlayButton.pressed.connect(_on_how_to_play_pressed)
 
 	Hud.hide() # quick fix to hide hud in main menu for now
 	for child in Hud.get_children():
@@ -30,3 +34,9 @@ func _on_start_pressed():
 func _on_quit_pressed():
 	get_tree().quit()
 	call_deferred("queue_free")
+	
+func _on_how_to_play_pressed():
+	$Audio/start_button.play()
+	await get_tree().create_timer(0.4).timeout
+	get_tree().change_scene_to_file("res://scenes/ui/how_to_play.tscn")
+	#queue_free()
