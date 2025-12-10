@@ -83,8 +83,16 @@ You should replay any **bold text** with your relevant information. Liberally us
 
 Add addition contributions int he Other Contributions section.
 
-## Main Roles ##
+## Jacob Parker
 
-## Sub-Roles ##
+**Main Role: AI/Behavior**
 
-## Other Contributions ##
+This game includes three enemies, a unique one for each level: The forest level has the orc, the ice level has the skeleton archer, and the lava level has the slime. The orc and skeleton archer enemies are implemented as state machines, which is one of the methods brought up in class for NPCs. These enemies were changed to the state machine behavior after the playtest because of feedback from people saying the enemies were too easy. You can find them implemented [here (orc_enemy.gd)](https://github.com/sriramadhenu/mage-race/blob/main/scripts/enemies/orc_enemy.gd) and [here (skeleton_enemy.gd)](https://github.com/sriramadhenu/mage-race/blob/main/scripts/enemies/skeleton_enemy.gd). For the skeleton archer, it also needed an arrow scene and a way to target the player (really the player's position). You can find the arrow implemented [here](https://github.com/sriramadhenu/mage-race/blob/main/scripts/projectiles/arrow.gd). Since the lava level is focused on platforming, the slime enemy just acts as an annoyance to the player by knocking them off platforms and damaging them if they get too close. The slime is simply implemented as a crawling enemy, it will rotate around a platform clockwise. You can find the slime implemented [here](https://github.com/sriramadhenu/mage-race/blob/main/scripts/enemies/slime_enemy.gd).
+
+**Sub Role: Game Feel**
+
+After feedback from the playtest, looking at the game feel slides, and consulting the team, we implemented many game feel improvements to our game. One of the areas we focused on was movement, specifically the jump. We implemented the ability to [cancel your jump](https://github.com/sriramadhenu/mage-race/blob/19eeb69c0e38be01fc40b611866efbef297cca0c/scripts/player/player.gd#L48-L49) (i.e. if you stop holding space, you start falling immediately) as well as [faster gravity when falling](https://github.com/sriramadhenu/mage-race/blob/19eeb69c0e38be01fc40b611866efbef297cca0c/scripts/character.gd#L108-L111). Preventing the player from [dashing through enemies](https://github.com/sriramadhenu/mage-race/blob/19eeb69c0e38be01fc40b611866efbef297cca0c/scripts/player/player.gd#L193-L202) was also implemented. Finally, the ice spell was improved so that it [followed the player while forming](https://github.com/sriramadhenu/mage-race/blob/19eeb69c0e38be01fc40b611866efbef297cca0c/scripts/player/player.gd#L104-L119) and only left the player's scene when fired.
+
+**Other Contributions**
+
+Since I was already working on projectiles, I implemented the [ice spell](https://github.com/sriramadhenu/mage-race/blob/main/scripts/projectiles/ice_spell.gd) that the player uses in the game. I also imported and setup the animation sprites for each of the characters (player and enemies).
