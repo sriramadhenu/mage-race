@@ -246,7 +246,7 @@ scale = Vector2(1.5, 1)
 shape = SubResource("RectangleShape2D_y0b8w")
 
 [node name="SpikeTrap6" parent="." instance=ExtResource("2_c3cds")]
-position = Vector2(4883, 686)
+position = Vector2(4840.0005, 686)
 rotation = 9.406845
 scale = Vector2(2.3361883, 3.0553265)
 
@@ -288,7 +288,7 @@ scale = Vector2(0.8, 0.8)
 target = NodePath("../Player")
 
 [node name="SkeletonEnemy2" parent="." node_paths=PackedStringArray("target") instance=ExtResource("6_clnav")]
-position = Vector2(5326, 779)
+position = Vector2(5106, 778)
 scale = Vector2(0.8, 0.8)
 target = NodePath("../Player")
 
