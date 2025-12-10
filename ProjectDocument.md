@@ -11,22 +11,22 @@
 
 ## Gameplay Explanation ##
 
-**Controls:**
+* Controls:
 **Movement:**
 * A - Move Left
 * D - Move Right
 * Space/W - Jump (Hold for increased height, let go for fast-fall)
 * Left Shift/Right Shift - Dash (Can be used twice, has a cooldown of 1 second)
 
-**Combat:**
+* Combat:
 * Left Click/F - Attack (Facing default direction)
 * J - Attack Left
 * L - Attack Right
 
-**Menu:**
+* Menu:
 * Esc - Pause Menu
 
-**How to Play**
+* How to Play:
 **Launch the game to see the main menu, then press "Start". Choose between Forest, Ice, and the Lava levels. Each level can be replayed at any time, and the player can switch to a different level by navigating to the pause menu.**
 
 **Health**
