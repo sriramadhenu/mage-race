@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://7fl8li7pa5f5" path="res://scenes/levels/main_menu.gd" id="2_dhmlp"]
 [ext_resource type="Shader" uid="uid://cttr8k0ekr7kt" path="res://scenes/ui/menus/shader_scripts/nebula.gdshader" id="3_ykpw6"]
 [ext_resource type="Texture2D" uid="uid://bkm57v3dlup75" path="res://icon.svg" id="4_h4dpu"]
-[ext_resource type="Shader" uid="uid://dhr6udene0d8f" path="res://scenes/ui/menus/shader_scripts/stars.gdshader" id="5_nmbxx"]
+[ext_resource type="Shader" uid="uid://bbvryfn0saif8" path="res://scenes/ui/menus/shader_scripts/stars.gdshader" id="5_nmbxx"]
 [ext_resource type="Shader" uid="uid://co6oiedn86b3w" path="res://scenes/ui/menus/shader_scripts/front.gdshader" id="6_bl8wb"]
 [ext_resource type="FontFile" uid="uid://dmqpm86c380kf" path="res://scenes/ui/common/fonts/PixelifySans-VariableFont_wght.ttf" id="7_c8e1o"]
 [ext_resource type="AudioStream" uid="uid://bi4oubfnudqr3" path="res://scenes/ui/menus/MenuMusic/adventure_free .wav" id="8_e7y46"]

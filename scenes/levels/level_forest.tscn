@@ -742,7 +742,7 @@ texture = ExtResource("7_jm40j")
 
 [node name="Swamp" parent="." instance=ExtResource("10_jm40j")]
 position = Vector2(2037, 702)
-scale = Vector2(0.68998986, 0.5699779)
+scale = Vector2(0.675, 0.57)
 
 [node name="Door" parent="." instance=ExtResource("12_i2ejl")]
 visibility_layer = 4
