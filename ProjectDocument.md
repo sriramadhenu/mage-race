@@ -1,20 +1,42 @@
-# The title of your game #
+# Mage Race #
 
 ## Summary ##
 
-**A paragraph-length pitch for your game.**
+**Mage Race is a 2d puzzle-platformer where players embark on a quest as a wizard to restore balance to the magical realm of Valenor. After dark mages stole relics and created evil spells, your role is to battle through treacherous levels spanning forests, ice caverns, and volcanic landscapes to defeat enemies and reclaim artifacts. Master your attacks while navigating through this challenging terrain to become the mage that saves Valenor!**
 
 ## Project Resources
 
-[Web-playable version of your game.](https://itch.io/)  
-[Trailor](https://youtube.com)  
-[Press Kit](https://dopresskit.com/)  
-[Proposal: make your own copy of the linked doc.](https://docs.google.com/document/d/1qwWCpMwKJGOLQ-rRJt8G8zisCa2XHFhv6zSWars0eWM/edit?usp=sharing)  
+[Web-playable version of your game.](https://sriramadhenu.itch.io/mage-race)  
+[Proposal: make your own copy of the linked doc.](https://docs.google.com/document/d/1TKdwR71jKnw42CS0OGpTujwn_lJmPJQjXw_Rr52OSoA/edit?usp=sharing)  
 
 ## Gameplay Explanation ##
 
-**In this section, explain how the game should be played. Treat this as a manual within a game. Explaining the button mappings and the most optimal gameplay strategy is encouraged.**
+**Controls:**
+**Movement:**
+* A - Move Left
+* D - Move Right
+* Space/W - Jump (Hold for increased height, let go for fast-fall)
+* Left Shift/Right Shift - Dash (Can be used twice, has a cooldown of 1 second)
 
+**Combat:**
+* Left Click/F - Attack (Facing default direction)
+* J - Attack Left
+* L - Attack Right
+
+**Menu:**
+* Esc - Pause Menu
+
+**How to Play**
+**Launch the game to see the main menu, then press "Start". Choose between Forest, Ice, and the Lava levels. Each level can be replayed at any time, and the player can switch to a different level by navigating to the pause menu.**
+
+**Health**
+**You have 5 hearts everytime you start a level or respawn, which is displayed in the top-left corner. Taking damage from killzones, jumping off the map, or enemy attacks will either remove some or all of your hearts, so be mindful! If you die, you will automatically respawn at the start of the level after a 2-second death animation, with your hearts replenished.**
+
+**Combat**
+**Use your attacks to fight enemies from a safe distance, or dare to out-run them! Different enemies have different attack styles - experiment their movement and fighting logic to devise the most effective strategy.**
+
+**Movement Tips**
+**As for level navigation, remember to use the dash ability to cover long distances or escape danger. Holding horizontal and vertical movement (W/Space with A/D), as well as timing your dash(es) at the apex of your jump is recommended to cover the most amount of ground. Remember to disable the sticky keys shortcut (5x shift), if you have it enabled.**
 
 **Add it here if you did work that should be factored into your grade but does not fit easily into the proscribed roles! Please include links to resources and descriptions of game-related material that does not fit into roles here.**
 
@@ -30,10 +52,10 @@ This section be repeated once for each team member. Each team member should prov
 
 The general structures is 
 ```
-Team Member 1
-  Main Role
+Sri Krishanu Ramadhenu (sriramadhenu)
+  Main Role - Game Logic
     Documentation for main role.
-  Sub-Role
+  Sub-Role - Build and Release Management
     Documentation for Sub-Role
   Other contribtions
     Documentation for contributions to the project outside of the main and sub roles.
@@ -48,7 +70,7 @@ Team Member 2
 ...
 ```
 
-For each team member, you shoudl work of your role and sub-role in terms of the content of the course. Please look at the role sections below for specific instructions for each role.
+For each team member, you should include work of your role and sub-role in terms of the content of the course. Please look at the role sections below for specific instructions for each role.
 
 Below is a template for you to highlight items of your work. These provide the evidence needed for your work to be evaluated. Try to have at least four such descriptions. They will be assessed on the quality of the underlying system and how they are linked to course content. 
 
