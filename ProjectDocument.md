@@ -11,14 +11,17 @@
 
 ## Gameplay Explanation ##
 
-* Controls:
+**Controls:**
+
 **Movement:**
+
 * A - Move Left
 * D - Move Right
 * Space/W - Jump (Hold for increased height, let go for fast-fall)
 * Left Shift/Right Shift - Dash (Can be used twice, has a cooldown of 1 second)
 
-* Combat:
+**Combat:**
+
 * Left Click/F - Attack (Facing default direction)
 * J - Attack Left
 * L - Attack Right
@@ -26,16 +29,20 @@
 * Menu:
 * Esc - Pause Menu
 
-* How to Play:
+**How to Play:**
+
 **Launch the game to see the main menu, then press "Start". Choose between Forest, Ice, and the Lava levels. Each level can be replayed at any time, and the player can switch to a different level by navigating to the pause menu.**
 
 **Health**
+
 **You have 5 hearts everytime you start a level or respawn, which is displayed in the top-left corner. Taking damage from killzones, jumping off the map, or enemy attacks will either remove some or all of your hearts, so be mindful! If you die, you will automatically respawn at the start of the level after a 2-second death animation, with your hearts replenished.**
 
 **Combat**
+
 **Use your attacks to fight enemies from a safe distance, or dare to out-run them! Different enemies have different attack styles - experiment their movement and fighting logic to devise the most effective strategy.**
 
 **Movement Tips**
+
 **As for level navigation, remember to use the dash ability to cover long distances or escape danger. Holding horizontal and vertical movement (W/Space with A/D), as well as timing your dash(es) at the apex of your jump is recommended to cover the most amount of ground. Remember to disable the sticky keys shortcut (5x shift), if you have it enabled.**
 
 **Add it here if you did work that should be factored into your grade but does not fit easily into the proscribed roles! Please include links to resources and descriptions of game-related material that does not fit into roles here.**
@@ -102,11 +109,19 @@ Since I was already working on projectiles, I implemented the [ice spell](https:
 
 **Main Role: Game Logic**
 
-My main work was on the player, health, and level/respawn systems. I wired the player’s damage and knockback into a shared character health system so that taking damage reduces hearts, emits a health-changed signal, and can trigger death and respawn [link to work (minus the _on_prevent_dash_zone_body_entered function)](https://github.com/sriramadhenu/mage-race/blob/116efa511dc15851b5f8b1537c40f7056614a5ad/scripts/player/player.gd#L164-L209). The [game manager](https://github.com/sriramadhenu/mage-race/blob/58be39db4ee792ece815b2e8c7f2b71eb4bd0a59/scripts/managers/game_manager.gd#L1-L74) keeps track of what level the player is currently on (or the pause/main menu), and makes changes to the entire system accordingly. The [level manager](https://github.com/sriramadhenu/mage-race/blob/58be39db4ee792ece815b2e8c7f2b71eb4bd0a59/scripts/managers/level_manager.gd#L1-L34) keeps track of the level that is being displayed and changes the scene accordingly.
+My main work was on the player, health, and level/respawn systems. I wired the player’s damage and knockback into a shared character health system so that taking damage reduces hearts, [emits a health-changed signal](https://github.com/sriramadhenu/mage-race/blob/799b07b00b38df7b2a8baa0cb287d3e943c158c7/scenes/ui/hud/hud.gd#L26-L30), and can trigger death and respawn [link (minus the _on_prevent_dash_zone_body_entered function)](https://github.com/sriramadhenu/mage-race/blob/116efa511dc15851b5f8b1537c40f7056614a5ad/scripts/player/player.gd#L164-L209). The [game manager](https://github.com/sriramadhenu/mage-race/blob/58be39db4ee792ece815b2e8c7f2b71eb4bd0a59/scripts/managers/game_manager.gd#L1-L74) keeps track of what level the player is currently on (or the pause/main menu), and makes changes to the entire system accordingly. The [level manager](https://github.com/sriramadhenu/mage-race/blob/58be39db4ee792ece815b2e8c7f2b71eb4bd0a59/scripts/managers/level_manager.gd#L1-L34) keeps track of the level that is being displayed and changes the scene accordingly.
 
 **Sub Role: Build and Release Management**
 
+For this role, I made a clear [workflow](https://github.com/sriramadhenu/mage-race/blob/main/README.md) for my teammates in the README.md. I was in charge of checking out feature branches pushed by my teammates and making sure things worked as they intended. If so, I then merged the develop build with their feature branch, taking care of conflicts when they occured, and tested once again to ensure the combined build ran without issues. Finally, if everything worked, I pushed the changes to the develop branch. Therefore, the develop branch contained a playable version with updated work from every role each week.
+
+Here is the list of commits I (SaltyGamer829) made to develop (Not sure why it addresses me by my old github username, as my new one is actually sriramadhenu):
+[Develop branch commit history](https://github.com/sriramadhenu/mage-race/commits/develop)
+
+This role required me to communicate with my teammates a lot about work that has been committed, as well as changes that need to be made in each role before I can merge to develop. Oftentimes, I tried to look into these changes myself, so I will try to list some of those contributions/additions in the next section. However, I learned a lot about version control and team collaboration.
+
 **Other Contributions**
+
 I created the final obstacle in the forest level, adding a collision shape to a button that removed a purple barrier with a fading animation when the player contacted the button (the animation took me too long to figure out, I'm not a visuals person). [button file](https://github.com/sriramadhenu/mage-race/blob/116efa511dc15851b5f8b1537c40f7056614a5ad/scenes/levels/green_button.gd#L1-L17). [wall file](https://github.com/sriramadhenu/mage-race/blob/116efa511dc15851b5f8b1537c40f7056614a5ad/scenes/levels/purple_wall.gd#L1-L10).
 
 I also modified the player controls to implement [directional shooting](https://github.com/sriramadhenu/mage-race/blob/116efa511dc15851b5f8b1537c40f7056614a5ad/project.godot#L61-L76), [paused movement while attacking (grounded)](https://github.com/sriramadhenu/mage-race/blob/116efa511dc15851b5f8b1537c40f7056614a5ad/scripts/player/player.gd#L50-L63), [and mechanics that didn't allow dashing and shooting simultaneously].
