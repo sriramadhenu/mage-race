@@ -155,6 +155,8 @@ The next shader is [energy.gdshader](https://github.com/sriramadhenu/mage-race/b
 
 The last shader is [stars.gdshader](https://github.com/sriramadhenu/mage-race/blob/ee99234c252524eace5437f33d643e3682d93cd3/scenes/ui/menus/shader_scripts/stars.gdshader#L1). This shader adds the finishing touch to the background by adding small orange stars.
 
+The menu buttons are stylized with the ``pixel_theme.tres`` mentioned above. It is overwritten with an orange background to fit the darker background menu. The game title is also designed to add on to the theme by expressing a pixel/retro-ish feel.
+
 ### Player Health and Hearts
 
 When designing the player health, I needed to decide whether the health should be a bar or segmented. Initially, I opted to go with a bar because Godot has built-in progress bar nodes that make the implementation easy. However, I decided to go with a segmented health bar because I was inspired by Hollow Knight: Silksong. Plus, I wanted to try Godot's animation player.
