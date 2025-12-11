@@ -1,3 +1,4 @@
+class_name SkeletonEnemy
 extends Character
 
 @export var target: Character
