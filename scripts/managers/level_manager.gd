@@ -18,6 +18,7 @@ func _on_level_changed(level_index: int):
 		LevelMusic.play()
 	load_level(level_index)
 
+
 func load_level(level_index: int):
 	# remove current level if it exists
 	if current_level_scene:
@@ -29,6 +30,7 @@ func load_level(level_index: int):
 		get_tree().change_scene_to_file(LEVELS[level_index])
 	else:
 		GameManager.change_state(GameManager.GameState.GAME_OVER)
-	
+
+
 func restart_current_level():
 	load_level(GameManager.current_level)
