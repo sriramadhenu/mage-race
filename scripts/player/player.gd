@@ -113,7 +113,7 @@ func _attack_ice():
 	ice_spell.ignore = self
 	ice_spell.velocity.x *= facing_dir
 	ice_spell.position = Vector2(50 * facing_dir, -30)
-
+	command_callback("ice")
 	# add the spell as a child of this node so it follows the player as its forming
 	# when the spell is fully formed, it will reparent
 	add_child(ice_spell)
@@ -150,6 +150,7 @@ func command_callback(cmd_name: String) -> void:
 		"jump": player = $Audio/jump
 		"dash": player = $Audio/dash
 		"walk": player = $Audio/walk
+		"ice": player = $Audio/ice
 		"respawn": player = $Audio/respawn
 		"death": player = $Audio/death
 	if player != null and not player.playing:
