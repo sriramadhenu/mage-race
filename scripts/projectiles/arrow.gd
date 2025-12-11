@@ -55,6 +55,8 @@ func launch_at(target_pos: Vector2):
 	rotation = vel.angle()
 
 func _on_body_entered(body: Node) -> void:
+	if body is SkeletonEnemy or body is ArrowProjectile:
+		return
 	stuck = true
 	# stop physics
 	set_deferred("freeze", true)

@@ -9,7 +9,7 @@ func _ready():
 	get_tree().scene_changed.connect(_update_visibility)
 	GameManager.state_changed.connect(_on_state_changed)
 
-func _on_state_changed():
+func _on_state_changed(_new_state: GameManager.GameState):
 	_update_visibility()
 
 func _update_visibility():
