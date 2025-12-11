@@ -118,7 +118,7 @@ For this role, I made a clear [workflow](https://github.com/sriramadhenu/mage-ra
 Here is the list of commits I (SaltyGamer829) made to develop (Not sure why it addresses me by my old github username, as my new one is actually sriramadhenu):
 [Develop branch commit history](https://github.com/sriramadhenu/mage-race/commits/develop)
 
-This role required me to communicate with my teammates a lot about work that has been committed, as well as changes that need to be made in each role before I can merge to develop. Oftentimes, I tried to look into these changes myself, so I will try to list some of those contributions/additions in the next section. However, I learned a lot about version control and team collaboration.
+This role required me to communicate with my teammates a lot about work that has been committed, as well as changes that need to be made in each role before I can merge to develop. Oftentimes, I tried to look into these changes myself, so I will list the most important contributions/additions in the next section. All in all, I learned a lot about version control and team collaboration.
 
 **Other Contributions**
 
