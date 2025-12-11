@@ -6,7 +6,7 @@
 
 ## Project Resources
 
-[Try our Game!](https://sriramadhenu.itch.io/mage-race)  
+[Try our Game!](https://runemetal.itch.io/magerace)  
 [Proposal Document](https://docs.google.com/document/d/1TKdwR71jKnw42CS0OGpTujwn_lJmPJQjXw_Rr52OSoA/edit?usp=sharing)  
 
 ## Gameplay Explanation ##
