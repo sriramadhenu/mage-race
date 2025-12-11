@@ -129,3 +129,28 @@ I also modified the player controls to implement [directional shooting](https://
 I added [killzones](https://github.com/sriramadhenu/mage-race/blob/116efa511dc15851b5f8b1537c40f7056614a5ad/scripts/killzone.gd#L1-L16) to each level, so if the player jumped off the map and came in contact with this zone below the map, they would lose all their health.
 
 Similarly, I added [spikes](https://github.com/sriramadhenu/mage-race/blob/58be39db4ee792ece815b2e8c7f2b71eb4bd0a59/scenes/levels/ice_spikes.gd#L1-L16) that hurt the player and caused knockback in the ice level.
+
+
+## Frank Wem Guang Zhu (Frank-111)
+
+**Main Role: Level and World Designer**
+
+As the level and world designer for the game, my primary goal was to craft the magical realm of Valenor. We created three levels with three separate themes (Lava, Forest, and Ice). Each level uses different tilesets corresponding to its theme. I created the three base layouts for the levels, made adjustments to the layout as the project progressed, and helped gather assets. I also created most of the object scenes to be placed within the levels and positioned them accordingly.
+
+Our group separated the work into different branches to minimize conflicts when merging into the main or development branches. Here are the branches I worked on and my commits:
+[Base-level-layout](https://github.com/sriramadhenu/mage-race/commits/Base-layout-levels)
+[level-improvment](https://github.com/sriramadhenu/mage-race/commits/level-improvement)
+
+**Sub Role: Tutorial Design**
+
+For this role, I created a "How to Play" option that can be accessed from the main menu scene. It describes the basic movement and combat controls, helping players understand how to overcome obstacles in each level. The "How to Play" scene also includes a back button that returns the player to the main menu when pressed.
+[BackButton](https://github.com/sriramadhenu/mage-race/blob/ee99234c252524eace5437f33d643e3682d93cd3/scenes/ui/how_to_play.gd#L6)
+[How to Play menu](https://github.com/sriramadhenu/mage-race/blob/ee99234c252524eace5437f33d643e3682d93cd3/scenes/levels/main_menu.gd#L15)
+
+**Other Contributions**
+
+I implemented the [pushable block](https://github.com/sriramadhenu/mage-race/blob/ee99234c252524eace5437f33d643e3682d93cd3/scripts/character.gd#L81)
+ in the forest level, allowing the player to progress through the level by moving obstacles. 
+
+I also implemented the code for the [destructible objects](https://github.com/sriramadhenu/mage-race/blob/ee99234c252524eace5437f33d643e3682d93cd3/scenes/levels/destructible_wall.gd#L1). These destructible walls are designed to be destroyed using the player's spell attack.
+
