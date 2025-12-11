@@ -1,4 +1,4 @@
-[gd_scene load_steps=50 format=3 uid="uid://biufvwmgorgev"]
+[gd_scene load_steps=51 format=3 uid="uid://biufvwmgorgev"]
 
 [ext_resource type="Script" uid="uid://lcfrvnq01hhq" path="res://scripts/player/player.gd" id="1_dyp2m"]
 [ext_resource type="Texture2D" uid="uid://dsspbnb7dtk4b" path="res://assets/sprites/Characters/Wizard/Wizard/Wizard-DEATH.png" id="2_atpat"]
@@ -12,6 +12,7 @@
 [ext_resource type="AudioStream" uid="uid://dqs18okw17q7u" path="res://assets/audio/Player/short_dash.wav" id="9_7vyk4"]
 [ext_resource type="AudioStream" uid="uid://b4vogtas1tnqj" path="res://assets/audio/Player/spawn.wav" id="10_jk2m4"]
 [ext_resource type="AudioStream" uid="uid://dgjb6elpf8lr3" path="res://assets/audio/Player/death.mp3" id="11_2l4js"]
+[ext_resource type="AudioStream" uid="uid://dfa0pwp6ckqpb" path="res://assets/audio/spells/ice_spell.wav" id="13_xhtjm"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6eyoc"]
 atlas = ExtResource("2_kqtwu")
@@ -321,6 +322,9 @@ stream = ExtResource("8_eojnx")
 
 [node name="death" type="AudioStreamPlayer2D" parent="Audio"]
 stream = ExtResource("11_2l4js")
+
+[node name="ice" type="AudioStreamPlayer2D" parent="Audio"]
+stream = ExtResource("13_xhtjm")
 
 [node name="PreventDashZone" type="Area2D" parent="."]
 collision_layer = 0

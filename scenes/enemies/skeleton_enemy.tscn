@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://qc7tn0c3xw2j"]
+[gd_scene load_steps=41 format=3 uid="uid://qc7tn0c3xw2j"]
 
 [ext_resource type="Script" uid="uid://chixli81r6hsm" path="res://scripts/enemies/skeleton_enemy.gd" id="1_ha63k"]
 [ext_resource type="Texture2D" uid="uid://lpkcdl4i0vfk" path="res://assets/sprites/Characters/Skeleton Archer/Skeleton Archer/Skeleton Archer-Attack.png" id="2_6rwa7"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://b0yrslwdraf3w" path="res://assets/sprites/Characters/Skeleton Archer/Skeleton Archer/Skeleton Archer-Death.png" id="2_jjg6x"]
 [ext_resource type="Texture2D" uid="uid://duvwmonr5er0v" path="res://assets/sprites/Characters/Skeleton Archer/Skeleton Archer/Skeleton Archer-Idle.png" id="2_te8ap"]
 [ext_resource type="Texture2D" uid="uid://c5p2qh5uqfn2v" path="res://assets/sprites/Characters/Skeleton Archer/Skeleton Archer/Skeleton Archer-Walk.png" id="3_j035i"]
+[ext_resource type="AudioStream" uid="uid://d1en16sbd2vcu" path="res://assets/audio/attack/crystal_flyer_shoot.wav" id="7_mi3hf"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_colob"]
 atlas = ExtResource("2_6rwa7")
@@ -284,6 +285,8 @@ one_shot = true
 [node name="Audio" type="Node2D" parent="."]
 
 [node name="shoot" type="AudioStreamPlayer2D" parent="Audio"]
+stream = ExtResource("7_mi3hf")
+volume_db = 4.039
 
 [connection signal="death" from="." to="." method="_on_death"]
 [connection signal="hurt" from="." to="." method="_on_hurt"]
