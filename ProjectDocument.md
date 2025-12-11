@@ -53,6 +53,13 @@ If your project contains code that: 1) your team did not write, and 2) does not 
 
 If you used tutorials or other intellectual guidance to create aspects of your project, include reference to that information as well.
 
+**Shaders**
+
+Three of the shaders for this project were taken from godotshaders.com. They are as follows:
+- [`sunbeam.gdshader`](https://github.com/sriramadhenu/mage-race/blob/main/scenes/levels/sunbeam.gdshader): Original work (https://godotshaders.com/shader/god-rays/) by pend00, with modifications for Godot 4 by silverfr0st. Used under a CC0 license.
+- [`swamp.gdshader`](https://github.com/sriramadhenu/mage-race/blob/main/scenes/levels/swamp.gdshader): Original work (https://godotshaders.com/shader/2d-liquid-wave/) by PWira. Used under an MIT license.
+- [`lava.gdshader`](https://github.com/sriramadhenu/mage-race/blob/main/scenes/levels/lava.gdshader): Original work (https://godotshaders.com/shader/lava-shader/) by a python script. Used under a Creative Commons license.
+
 # Team Member Contributions
 
 This section be repeated once for each team member. Each team member should provide their name and GitHub user information.
@@ -272,3 +279,64 @@ I worked on the [level select interface](https://github.com/sriramadhenu/mage-ra
 <img width="200" height="100" alt="how_to_play" src="https://github.com/user-attachments/assets/2a7411e4-0ecd-4cd9-a092-c06a6b03c3a6" />
 
 I worked on the UI for the [How to Play Instructions Page](https://github.com/sriramadhenu/mage-race/blob/main/scenes/ui/how_to_play.tscn). I modified the background and the layout of the instructions so that the page feels consistent with the rest of the game. I redesigned the structure of the instructions to be more visually appealing and easily understandable for users.
+
+
+## Thomas Liu (ijunit)
+
+**Main Role: Technical Artist**
+
+From a purely technical standpoint, not much was required of me in this role. Our game is a 2D platformer with fully-built, pre-loaded scenes, and at no point during development did real-time performance come up as a pressing issue. I instead focused on the artistic side of things by implementing the game's lighting and aesthetic polish.
+
+**Shaders**
+
+I found three wonderful open-source shaders on godotshaders.com (see external code section above), and I utilized them extensively to refine the visual product of the game.
+
+<img src="projectDocumentScreenshots/sunbeams.png" width="30%">
+
+I used [`sunbeam.gdshader`](https://github.com/sriramadhenu/mage-race/blob/main/scenes/levels/sunbeam.gdshader) four times across three levels to add a bit of mythical feel and personality to Valenor. The colors and movement patterns of each instance communicate the general emotion of the level. For example, the second sunbeam in the forest level (see above photo) is a sinister crimson red pockmarked with droplets of blood, which brings to a close the dark forest adventure and segues the player into the hell-like lava level.
+
+<img src="projectDocumentScreenshots/swamp.png" width="30%">
+
+I used [`swamp.gdshader`](https://github.com/sriramadhenu/mage-race/blob/main/scenes/levels/swamp.gdshader) (named as such, but I also used it for flowing lava) two times to add some animation to the game's liquid surfaces.
+
+<img src="projectDocumentScreenshots/lava.png" width="30%">
+
+Finally, I used the actual [`lava.gdshader`](https://github.com/sriramadhenu/mage-race/blob/main/scenes/levels/lava.gdshader) for the lava level's evolving background, giving it a considerably more dangerous vibe.
+
+**Ambient Lighting**
+
+<img src="projectDocumentScreenshots/lantern.png" width="30%">
+
+I used an abundance of point lights and directional lights to further improve the ambience of the levels. The forest level, for example, is spanned by a large `PointLight2D` with a gradient texture, very subtly making the forest darker and darker as the player progresses through it.
+
+<img src="projectDocumentScreenshots/bottom_glow.png" width="30%">
+
+My personal favorite use of lighting was in the lava level, where I made the bottom of the screen over the chasm glow ominously. It conveys the perilous danger that the player will find themselves in if they fall. I also implemented a "pulsating" lava effect for the flowing lava in [`lava_glow.gd`](https://github.com/sriramadhenu/mage-race/blob/main/scenes/levels/lava_glow.gd).
+
+**Particles**
+
+<img src="projectDocumentScreenshots/snow.png" width="30%">
+
+I also made liberal use of Godot's `GPUParticles2D` nodes, which became my go-to for visual "juice" during development. I used these particle systems to animate dust suspended in light, boiling lava, and falling snow, all at a very high efficiency (probably the only "technical" thing I did as a technical artist). The particles played a huge role in making the world feel that much more alive and dynamic.
+
+**Sub Role: Narrative Design**
+
+<img src="projectDocumentScreenshots/dialogue.png" width="30%">
+
+I wanted to experiment with non-verbal storytelling during this project, so I wrote only a [single line of dialogue](https://github.com/sriramadhenu/mage-race/blob/460d8817037a3e6c691d07bc9e966a387c2307ef/scenes/levels/level_forest.tscn#L933) for each level to foreshadow the narrative, which then unfolds mostly through gameplay. Taking a cue from visual novels, I also developed a system to [skip a line of dialogue after seeing it once](https://github.com/sriramadhenu/mage-race/blob/460d8817037a3e6c691d07bc9e966a387c2307ef/scripts/managers/game_manager.gd#L19) in a playthrough. It would be a chore for the player to sit through a 6-second "cutscene" every time they died, especially since I [froze the player in place](https://github.com/sriramadhenu/mage-race/blob/460d8817037a3e6c691d07bc9e966a387c2307ef/scenes/levels/level_forest.gd#L21) to read the dialogue.
+
+An example of the one-line dialogue is shown above, for the lava level. The words make it clear that the level is about platforming. The "leap of faith" affectionately refers to the extremely difficult jump needed to reach the door, which requires two perfectly-timed dashes in midair to make.
+
+In terms of implementing the narratively-charged gameplay, I was the main designer for the lava level, including its tilemap, platforming sequences, and the placement of the slime enemies. I also built the first half of the ice level, including the mountain as well as the long, valley-hopping jump to reach the first skeleton enemy. Finally, as I mentioned in my main role documentation, I also told large parts of the narrative through the sunbeam shaders and ambient lighting.
+
+**Other Contributions**
+
+I fixed a very important bug where the doors were not returning the player to the level select screen.
+
+I added the collisions for the button-controlled walls in the forest and ice levels.
+
+I implemented the instant kill mechanism of the flowing lava in the lava level.
+
+**Resources**
+
+Once again, all of the shaders were very kindly provided by their respective creators at godotshaders.com. See the External Code, Ideas, and Structure section for more details.
