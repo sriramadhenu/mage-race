@@ -2,7 +2,7 @@
 
 [ext_resource type="Theme" uid="uid://57ygx1bt32mq" path="res://scenes/ui/common/pixel_theme.tres" id="1_jk7nv"]
 [ext_resource type="Script" uid="uid://7fl8li7pa5f5" path="res://scenes/levels/main_menu.gd" id="2_dhmlp"]
-[ext_resource type="Shader" uid="uid://cttr8k0ekr7kt" path="res://scenes/ui/menus/shader_scripts/nebula.gdshader" id="3_ykpw6"]
+[ext_resource type="Shader" uid="uid://cttr8k0ekr7kt" path="res://scenes/ui/menus/shader_scripts/back.gdshader" id="3_ykpw6"]
 [ext_resource type="Texture2D" uid="uid://bkm57v3dlup75" path="res://icon.svg" id="4_h4dpu"]
 [ext_resource type="Shader" uid="uid://dhr6udene0d8f" path="res://scenes/ui/menus/shader_scripts/stars.gdshader" id="5_nmbxx"]
 [ext_resource type="Shader" uid="uid://co6oiedn86b3w" path="res://scenes/ui/menus/shader_scripts/front.gdshader" id="6_bl8wb"]
@@ -47,7 +47,15 @@ bg_color = Color(0.8666667, 0.6862745, 0.36862746, 1)
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
-anchors_preset = 0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+focus_mode = 1
+mouse_force_pass_scroll_events = false
 theme = ExtResource("1_jk7nv")
 script = ExtResource("2_dhmlp")
 
@@ -57,10 +65,9 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = 1280.0
-offset_bottom = 720.0
 grow_horizontal = 2
 grow_vertical = 2
+focus_mode = 1
 color = Color(0.060409427, 0.08165094, 0.16590062, 1)
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
@@ -78,7 +85,6 @@ offset_bottom = 720.0
 texture = ExtResource("4_h4dpu")
 
 [node name="ParallaxLayer (middle)" type="ParallaxLayer" parent="ParallaxBackground"]
-motion_scale = Vector2(0.1, 1)
 
 [node name="TextureRect" type="TextureRect" parent="ParallaxBackground/ParallaxLayer (middle)"]
 material = SubResource("ShaderMaterial_sn5u3")
@@ -89,7 +95,6 @@ texture = ExtResource("4_h4dpu")
 metadata/_edit_use_anchors_ = true
 
 [node name="ParallaxLayer (front)" type="ParallaxLayer" parent="ParallaxBackground"]
-motion_scale = Vector2(0.25, 1)
 
 [node name="TextureRect" type="TextureRect" parent="ParallaxBackground/ParallaxLayer (front)"]
 material = SubResource("ShaderMaterial_wko7x")
@@ -97,18 +102,26 @@ offset_right = 1280.0
 offset_bottom = 720.0
 texture = ExtResource("4_h4dpu")
 
-[node name="TitleContainer" type="VBoxContainer" parent="."]
-custom_minimum_size = Vector2(0, 300)
+[node name="UIContainer" type="VBoxContainer" parent="."]
+modulate = Color(1.2237577, 1.2237577, 1.2237577, 1)
+top_level = true
+z_index = 1
 layout_mode = 1
-anchors_preset = 5
+anchors_preset = 8
 anchor_left = 0.5
+anchor_top = 0.5
 anchor_right = 0.5
-offset_left = 325.0
-offset_right = 965.0
-offset_bottom = 360.0
+anchor_bottom = 0.5
+offset_left = -305.5
+offset_top = -158.5
+offset_right = 305.5
+offset_bottom = 158.5
 grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 50
+alignment = 1
 
-[node name="GameTitle" type="Label" parent="TitleContainer"]
+[node name="GameTitle" type="Label" parent="UIContainer"]
 modulate = Color(0.9607843, 0.827451, 0.54509807, 1)
 z_index = 1
 layout_mode = 2
@@ -122,25 +135,7 @@ text = "Mage Race"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="ButtonsContainer" type="VBoxContainer" parent="."]
-modulate = Color(1.2237577, 1.2237577, 1.2237577, 1)
-top_level = true
-z_index = 1
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -81.5
-offset_top = -40.0
-offset_right = 81.5
-offset_bottom = 112.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/separation = 20
-
-[node name="StartButton" type="Button" parent="ButtonsContainer"]
+[node name="StartButton" type="Button" parent="UIContainer"]
 z_index = 1
 layout_mode = 2
 size_flags_horizontal = 4
@@ -160,9 +155,10 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_fkd6t")
 theme_override_styles/hover = SubResource("StyleBoxFlat_keln3")
 text = "How to Play"
 
-[node name="QuitButton" type="Button" parent="ButtonsContainer"]
+[node name="QuitButton" type="Button" parent="UIContainer"]
 z_index = 1
 layout_mode = 2
+size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 50
 theme_override_styles/normal = SubResource("StyleBoxFlat_geflf")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_fkd6t")
