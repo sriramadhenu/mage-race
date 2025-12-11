@@ -54,8 +54,6 @@ func _physics_process(delta: float) -> void:
 		)
 		if not dash_obstructed:
 			dash_cmd.execute(self)
-	if Input.is_action_just_pressed("attack_ice"):
-		_attack_ice()
 	if Input.is_action_just_pressed("attack_ice_left"):
 		_shoot_left()
 	if Input.is_action_just_pressed("attack_ice_right"):
