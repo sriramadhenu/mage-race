@@ -2,23 +2,26 @@
 
 ## Summary ##
 
-**Mage Race is a 2d puzzle-platformer where players embark on a quest as a wizard to restore balance to the magical realm of Valenor. After dark mages stole relics and created evil spells, your role is to battle through treacherous levels spanning forests, ice caverns, and volcanic landscapes to defeat enemies and reclaim artifacts. Master your attacks while navigating through this challenging terrain to become the mage that saves Valenor!**
+**Mage Race is a 2D puzzle-platformer where players embark on a quest as a wizard to restore balance to the magical realm of Valenor. After dark mages stole relics and created evil spells, your role is to battle through treacherous levels spanning forests, ice caverns, and volcanic landscapes to defeat enemies and reclaim artifacts. Master your attacks while navigating through this challenging terrain to become the mage that saves Valenor!**
 
 ## Project Resources
 
-[Web-playable version of your game.](https://sriramadhenu.itch.io/mage-race)  
-[Proposal: make your own copy of the linked doc.](https://docs.google.com/document/d/1TKdwR71jKnw42CS0OGpTujwn_lJmPJQjXw_Rr52OSoA/edit?usp=sharing)  
+[Try our Game!](https://runemetal.itch.io/magerace)  
+[Proposal Document](https://docs.google.com/document/d/1TKdwR71jKnw42CS0OGpTujwn_lJmPJQjXw_Rr52OSoA/edit?usp=sharing)  
 
 ## Gameplay Explanation ##
 
-* Controls:
+**Controls:**
+
 **Movement:**
+
 * A - Move Left
 * D - Move Right
 * Space/W - Jump (Hold for increased height, let go for fast-fall)
 * Left Shift/Right Shift - Dash (Can be used twice, has a cooldown of 1 second)
 
-* Combat:
+**Combat:**
+
 * Left Click/F - Attack (Facing default direction)
 * J - Attack Left
 * L - Attack Right
@@ -26,16 +29,20 @@
 * Menu:
 * Esc - Pause Menu
 
-* How to Play:
+**How to Play:**
+
 **Launch the game to see the main menu, then press "Start". Choose between Forest, Ice, and the Lava levels. Each level can be replayed at any time, and the player can switch to a different level by navigating to the pause menu.**
 
 **Health**
+
 **You have 5 hearts everytime you start a level or respawn, which is displayed in the top-left corner. Taking damage from killzones, jumping off the map, or enemy attacks will either remove some or all of your hearts, so be mindful! If you die, you will automatically respawn at the start of the level after a 2-second death animation, with your hearts replenished.**
 
 **Combat**
+
 **Use your attacks to fight enemies from a safe distance, or dare to out-run them! Different enemies have different attack styles - experiment their movement and fighting logic to devise the most effective strategy.**
 
 **Movement Tips**
+
 **As for level navigation, remember to use the dash ability to cover long distances or escape danger. Holding horizontal and vertical movement (W/Space with A/D), as well as timing your dash(es) at the apex of your jump is recommended to cover the most amount of ground. Remember to disable the sticky keys shortcut (5x shift), if you have it enabled.**
 
 **Add it here if you did work that should be factored into your grade but does not fit easily into the proscribed roles! Please include links to resources and descriptions of game-related material that does not fit into roles here.**
@@ -52,10 +59,10 @@ This section be repeated once for each team member. Each team member should prov
 
 The general structures is 
 ```
-Sri Krishanu Ramadhenu (sriramadhenu)
-  Main Role - Game Logic
+Team Member 1
+  Main Role
     Documentation for main role.
-  Sub-Role - Build and Release Management
+  Sub-Role
     Documentation for Sub-Role
   Other contribtions
     Documentation for contributions to the project outside of the main and sub roles.
@@ -83,7 +90,7 @@ You should replay any **bold text** with your relevant information. Liberally us
 
 Add addition contributions int he Other Contributions section.
 
-## Jacob Parker
+## Jacob Parker (DevBlocky)
 
 **Main Role: AI/Behavior**
 
@@ -96,3 +103,172 @@ After feedback from the playtest, looking at the game feel slides, and consultin
 **Other Contributions**
 
 Since I was already working on projectiles, I implemented the [ice spell](https://github.com/sriramadhenu/mage-race/blob/main/scripts/projectiles/ice_spell.gd) that the player uses in the game. I also imported and setup the animation sprites for each of the characters (player and enemies).
+
+
+## Sri Krishanu Ramadhenu (sriramadhenu)
+
+**Main Role: Game Logic**
+
+My main work was on the player, health, and level/respawn systems. I wired the player’s damage and knockback into a shared character health system so that taking damage reduces hearts, [emits a health-changed signal](https://github.com/sriramadhenu/mage-race/blob/799b07b00b38df7b2a8baa0cb287d3e943c158c7/scenes/ui/hud/hud.gd#L26-L30), and can trigger death and respawn [link (minus the _on_prevent_dash_zone_body_entered function)](https://github.com/sriramadhenu/mage-race/blob/116efa511dc15851b5f8b1537c40f7056614a5ad/scripts/player/player.gd#L164-L209). The [game manager](https://github.com/sriramadhenu/mage-race/blob/58be39db4ee792ece815b2e8c7f2b71eb4bd0a59/scripts/managers/game_manager.gd#L1-L74) keeps track of what level the player is currently on (or the pause/main menu), and makes changes to the entire system accordingly. The [level manager](https://github.com/sriramadhenu/mage-race/blob/58be39db4ee792ece815b2e8c7f2b71eb4bd0a59/scripts/managers/level_manager.gd#L1-L34) keeps track of the level that is being displayed and changes the scene accordingly.
+
+**Sub Role: Build and Release Management**
+
+For this role, I made a clear [workflow](https://github.com/sriramadhenu/mage-race/blob/main/README.md) for my teammates in the README.md. I was in charge of checking out feature branches pushed by my teammates and making sure things worked as they intended. If so, I then merged the develop build with their feature branch, taking care of conflicts when they occured, and tested once again to ensure the combined build ran without issues. Finally, if everything worked, I pushed the changes to the develop branch. Therefore, the develop branch contained a playable version with updated work from every role each week.
+
+Here is the list of commits I (SaltyGamer829) made to develop (Not sure why it addresses me by my old github username, as my new one is actually sriramadhenu):
+[Develop branch commit history](https://github.com/sriramadhenu/mage-race/commits/develop)
+
+This role required me to communicate with my teammates a lot about work that has been committed, as well as changes that need to be made in each role before I can merge to develop. Oftentimes, I tried to look into these changes myself, so I will list the most important contributions/additions in the next section. All in all, I learned a lot about version control and team collaboration.
+
+**Other Contributions**
+
+I created the final obstacle in the forest level, adding a collision shape to a button that removed a purple barrier with a fading animation when the player contacted the button (the animation took me too long to figure out, I'm not a visuals person). [button file](https://github.com/sriramadhenu/mage-race/blob/116efa511dc15851b5f8b1537c40f7056614a5ad/scenes/levels/green_button.gd#L1-L17). [wall file](https://github.com/sriramadhenu/mage-race/blob/116efa511dc15851b5f8b1537c40f7056614a5ad/scenes/levels/purple_wall.gd#L1-L10).
+
+I also modified the player controls to implement [directional shooting](https://github.com/sriramadhenu/mage-race/blob/116efa511dc15851b5f8b1537c40f7056614a5ad/project.godot#L61-L76), [paused movement while attacking (grounded)](https://github.com/sriramadhenu/mage-race/blob/116efa511dc15851b5f8b1537c40f7056614a5ad/scripts/player/player.gd#L50-L63), [and mechanics that didn't allow dashing and shooting simultaneously].
+
+I added [killzones](https://github.com/sriramadhenu/mage-race/blob/116efa511dc15851b5f8b1537c40f7056614a5ad/scripts/killzone.gd#L1-L16) to each level, so if the player jumped off the map and came in contact with this zone below the map, they would lose all their health.
+
+Similarly, I added [spikes](https://github.com/sriramadhenu/mage-race/blob/58be39db4ee792ece815b2e8c7f2b71eb4bd0a59/scenes/levels/ice_spikes.gd#L1-L16) that hurt the player and caused knockback in the ice level.
+
+
+## Dunh Adam Lee (dunhlee)
+
+**Main Role: UI**
+
+As the UI designer, I wanted to ensure that our UI elements matched the feeling of our game art. Since Mage Race uses pixel art, I figured it was best to keep things cohesive by having our UI also be pixel themed. To do that, for the Main Menu and the Pause Menu, I made a [pixel_theme.tres](https://github.com/sriramadhenu/mage-race/blob/ee99234c252524eace5437f33d643e3682d93cd3/scenes/ui/common/pixel_theme.tres#L1) to keep the UI consistent with our art style.
+
+I'll go over my design choices and challenges in the work I've done.
+
+### Main Menu
+
+<img src="projectDocumentScreenshots/menu.png" width="30%">
+
+The main menu is our entry point to the game. While designing this menu, my biggest challenge was finding a way to convey the feel of Mage Race. I wanted the menu to express the mysticism of our player character. I also wanted there to be animations in the menu. One solution I thought of was to use a looping video of our gameplay, but I also thought that it would be repetitive to present something that the player will see anyway. Therefore, I instead decided to use shaders. Shaders allow movement and programmatic artistic expression.
+
+#### The Menu Background
+
+The background consists of a foundational navy blue ColorRect component and 3 shaders that are layered on top of it.
+
+The first shader is [backshader.gdshader](https://github.com/sriramadhenu/mage-race/blob/ee99234c252524eace5437f33d643e3682d93cd3/scenes/ui/menus/shader_scripts/back.gdshader#L1). It renders a subtle mist-like energy that moves slowly in the background. It is very hard to notice, but I believe that it completes the atmosphere that I'm going for in this background.
+
+The next shader is [energy.gdshader](https://github.com/sriramadhenu/mage-race/blob/ee99234c252524eace5437f33d643e3682d93cd3/scenes/ui/menus/shader_scripts/energy.gdshader#L1). This shader is the star of the show. The particles were made by splitting UV coordinates of the screen into smaller regions. These regions are then filled with glowing points and are animated upward with respect to time. There is also a shimmer effect to give the particles a pulsating glow effect, and combined with sine and cosine functions, we get a nice, modulating shimmer effect that represents magical energy.
+
+The last shader is [stars.gdshader](https://github.com/sriramadhenu/mage-race/blob/ee99234c252524eace5437f33d643e3682d93cd3/scenes/ui/menus/shader_scripts/stars.gdshader#L1). This shader adds the finishing touch to the background by adding small orange stars.
+
+The menu buttons are stylized with the ``pixel_theme.tres`` mentioned above. It is overwritten with an orange background to fit the darker background menu. The game title is also designed to add on to the theme by expressing a pixel/retro-ish feel.
+
+### Player Health and Hearts
+
+When designing the player health, I needed to decide whether the health should be a bar or segmented. Initially, I opted to go with a bar because Godot has built-in progress bar nodes that make the implementation easy. However, I decided to go with a segmented health bar because I was inspired by Hollow Knight: Silksong. Plus, I wanted to try Godot's animation player.
+
+#### Hearts
+
+<img src="projectDocumentScreenshots/hearts.png" width="10%">
+
+For hearts, I implemented 3 animations:
+
+- **Pop in** – To animate hearts being restored when the player respawns  
+- **Pop out** – To animate hearts when the player takes damage  
+- **Low health pulse** – To animate hearts when the player is low health  
+
+A heart acts depending on the [heart.gd](https://github.com/sriramadhenu/mage-race/blob/ee99234c252524eace5437f33d643e3682d93cd3/scenes/ui/hud/heart/heart.gd#L1) script. This script defines a heart's behavior (whether to pop-in or pop-out). [player_health.gd](https://github.com/sriramadhenu/mage-race/blob/ee99234c252524eace5437f33d643e3682d93cd3/scenes/ui/hud/player_health/player_health.gd#L1) is the player health HUD manager. It communicates with our `GameManager.gd` to create the player's hearts and track the current health. It decides which hearts are full, empty, and when to play the low health animation.
+
+### Pause Menu
+
+<img src="projectDocumentScreenshots/pause.png" width="10%">
+
+The pause menu builds upon the theme of the game. It keeps the pixel art style by implementing the pixel theme.  
+It has 3 options:
+
+- Resume (Resume the game)  
+- Levels (Go to the level loader)  
+- Quit (Quit the game)
+
+The [pause_menu.gd](https://github.com/sriramadhenu/mage-race/blob/ee99234c252524eace5437f33d643e3682d93cd3/scenes/ui/menus/PauseMenu/pause_menu.gd#L1) script handles the transitions between the buttons, and the pausing of the game state.
+
+### HUD
+To ensure that the HUD is persistent across all levels without any node/code repetition, I autoloaded a [hud.tscn](https://github.com/sriramadhenu/mage-race/blob/2168b7a2bde5dfc8892afc82fcbb4bafbb8ee454/scenes/ui/hud/HUD.tscn#L1) in the project settings. This is the scene that ties the player health and pause menu together for our levels. 
+
+The [hud.gd](https://github.com/sriramadhenu/mage-race/blob/ee99234c252524eace5437f33d643e3682d93cd3/scenes/ui/hud/hud.gd#L1) script controls which HUD elements show up depending on the scene the player is in. 
+ 
+**Sub-Role: Gameplay Testing**
+
+For the sub-role, it was difficult to gauge when to properly test our game because we were behind in development. It was difficult to determine whether testing would actually give us meaningful feedback, given our core mechanics and level structure weren't fully in place yet. I didn't want playtest sessions to turn into level design sessions driven by our playtesters. By the time our class had the game testing discussion, we did have a level ready to be tested, which gave us a lot of helpful feedback.
+
+**Other Contributions**
+
+#### Game Camera
+
+For the game camera, a pure position lock camera seemed too stiff, so I decided that it was best if we use the [position_lock_lerp.gd](https://github.com/sriramadhenu/mage-race/blob/ee99234c252524eace5437f33d643e3682d93cd3/scenes/levels/position_lock_lerp_camera.gd#L1)
+ camera from exercise 2. I simply adapted the implementation of my camera from exercise 2 into our game.
+
+#### Audio
+
+I added a royalty-free fantasy soundtrack to the main menu to fit with the theme of the game's atomosphere.
+
+#### Level Backgrounds
+
+For our level backgrounds, I chose to use parallax backgrounds because they look nice and they make our levels more immersive by simulating a living environment. The biggest challenge here was finding good free assets that match the theme of our levels. However, after finding the appropriate assets, setting up the backgrounds with Godot's ParallaxBackground and ParallaxLayer nodes makes the implementation very easy.
+
+#### Resources
+
+- [How to use Godot Themes](https://docs.godotengine.org/en/stable/tutorials/ui/gui_using_theme_editor.html)  
+- [Learning how to use AnimationPlayer](https://docs.godotengine.org/en/stable/tutorials/animation/introduction.html)  
+- [Using Parallax Backgrounds](https://www.youtube.com/watch?v=RYsUgJuICE4)
+
+## Frank Wem Guang Zhu (Frank-111)
+
+**Main Role: Level and World Designer**
+
+As the level and world designer for the game, my primary goal was to craft the magical realm of Valenor. We created three levels with three separate themes (Lava, Forest, and Ice). Each level uses different tilesets corresponding to its theme. I created the three base layouts for the levels, made adjustments to the layout as the project progressed, and helped gather assets. I also created most of the object scenes to be placed within the levels and positioned them accordingly.
+
+Our group separated the work into different branches to minimize conflicts when merging into the main or development branches. Here are the branches I worked on and my commits:
+[Base-level-layout](https://github.com/sriramadhenu/mage-race/commits/Base-layout-levels)
+[level-improvment](https://github.com/sriramadhenu/mage-race/commits/level-improvement)
+
+**Sub Role: Tutorial Design**
+
+For this role, I created a "How to Play" option that can be accessed from the main menu scene. It describes the basic movement and combat controls, helping players understand how to overcome obstacles in each level. The "How to Play" scene also includes a back button that returns the player to the main menu when pressed.
+[BackButton](https://github.com/sriramadhenu/mage-race/blob/ee99234c252524eace5437f33d643e3682d93cd3/scenes/ui/how_to_play.gd#L6)
+[How to Play menu](https://github.com/sriramadhenu/mage-race/blob/ee99234c252524eace5437f33d643e3682d93cd3/scenes/levels/main_menu.gd#L15)
+
+**Other Contributions**
+
+I implemented the [pushable block](https://github.com/sriramadhenu/mage-race/blob/ee99234c252524eace5437f33d643e3682d93cd3/scripts/character.gd#L81)
+ in the forest level, allowing the player to progress through the level by moving obstacles. 
+
+I also implemented the code for the [destructible objects](https://github.com/sriramadhenu/mage-race/blob/ee99234c252524eace5437f33d643e3682d93cd3/scenes/levels/destructible_wall.gd#L1). These destructible walls are designed to be destroyed using the player's spell attack.
+
+
+## Sarayu Mummidi (sarayumummidi)  
+
+**Main Role: Movement/Physics**  
+
+For this project, I implemented the movement and physics system that all the characters in the game rely on. I created an abstract [Character class](https://github.com/sriramadhenu/mage-race/blob/main/scripts/character.gd) that defines the shared behavior such as gravity, jumping, changing directions, horizontal movement, and terminal velocity. This character class acts the foundation for the other characters we created such as player (user) and enemies. 
+
+I also worked on the [player movement commands](https://github.com/sriramadhenu/mage-race/blob/develop/scripts/player/player.gd/#L16-L102) which consists of [moving, idle, jumping, and dashing](https://github.com/sriramadhenu/mage-race/tree/develop/scripts/commands). I created a command list to ensure the commands are run in order. As we didn't have a sprite for the dashing, I also created a function to create the illusion of the player moving super fast [white ghost effect](https://github.com/sriramadhenu/mage-race/blob/develop/scripts/player/player.gd/#L87-L101). This improved the dashing game feel. The dash was more complex movements I built as it included a dash timer, maintained the vertical velocity of the player, and displayed ghost afterimages during the [dash](https://github.com/sriramadhenu/mage-race/blob/develop/scripts/commands/player/dash_command.gd). Overall, I learned a lot from contributing to the backbone of the character movement logic in this project.
+  
+**Sub Role: Audios**  
+
+As my secondary role, I implemented the audio system for the entire project. This included researching and finding free audio assets that matched our metroidvania fantasy theme. This required extensive searching to find sound effects that were high-quality, cohesive, and consistent with the other audios. I implemented audio for UI clicks, player actions (walk, jump, dash, spells), and enemy attacks (shoot, sword) by writing [command callback functions](https://github.com/sriramadhenu/mage-race/blob/main/scripts/player/player.gd/#L147-L157) that triggered the right sound at the right moment. I made sure to sync the sound effect to when the action was occuring to create the best game feel. 
+
+I also selected and integrated the background music for the menu, level_select, and how_to_play pages as well as the in-game areas. The choice of background music was intentionally different for the initial UI pages and in-game areas to make more immersive for the players during gameplay and more magical/theme-like during menus. You can take the different background music I used [here:](https://github.com/sriramadhenu/mage-race/tree/main/assets/audio/music)
+
+For the in-game background music, I added a global music system which was autoloaded so that if we decided to add more levels or make the game progress level by level, the music wouldn't abruptly cut off, resulting in a more enjoyable game experience. 
+  
+**Resources:**  
+* [Hollow Knight Audios](https://www.dropbox.com/scl/fo/mm3x18p8wqkewb7ezshye/AJutnYm09fil6iiqhSogp7k?e=4&preview=crystal_flyer_shoot.wav&rlkey=pgekxzquqgselmlc56mf8l8uv&dl=0)
+* [Free Wizard Music](https://pixabay.com/music/search/wizard/)
+* [Footsteps and Other Movement SFX](https://freesound.org/people/LittleRobotSoundFactory/sounds/270419/)
+* [Magic Spell](https://freesound.org/people/JomelleJager/sounds/252681/)
+* [Jumping Sound Effects](https://pixabay.com/sound-effects/search/jump/)
+
+**Other Contributions**   
+
+<img width="200" height="400" alt="level_select" src="https://github.com/user-attachments/assets/25edf1a8-0875-4025-bb0e-dc59e2c1da9f" />
+
+I worked on the [level select interface](https://github.com/sriramadhenu/mage-race/blob/main/scenes/ui/level_loader.tscn) where the users are able to choose which level to play. I worked on building the level_loader.tscn scene and integrating the user flow logic. 
+
+<img width="200" height="100" alt="how_to_play" src="https://github.com/user-attachments/assets/2a7411e4-0ecd-4cd9-a092-c06a6b03c3a6" />
+
+I worked on the UI for the [How to Play Instructions Page](https://github.com/sriramadhenu/mage-race/blob/main/scenes/ui/how_to_play.tscn). I modified the background and the layout of the instructions so that the page feels consistent with the rest of the game. I redesigned the structure of the instructions to be more visually appealing and easily understandable for users.

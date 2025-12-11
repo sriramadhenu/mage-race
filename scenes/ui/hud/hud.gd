@@ -12,6 +12,7 @@ func _ready():
 func _on_state_changed(_new_state: GameManager.GameState):
 	_update_visibility()
 
+
 func _update_visibility():
 	var scene := get_tree().current_scene
 	if scene == null:
@@ -29,27 +30,33 @@ func _update_visibility():
 			player_health.visible = false
 		return
 
+
 func _get_player_health():
 	if root_ui.has_node("PlayerHealth"):
 		return root_ui.get_node("PlayerHealth")
 	return null
+
 
 func set_health(value: int):
 	var ph = _get_player_health()
 	if ph:
 		ph.set_health(value)
 
+
 func connect_player(player):
 	if player.health_changed.is_connected(Callable(self, "set_health")):
 		return
 	player.connect("health_changed", Callable(self, "set_health"))
 
+
 # pause menu utilitiesi
 func pause_game():
 	pause_menu.pause_game()
 
+
 func resume_game():
 	pause_menu.resume_game()
+
 
 func toggle_pause():
 	if pause_menu.visible:
