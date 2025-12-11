@@ -82,7 +82,7 @@ scale = Vector2(12.5, 0.79113984)
 
 [node name="Background" type="ColorRect" parent="ParallaxBackground (Near To Far)"]
 z_index = -5
-anchors_preset = -1
+anchors_preset = 10
 anchor_right = 1.0
 offset_left = -547.0
 offset_right = -436.8578
