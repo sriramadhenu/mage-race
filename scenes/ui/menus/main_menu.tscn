@@ -8,7 +8,6 @@
 [ext_resource type="FontFile" uid="uid://dmqpm86c380kf" path="res://scenes/ui/common/fonts/PixelifySans-VariableFont_wght.ttf" id="7_c8e1o"]
 [ext_resource type="AudioStream" uid="uid://bi4oubfnudqr3" path="res://scenes/ui/menus/MenuMusic/adventure_free .wav" id="8_e7y46"]
 [ext_resource type="AudioStream" uid="uid://br8iwx4wsnjni" path="res://assets/audio/game_start.wav" id="11_bl8wb"]
-[ext_resource type="PackedScene" uid="uid://mtp2xs4dduqi" path="res://scenes/levels/level_music.tscn" id="12_c8e1o"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_cn35j"]
 shader = ExtResource("3_ykpw6")
@@ -173,7 +172,3 @@ autoplay = true
 
 [node name="start_button" type="AudioStreamPlayer2D" parent="Audio"]
 stream = ExtResource("11_bl8wb")
-
-[node name="LevelMusic" type="Node2D" parent="."]
-
-[node name="level_music" parent="LevelMusic" instance=ExtResource("12_c8e1o")]

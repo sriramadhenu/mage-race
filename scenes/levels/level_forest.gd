@@ -16,4 +16,4 @@ func _ready():
 	
 	# connect and set health
 	Hud.connect_player(player)
-	Hud.set_health(player.health)	
+	Hud.set_health(player.health)
