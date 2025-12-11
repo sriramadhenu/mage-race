@@ -8,7 +8,7 @@ script = ExtResource("2_t7nft")
 
 [node name="music" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("1_tosbp")
-volume_db = -16.0
+volume_db = -25.0
 autoplay = true
 max_distance = 100000.0
 playback_type = 1

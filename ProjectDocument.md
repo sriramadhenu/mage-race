@@ -213,3 +213,38 @@ For our level backgrounds, I chose to use parallax backgrounds because they look
 - [How to use Godot Themes](https://docs.godotengine.org/en/stable/tutorials/ui/gui_using_theme_editor.html)  
 - [Learning how to use AnimationPlayer](https://docs.godotengine.org/en/stable/tutorials/animation/introduction.html)  
 - [Using Parallax Backgrounds](https://www.youtube.com/watch?v=RYsUgJuICE4)
+
+## Frank Wem Guang Zhu (Frank-111)
+
+**Main Role: Level and World Designer**
+
+As the level and world designer for the game, my primary goal was to craft the magical realm of Valenor. We created three levels with three separate themes (Lava, Forest, and Ice). Each level uses different tilesets corresponding to its theme. I created the three base layouts for the levels, made adjustments to the layout as the project progressed, and helped gather assets. I also created most of the object scenes to be placed within the levels and positioned them accordingly.
+
+Our group separated the work into different branches to minimize conflicts when merging into the main or development branches. Here are the branches I worked on and my commits:
+[Base-level-layout](https://github.com/sriramadhenu/mage-race/commits/Base-layout-levels)
+[level-improvment](https://github.com/sriramadhenu/mage-race/commits/level-improvement)
+
+**Sub Role: Tutorial Design**
+
+For this role, I created a "How to Play" option that can be accessed from the main menu scene. It describes the basic movement and combat controls, helping players understand how to overcome obstacles in each level. The "How to Play" scene also includes a back button that returns the player to the main menu when pressed.
+[BackButton](https://github.com/sriramadhenu/mage-race/blob/ee99234c252524eace5437f33d643e3682d93cd3/scenes/ui/how_to_play.gd#L6)
+[How to Play menu](https://github.com/sriramadhenu/mage-race/blob/ee99234c252524eace5437f33d643e3682d93cd3/scenes/levels/main_menu.gd#L15)
+
+**Other Contributions**
+
+I implemented the [pushable block](https://github.com/sriramadhenu/mage-race/blob/ee99234c252524eace5437f33d643e3682d93cd3/scripts/character.gd#L81)
+ in the forest level, allowing the player to progress through the level by moving obstacles. 
+
+I also implemented the code for the [destructible objects](https://github.com/sriramadhenu/mage-race/blob/ee99234c252524eace5437f33d643e3682d93cd3/scenes/levels/destructible_wall.gd#L1). These destructible walls are designed to be destroyed using the player's spell attack.
+
+
+## Sarayu Mummidi (sarayumummidi)
+
+**Main Role: Movement/Physics**
+For this project, I implemented the movement and physics system that all the characters in the game rely on. I created an abstract Character class [character.gd](https://github.com/sriramadhenu/mage-race/blob/main/scripts/character.gd) that defines the shared behavior such as gravity, jumping, changing directions, horizontal movement, and terminal velocity. This character class acts the foundation for the other characters we created such as player (user) and enemies. I also worked on the player movement commands [player.gd](https://github.com/sriramadhenu/mage-race/blob/develop/scripts/player/player.gd/#L16-L102) which consists of moving, idle, jumping, and dashing. I created a comamnd list to ensure the commands are run in order. As we didn't have a sprite for the dashing, I also created a function to create the illusion of the player moving super fast [white ghost effect](https://github.com/sriramadhenu/mage-race/blob/develop/scripts/player/player.gd/#L87-L101). This improved the dashing game feel. The dash was more complex movements I built as it included a dash timer, maintained the vertical velocity of the player, and displayed ghost afterimages during the dash [dash_command.gd](https://github.com/sriramadhenu/mage-race/blob/develop/scripts/commands/player/dash_command.gd). Overall, I learned a lot from contributing to the backbone of the character movement logic in this project.
+
+**Sub Role: Audios**
+As my secondary role, I implemented the audio system for the entire project. This included researching and finding free audio assets that matched our metroidvania fantasy theme. This required extensive searching to find sound effects that were high-quality, cohesive, and consistent with the other audios. I implemented audio for UI clicks, player actions (walk, jump, dash, spells), and enemy attacks (shoot, sword) by writing [command callback functions](https://github.com/sriramadhenu/mage-race/blob/main/scripts/player/player.gd/#L147-L157) that triggered the right sound at the right moment. I made sure to sync the sound effect to when the action was occuring to create the best game feel. I also selected and integrated the background music for the menu, level_select, and how_to_play pages as well as the in-game areas. The choice of background music was intentionally different for the initial UI pages and in-game areas to make more immersive for the players during gameplay and more magical/theme-like during menus. For the in-game background music, I added a global music system which was autoloaded so that if we decided to add more levels or make the game progress level by level, the music wouldn't abruptly cut off, resulting in a more enjoyable game experience. 
+
+**Other Contributions**
+I worked on the level select interface. I worked on building the level_loader.tscn scene and integrating the user flow logic. [level_loader.tscn](https://github.com/sriramadhenu/mage-race/blob/main/scenes/ui/level_loader.tscn)

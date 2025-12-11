@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://crnws7kiggap7"]
+[gd_scene load_steps=6 format=3 uid="uid://crnws7kiggap7"]
 
 [ext_resource type="Script" uid="uid://bq6g62sbcemnr" path="res://scenes/ui/how_to_play.gd" id="1_svix1"]
 [ext_resource type="FontFile" uid="uid://dmqpm86c380kf" path="res://scenes/ui/common/fonts/PixelifySans-VariableFont_wght.ttf" id="2_jrmmo"]
-[ext_resource type="Texture2D" uid="uid://dn53rw20flmbk" path="res://scenes/levels/level_loader.png" id="3_hnuh7"]
 [ext_resource type="FontFile" uid="uid://dnf8bslxi3dv7" path="res://scenes/ui/common/fonts/queensides-font/Queensides-3z7Ey.ttf" id="3_mfe6v"]
+[ext_resource type="Texture2D" uid="uid://caa2aiejt2sqc" path="res://scenes/levels/menu_backgrounds/how_to_play.png" id="4_mfe6v"]
+[ext_resource type="AudioStream" uid="uid://db3u8nbmwbtea" path="res://assets/audio/music/bg_music.mp3" id="5_d56r8"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -67,7 +68,11 @@ offset_left = 1.0
 offset_right = 1281.0
 offset_bottom = 720.0
 mouse_filter = 2
-texture = ExtResource("3_hnuh7")
+texture = ExtResource("4_mfe6v")
 stretch_mode = 2
+
+[node name="BackgroundMusic" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_d56r8")
+volume_db = -15.0
 
 [connection signal="pressed" from="BackButton" to="." method="_on_load_forest_level_pressed"]
