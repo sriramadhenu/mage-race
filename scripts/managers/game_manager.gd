@@ -16,6 +16,7 @@ var player_health: int = 5
 var max_health: int = 5
 var collected_relics: Array = []
 var last_played_level: int = 0
+var story_seen: Array[bool] = [false, false, false]
 
 signal state_changed(new_state: GameState)
 signal level_changed(level_number: int)

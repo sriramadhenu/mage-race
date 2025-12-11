@@ -17,3 +17,14 @@ func _ready():
 	# connect and set health
 	Hud.connect_player(player)
 	Hud.set_health(player.health)
+	
+	if !GameManager.story_seen[0]:
+		var speed := player.movement_speed
+		player._anim_locked = true
+		player.movement_speed = 0
+		$TextBox.visible = true
+		await get_tree().create_timer(6).timeout
+		player._anim_locked = false
+		player.movement_speed = speed
+		$TextBox.visible = false
+		GameManager.story_seen[0] = true

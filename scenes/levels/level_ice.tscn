@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=4 uid="uid://boieimqt2dwig"]
+[gd_scene load_steps=39 format=4 uid="uid://boieimqt2dwig"]
 
 [ext_resource type="Texture2D" uid="uid://dwusu5yd87cf5" path="res://assets/tilesets/Starter Tiles Platformer/IceSet.png" id="1_f2t84"]
 [ext_resource type="Script" uid="uid://tsfnld2h8v1g" path="res://scenes/levels/level_ice.gd" id="1_me68h"]
@@ -20,6 +20,9 @@
 [ext_resource type="Script" uid="uid://da1qk27uegwau" path="res://scenes/levels/purple_wall.gd" id="18_0w8h2"]
 [ext_resource type="PackedScene" uid="uid://bw80orw10set6" path="res://scenes/levels/green_button.tscn" id="19_27t4d"]
 [ext_resource type="Script" uid="uid://cl8x47xjt2eft" path="res://scenes/levels/green_button.gd" id="20_nj748"]
+[ext_resource type="FontFile" uid="uid://dmqpm86c380kf" path="res://scenes/ui/common/fonts/PixelifySans-VariableFont_wght.ttf" id="21_kqjxu"]
+[ext_resource type="Shader" uid="uid://cf1egq517lvg3" path="res://scenes/levels/sunbeam.gdshader" id="22_27t4d"]
+[ext_resource type="Texture2D" uid="uid://bkm57v3dlup75" path="res://icon.svg" id="23_nj748"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_c3cds"]
 texture = ExtResource("1_f2t84")
@@ -124,6 +127,48 @@ _data = {
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5gie3"]
 size = Vector2(15.317383, 9.583414)
+
+[sub_resource type="GDScript" id="GDScript_0w8h2"]
+script/source = "extends ColorRect
+
+func fade_in_and_out() -> void:
+	modulate.a = 0
+	
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_f5lkq"]
+shader = ExtResource("22_27t4d")
+shader_parameter/blend_mode = 1
+shader_parameter/angle = 180.00000855
+shader_parameter/position = 1.0
+shader_parameter/spread = 0.5
+shader_parameter/cutoff = 0.1
+shader_parameter/falloff = 0.2
+shader_parameter/edge_fade = 0.15
+shader_parameter/speed = 7.4370003532575
+shader_parameter/ray1_density = 12.36800058748
+shader_parameter/ray2_density = 30.0
+shader_parameter/ray2_intensity = 0.3
+shader_parameter/color = Color(0.7416929, 0.34714186, 1, 0.8)
+shader_parameter/hdr = false
+shader_parameter/seed = 5.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5gie3"]
+shader = ExtResource("22_27t4d")
+shader_parameter/blend_mode = 1
+shader_parameter/angle = 0.0
+shader_parameter/position = 0.09900005220250008
+shader_parameter/spread = 0.5
+shader_parameter/cutoff = 0.1
+shader_parameter/falloff = 0.2
+shader_parameter/edge_fade = 0.15
+shader_parameter/speed = 7.3270003480325
+shader_parameter/ray1_density = 19.034000904115
+shader_parameter/ray2_density = 30.0
+shader_parameter/ray2_intensity = 0.3
+shader_parameter/color = Color(0.14901961, 0.9019608, 0.6509804, 0.8)
+shader_parameter/hdr = false
+shader_parameter/seed = 5.0
 
 [node name="LevelIce" type="Node2D"]
 script = ExtResource("1_me68h")
@@ -367,3 +412,45 @@ wall_node_path = NodePath("../../RemovePlatform")
 position = Vector2(23.547852, -1.6666806)
 scale = Vector2(1, 0.99999976)
 shape = SubResource("RectangleShape2D_5gie3")
+
+[node name="TextBox" type="ColorRect" parent="."]
+visible = false
+offset_left = -106.0
+offset_top = 554.0
+offset_right = 524.0
+offset_bottom = 716.0
+color = Color(0.34509805, 0.34509805, 0.34509805, 1)
+script = SubResource("GDScript_0w8h2")
+
+[node name="Dialogue" type="Label" parent="TextBox"]
+modulate = Color(0.9607843, 0.827451, 0.54509807, 1)
+z_index = 1
+layout_mode = 0
+offset_left = 9.0
+offset_top = 7.0
+offset_right = 620.0
+offset_bottom = 152.0
+size_flags_vertical = 6
+theme_override_colors/font_color = Color(0.3254228, 0.8530872, 2.0325725, 1)
+theme_override_fonts/font = ExtResource("21_kqjxu")
+theme_override_font_sizes/font_size = 24
+text = "Here, at the end of all things, the dead men await their final vindication. Let it never be forgotten that revenge is a dish best solved cold."
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Sunbeam2" type="TextureRect" parent="."]
+material = SubResource("ShaderMaterial_f5lkq")
+offset_left = 5319.0
+offset_top = -226.0
+offset_right = 5673.0
+offset_bottom = 632.0
+texture = ExtResource("23_nj748")
+
+[node name="Sunbeam3" type="TextureRect" parent="."]
+material = SubResource("ShaderMaterial_5gie3")
+offset_left = 5319.0
+offset_top = -226.0
+offset_right = 5673.0
+offset_bottom = 632.0
+texture = ExtResource("23_nj748")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=4 uid="uid://xm64rd5b2omd"]
+[gd_scene load_steps=51 format=4 uid="uid://xm64rd5b2omd"]
 
 [ext_resource type="Script" uid="uid://sb4fxfpqh6ap" path="res://scenes/levels/level_forest.gd" id="1_auoep"]
 [ext_resource type="Texture2D" uid="uid://be4ky4bfjyunq" path="res://assets/tilesets/Water+.png" id="1_c3tcg"]
@@ -27,6 +27,7 @@
 [ext_resource type="Texture2D" uid="uid://gvwi1lks6ypd" path="res://assets/sprites/Magic/dust.png" id="24_asm4k"]
 [ext_resource type="PackedScene" uid="uid://cp0h7vla2ta2c" path="res://scenes/levels/spike_trap.tscn" id="26_exu7g"]
 [ext_resource type="Script" uid="uid://whs2aiu36a01" path="res://scenes/levels/ice_spikes.gd" id="27_jkumo"]
+[ext_resource type="FontFile" uid="uid://dmqpm86c380kf" path="res://scenes/ui/common/fonts/PixelifySans-VariableFont_wght.ttf" id="28_jkumo"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jm40j"]
 texture = ExtResource("1_c3tcg")
@@ -682,6 +683,14 @@ metadata/_snap_enabled = true
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ppv2n"]
 size = Vector2(25.962524, 8.313072)
 
+[sub_resource type="GDScript" id="GDScript_jkumo"]
+script/source = "extends ColorRect
+
+func fade_in_and_out() -> void:
+	modulate.a = 0
+	
+"
+
 [node name="LevelForest" type="Node2D"]
 script = ExtResource("1_auoep")
 
@@ -899,3 +908,29 @@ light_mask = 3
 visibility_layer = 3
 position = Vector2(15.621063, 6.4207)
 shape = SubResource("RectangleShape2D_ppv2n")
+
+[node name="TextBox" type="ColorRect" parent="."]
+visible = false
+offset_left = -118.0
+offset_top = 481.0
+offset_right = 512.0
+offset_bottom = 643.0
+color = Color(0.34509805, 0.34509805, 0.34509805, 1)
+script = SubResource("GDScript_jkumo")
+
+[node name="Dialogue" type="Label" parent="TextBox"]
+modulate = Color(0.9607843, 0.827451, 0.54509807, 1)
+z_index = 1
+layout_mode = 0
+offset_left = 9.0
+offset_top = 7.0
+offset_right = 620.0
+offset_bottom = 152.0
+size_flags_vertical = 6
+theme_override_colors/font_color = Color(0, 1, 0.8509804, 1)
+theme_override_fonts/font = ExtResource("28_jkumo")
+theme_override_font_sizes/font_size = 24
+text = "This is as far as the sun reaches in the forests of Valenor. At the end of the path, a lone tree guards the door to hell."
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2

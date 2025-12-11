@@ -1,8 +1,17 @@
-[gd_scene load_steps=2 format=3 uid="uid://7trmn48obvb6"]
+[gd_scene load_steps=3 format=3 uid="uid://7trmn48obvb6"]
 
 [ext_resource type="Texture2D" uid="uid://cbtifmq2jfypl" path="res://assets/sprites/Door/Wall.png" id="1_37k3k"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_37k3k"]
+size = Vector2(190, 297)
 
 [node name="RemovePlatform" type="Node2D"]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_37k3k")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-8, -10.5)
+shape = SubResource("RectangleShape2D_37k3k")
