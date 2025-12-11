@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dn53rw20flmbk"
-path="res://.godot/imported/level_loader.png-5d0adfa15939ca01394b06f34bf1b2e3.ctex"
+uid="uid://caa2aiejt2sqc"
+path="res://.godot/imported/how_to_play.png-7baeed1b34d4df9b87b707a4aeb0dfbe.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/levels/level_loader.png"
-dest_files=["res://.godot/imported/level_loader.png-5d0adfa15939ca01394b06f34bf1b2e3.ctex"]
+source_file="res://scenes/levels/menu_backgrounds/how_to_play.png"
+dest_files=["res://.godot/imported/how_to_play.png-7baeed1b34d4df9b87b707a4aeb0dfbe.ctex"]
 
 [params]
 

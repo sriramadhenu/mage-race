@@ -83,10 +83,15 @@ func _finish_attack_target():
 	parent.add_child(arrow)
 
 	arrow.add_collision_exception_with(self)
+	command_callback("shoot")
 	arrow.launch_at(target.global_position)
 
-func command_callback(_cmd_name: String):
-	pass # TODO
+func command_callback(cmd_name: String):
+	var enemy: AudioStreamPlayer2D = null
+	match cmd_name:
+		"shoot": enemy = $Audio/shoot
+	if enemy != null and not enemy.playing:
+		enemy.play()	
 
 func _face_target():
 	# face target
