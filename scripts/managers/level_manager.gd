@@ -14,8 +14,7 @@ func _ready():
 	GameManager.level_changed.connect(_on_level_changed)
 
 func _on_level_changed(level_index: int):
-	if LevelMusic:
-		LevelMusic.play()
+	LevelMusic.play_level_music()
 	load_level(level_index)
 
 func load_level(level_index: int):
