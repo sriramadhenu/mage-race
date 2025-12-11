@@ -7,9 +7,13 @@ func _ready():
 	if has_node("UIContainer/StartButton"):
 		$UIContainer/StartButton.pressed.connect(_on_start_pressed)
 
-	# Connect Quit button
-	if has_node("UIContainer/QuitButton"):
-		$UIContainer/QuitButton.pressed.connect(_on_quit_pressed)
+
+	if has_node("ButtonsContainer/QuitButton"):
+		$ButtonsContainer/QuitButton.pressed.connect(_on_quit_pressed)
+		
+		# Connect How to play button
+	if has_node("ButtonsContainer/HowToPlayButton"):
+		$ButtonsContainer/HowToPlayButton.pressed.connect(_on_how_to_play_pressed)
 
 	# Hide HUD for the menu
 	Hud.hide()
@@ -33,3 +37,10 @@ func _on_start_pressed():
 
 func _on_quit_pressed():
 	get_tree().quit()
+
+
+func _on_how_to_play_pressed():
+	$Audio/start_button.play()
+	await get_tree().create_timer(0.4).timeout
+	get_tree().change_scene_to_file("res://scenes/ui/how_to_play.tscn")
+	#queue_free()

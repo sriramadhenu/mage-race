@@ -4,6 +4,7 @@ shader_type canvas_item;
 uniform vec4 particle_color : source_color = vec4(0.4, 0.8, 1.0, 1.0);
 uniform vec4 glow_color : source_color = vec4(0.8, 0.3, 1.0, 1.0);
 uniform float particle_speed : hint_range(0.0, 5.0) = 1.0;
+
 uniform float particle_density : hint_range(1.0, 20.0) = 8.0;
 uniform float sparkle_intensity : hint_range(0.0, 2.0) = 1.0;
 
@@ -14,7 +15,7 @@ float hash(vec2 p) {
 float noise(vec2 p) {
     vec2 i = floor(p);
     vec2 f = fract(p);
-    
+
     float a = hash(i);
     float b = hash(i + vec2(1.0, 0.0));
     float c = hash(i + vec2(0.0, 1.0));
@@ -26,17 +27,17 @@ float noise(vec2 p) {
 
 void fragment() {
     vec2 uv = UV;
-    
+	
     // animated floating particles
     vec2 particle_uv = uv * particle_density;
     particle_uv.y += TIME * particle_speed * 0.3;
-    
+
     float particles = 0.0;
     for(int i = 0; i < 3; i++) {
         float offset = float(i) * 2.5;
         vec2 p = particle_uv + vec2(offset, offset * 0.7);
         float n = noise(p);
-        
+
         // make some particle dots
         vec2 cell = fract(p) - 0.5;
         float dist = length(cell);
@@ -58,6 +59,6 @@ void fragment() {
     final_color += glow_color.rgb * (shimmer + wave);
     
     float alpha = particles * 0.6 + shimmer * 0.4 + wave * 0.3;
-    
+
     COLOR = vec4(final_color, alpha * 0.7);
 }
