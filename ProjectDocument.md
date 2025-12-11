@@ -129,3 +129,87 @@ I also modified the player controls to implement [directional shooting](https://
 I added [killzones](https://github.com/sriramadhenu/mage-race/blob/116efa511dc15851b5f8b1537c40f7056614a5ad/scripts/killzone.gd#L1-L16) to each level, so if the player jumped off the map and came in contact with this zone below the map, they would lose all their health.
 
 Similarly, I added [spikes](https://github.com/sriramadhenu/mage-race/blob/58be39db4ee792ece815b2e8c7f2b71eb4bd0a59/scenes/levels/ice_spikes.gd#L1-L16) that hurt the player and caused knockback in the ice level.
+
+
+## Dunh Adam Lee (dunhlee)
+
+**Main Role: UI**
+
+As the UI designer, I wanted to ensure that our UI elements matched the feeling of our game art. Since Mage Race uses pixel art, I figured it was best to keep things cohesive by having our UI also be pixel themed. To do that, for the Main Menu and the Pause Menu, I made a [pixel_theme.tres](https://github.com/sriramadhenu/mage-race/blob/ee99234c252524eace5437f33d643e3682d93cd3/scenes/ui/common/pixel_theme.tres#L1) to keep the UI consistent with our art style.
+
+I'll go over my design choices and challenges in the work I've done.
+
+### Main Menu
+
+<img src="projectDocumentScreenshots/menu.png" width="30%">
+
+The main menu is our entry point to the game. While designing this menu, my biggest challenge was finding a way to convey the feel of Mage Race. I wanted the menu to express the mysticism of our player character. I also wanted there to be animations in the menu. One solution I thought of was to use a looping video of our gameplay, but I also thought that it would be repetitive to present something that the player will see anyway. Therefore, I instead decided to use shaders. Shaders allow movement and programmatic artistic expression.
+
+#### The Menu Background
+
+The background consists of a foundational navy blue ColorRect component and 3 shaders that are layered on top of it.
+
+The first shader is [backshader.gdshader](https://github.com/sriramadhenu/mage-race/blob/ee99234c252524eace5437f33d643e3682d93cd3/scenes/ui/menus/shader_scripts/back.gdshader#L1). It renders a subtle mist-like energy that moves slowly in the background. It is very hard to notice, but I believe that it completes the atmosphere that I'm going for in this background.
+
+The next shader is [energy.gdshader](https://github.com/sriramadhenu/mage-race/blob/ee99234c252524eace5437f33d643e3682d93cd3/scenes/ui/menus/shader_scripts/energy.gdshader#L1). This shader is the star of the show. The particles were made by splitting UV coordinates of the screen into smaller regions. These regions are then filled with glowing points and are animated upward with respect to time. There is also a shimmer effect to give the particles a pulsating glow effect, and combined with sine and cosine functions, we get a nice, modulating shimmer effect that represents magical energy.
+
+The last shader is [stars.gdshader](https://github.com/sriramadhenu/mage-race/blob/ee99234c252524eace5437f33d643e3682d93cd3/scenes/ui/menus/shader_scripts/stars.gdshader#L1). This shader adds the finishing touch to the background by adding small orange stars.
+
+### Player Health and Hearts
+
+When designing the player health, I needed to decide whether the health should be a bar or segmented. Initially, I opted to go with a bar because Godot has built-in progress bar nodes that make the implementation easy. However, I decided to go with a segmented health bar because I was inspired by Hollow Knight: Silksong. Plus, I wanted to try Godot's animation player.
+
+#### Hearts
+
+<img src="projectDocumentScreenshots/hearts.png" width="10%">
+
+For hearts, I implemented 3 animations:
+
+- **Pop in** – To animate hearts being restored when the player respawns  
+- **Pop out** – To animate hearts when the player takes damage  
+- **Low health pulse** – To animate hearts when the player is low health  
+
+A heart acts depending on the [heart.gd](https://github.com/sriramadhenu/mage-race/blob/ee99234c252524eace5437f33d643e3682d93cd3/scenes/ui/hud/heart/heart.gd#L1) script. This script defines a heart's behavior (whether to pop-in or pop-out). [player_health.gd](https://github.com/sriramadhenu/mage-race/blob/ee99234c252524eace5437f33d643e3682d93cd3/scenes/ui/hud/player_health/player_health.gd#L1) is the player health HUD manager. It communicates with our `GameManager.gd` to create the player's hearts and track the current health. It decides which hearts are full, empty, and when to play the low health animation.
+
+### Pause Menu
+
+<img src="projectDocumentScreenshots/pause.png" width="10%">
+
+The pause menu builds upon the theme of the game. It keeps the pixel art style by implementing the pixel theme.  
+It has 3 options:
+
+- Resume (Resume the game)  
+- Levels (Go to the level loader)  
+- Quit (Quit the game)
+
+The [pause_menu.gd](https://github.com/sriramadhenu/mage-race/blob/ee99234c252524eace5437f33d643e3682d93cd3/scenes/ui/menus/PauseMenu/pause_menu.gd#L1) script handles the transitions between the buttons, and the pausing of the game state.
+
+### HUD
+To ensure that the HUD is persistent across all levels without any node/code repetition, I autoloaded a [hud.tscn](https://github.com/sriramadhenu/mage-race/blob/2168b7a2bde5dfc8892afc82fcbb4bafbb8ee454/scenes/ui/hud/HUD.tscn#L1) in the project settings. This is the scene that ties the player health and pause menu together for our levels. 
+
+The [hud.gd](https://github.com/sriramadhenu/mage-race/blob/ee99234c252524eace5437f33d643e3682d93cd3/scenes/ui/hud/hud.gd#L1) script controls which HUD elements show up depending on the scene the player is in. 
+ 
+**Sub-Role: Gameplay Testing**
+
+For the sub-role, it was difficult to gauge when to properly test our game because we were behind in development. It was difficult to determine whether testing would actually give us meaningful feedback, given our core mechanics and level structure weren't fully in place yet. I didn't want playtest sessions to turn into level design sessions driven by our playtesters. By the time our class had the game testing discussion, we did have a level ready to be tested, which gave us a lot of helpful feedback.
+
+**Other Contributions**
+
+#### Game Camera
+
+For the game camera, a pure position lock camera seemed too stiff, so I decided that it was best if we use the [position_lock_lerp.gd](https://github.com/sriramadhenu/mage-race/blob/ee99234c252524eace5437f33d643e3682d93cd3/scenes/levels/position_lock_lerp_camera.gd#L1)
+ camera from exercise 2. I simply adapted the implementation of my camera from exercise 2 into our game.
+
+#### Audio
+
+I added a royalty-free fantasy soundtrack to the main menu to fit with the theme of the game's atomosphere.
+
+#### Level Backgrounds
+
+For our level backgrounds, I chose to use parallax backgrounds because they look nice and they make our levels more immersive by simulating a living environment. The biggest challenge here was finding good free assets that match the theme of our levels. However, after finding the appropriate assets, setting up the backgrounds with Godot's ParallaxBackground and ParallaxLayer nodes makes the implementation very easy.
+
+#### Resources
+
+- [How to use Godot Themes](https://docs.godotengine.org/en/stable/tutorials/ui/gui_using_theme_editor.html)  
+- [Learning how to use AnimationPlayer](https://docs.godotengine.org/en/stable/tutorials/animation/introduction.html)  
+- [Using Parallax Backgrounds](https://www.youtube.com/watch?v=RYsUgJuICE4)
