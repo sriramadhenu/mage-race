@@ -112,7 +112,7 @@ After feedback from the playtest, looking at the game feel slides, and consultin
 Since I was already working on projectiles, I implemented the [ice spell](https://github.com/sriramadhenu/mage-race/blob/main/scripts/projectiles/ice_spell.gd) that the player uses in the game. I also imported and setup the animation sprites for each of the characters (player and enemies).
 
 
-## Sri Krishanu Ramadhenu (sriramadhenu)
+## Sri Krishanu Ramadhenu (sriramadhenu/SaltyGamer829)
 
 **Main Role: Game Logic**
 
